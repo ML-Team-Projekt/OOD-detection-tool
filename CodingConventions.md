@@ -13,4 +13,8 @@
 - Bottom-up Approach
 - one class per file
 
+## Imports
+- at the top of the file
+- import numpy as np
+
 
