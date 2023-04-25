@@ -1,7 +1,6 @@
 # Coding conventions
 
 ## Naming Conventions
-
 - **Variables:** camelCase: e.g. helloWorld
 - **Constants:** capitalize: e.g. HELLOWORLD
 - **Functions:** camelCase: e.g. helloWorld
@@ -12,5 +11,6 @@
 
 ## Design Approach
 - Bottom-up Approach
+- one class per file
 
 
