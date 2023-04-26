@@ -1,7 +1,7 @@
 import os
 import csv
 
-def createCsv(folderPath):
+def creatAnnotation(folderPath):
     dataList = []
     labelList = []
     lengthOfFolderPath = len(folderPath)
