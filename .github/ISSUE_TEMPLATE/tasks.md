@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-# <TASK NR>: <TASK_NAME>
-
 ## Problem Context
 Describe the problem here
 
