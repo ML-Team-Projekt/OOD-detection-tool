@@ -146,7 +146,8 @@ def createRandomBatch(batchsize):
 samples, samples3dim, indexList = createRandomBatch(BATCHSIZE)
 
 # loads pretrained model
-model = get_new_model("convnext_tiny", not_original=True)
+modelName = "convnext_tiny"
+model = get_new_model(modelName, not_original=True)
 
 
 '''

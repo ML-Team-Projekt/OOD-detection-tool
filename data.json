@@ -1,0 +1,65 @@
+[
+    {
+        "ImgID": 620,
+        "UserCall": [
+            {
+                "userId": 1,
+                "model": "convnext_tiny",
+                "topTen": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 338,
+        "UserCall": [
+            {
+                "userId": 1,
+                "model": "convnext_tiny",
+                "topTen": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 526,
+        "UserCall": [
+            {
+                "userId": 1,
+                "model": "convnext_tiny",
+                "topTen": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ]
+            }
+        ]
+    }
+]
