@@ -1,63 +1,506 @@
 [
     {
-        "ImgID": 620,
+        "ImgID": 307,
+        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_019_11119377.jpeg",
         "UserCall": [
             {
-                "userId": 1,
+                "userId": 10,
                 "model": "convnext_tiny",
+                "decesion": "IID",
                 "topTen": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9
+                    "window screen",
+                    "matchstick",
+                    "wall clock",
+                    "switch, electric switch, electrical switch",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "syringe",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "ping-pong ball",
+                    "stopwatch, stop watch"
                 ]
             }
         ]
     },
     {
-        "ImgID": 338,
+        "ImgID": 618,
+        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_022_10687786.jpg",
         "UserCall": [
             {
-                "userId": 1,
+                "userId": 10,
                 "model": "convnext_tiny",
+                "decesion": "OOD",
                 "topTen": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9
+                    "window screen",
+                    "window shade",
+                    "matchstick",
+                    "web site, website, internet site, site",
+                    "ballpoint, ballpoint pen, ballpen, Biro",
+                    "fire screen, fireguard",
+                    "letter opener, paper knife, paperknife",
+                    "rule, ruler",
+                    "envelope",
+                    "can opener, tin opener"
                 ]
             }
         ]
     },
     {
-        "ImgID": 526,
+        "ImgID": 68,
+        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_067_35767014.jpg",
         "UserCall": [
             {
-                "userId": 1,
+                "userId": 10,
                 "model": "convnext_tiny",
+                "decesion": "Abstinent",
                 "topTen": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9
+                    "window screen",
+                    "fire screen, fireguard",
+                    "microwave, microwave oven",
+                    "window shade",
+                    "wall clock",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "lampshade, lamp shade",
+                    "digital clock",
+                    "syringe",
+                    "dishwasher, dish washer, dishwashing machine"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 494,
+        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_006_00007.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "microwave, microwave oven",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "window shade",
+                    "shower curtain",
+                    "radiator",
+                    "television, television system",
+                    "sliding door",
+                    "hourglass"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 440,
+        "source": "NINCO_OOD_classes\\donuts\\donuts_052_3682546.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "wall clock",
+                    "lampshade, lamp shade",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "microwave, microwave oven",
+                    "syringe",
+                    "shower curtain",
+                    "ping-pong ball"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 524,
+        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_036_00041.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "microwave, microwave oven",
+                    "stopwatch, stop watch",
+                    "shower curtain",
+                    "lampshade, lamp shade",
+                    "shoji",
+                    "syringe"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 160,
+        "source": "NINCO_OOD_classes\\Caracal caracal caracal\\Caracal caracal caracal_056_089-89872904.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "wall clock",
+                    "matchstick",
+                    "window shade",
+                    "switch, electric switch, electrical switch",
+                    "syringe",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "ping-pong ball",
+                    "web site, website, internet site, site"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 33,
+        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_032_32035421.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "shower curtain",
+                    "fire screen, fireguard",
+                    "shoji",
+                    "sliding door",
+                    "lampshade, lamp shade",
+                    "wall clock",
+                    "theater curtain, theatre curtain",
+                    "switch, electric switch, electrical switch"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 635,
+        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_039_11440191.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "matchstick",
+                    "fire screen, fireguard",
+                    "stopwatch, stop watch",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "wall clock",
+                    "analog clock",
+                    "cup",
+                    "syringe"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 473,
+        "source": "NINCO_OOD_classes\\donuts\\donuts_085_358440.jpg",
+        "UserCall": [
+            {
+                "userId": 10,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "matchstick",
+                    "web site, website, internet site, site",
+                    "syringe",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
+                    "analog clock",
+                    "wall clock",
+                    "stopwatch, stop watch",
+                    "microwave, microwave oven"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 81,
+        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_080_4145911.jpeg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window shade",
+                    "window screen",
+                    "stopwatch, stop watch",
+                    "toilet tissue, toilet paper, bathroom tissue",
+                    "digital clock",
+                    "cleaver, meat cleaver, chopper",
+                    "web site, website, internet site, site",
+                    "television, television system",
+                    "analog clock",
+                    "monitor"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 69,
+        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_068_36274600.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "wall clock",
+                    "window shade",
+                    "window screen",
+                    "switch, electric switch, electrical switch",
+                    "shower curtain",
+                    "syringe",
+                    "analog clock",
+                    "toilet tissue, toilet paper, bathroom tissue",
+                    "hourglass",
+                    "spotlight, spot"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 80,
+        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_079_41113909.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "wall clock",
+                    "window shade",
+                    "hourglass",
+                    "analog clock",
+                    "shower curtain",
+                    "syringe",
+                    "matchstick",
+                    "window screen",
+                    "stopwatch, stop watch",
+                    "lighter, light, igniter, ignitor"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 193,
+        "source": "NINCO_OOD_classes\\Caracal caracal caracal\\Caracal caracal caracal_089_175-158385310.jpeg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "wall clock",
+                    "syringe",
+                    "hourglass",
+                    "shower curtain",
+                    "ping-pong ball",
+                    "stopwatch, stop watch",
+                    "analog clock",
+                    "matchstick"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 242,
+        "source": "NINCO_OOD_classes\\cup_cakes\\cup_cakes_034_114735.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "stopwatch, stop watch",
+                    "shoji",
+                    "hourglass",
+                    "analog clock",
+                    "syringe",
+                    "wall clock",
+                    "sliding door",
+                    "digital clock"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 511,
+        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_023_00026.jpg",
+        "UserCall": [
+            {
+                "userId": 4,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "wall clock",
+                    "stopwatch, stop watch",
+                    "syringe",
+                    "analog clock",
+                    "shower curtain",
+                    "hourglass",
+                    "digital clock",
+                    "switch, electric switch, electrical switch"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 694,
+        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_098_13651977.jpeg",
+        "UserCall": [
+            {
+                "userId": 4,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "wall clock",
+                    "analog clock",
+                    "shower curtain",
+                    "syringe",
+                    "hourglass",
+                    "switch, electric switch, electrical switch",
+                    "stopwatch, stop watch",
+                    "digital clock"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 351,
+        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_063_13304108.jpeg",
+        "UserCall": [
+            {
+                "userId": 4,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "window shade",
+                    "window screen",
+                    "wall clock",
+                    "switch, electric switch, electrical switch",
+                    "syringe",
+                    "shower curtain",
+                    "lampshade, lamp shade",
+                    "toilet tissue, toilet paper, bathroom tissue",
+                    "stopwatch, stop watch",
+                    "hourglass"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 755,
+        "source": "NINCO_OOD_classes\\shuttlecock\\shuttlecock_056_pe11.jpg",
+        "UserCall": [
+            {
+                "userId": 7,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "stopwatch, stop watch",
+                    "hourglass",
+                    "analog clock",
+                    "syringe",
+                    "wall clock",
+                    "digital clock",
+                    "shower curtain",
+                    "shoji"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 383,
+        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_095_14422067.jpeg",
+        "UserCall": [
+            {
+                "userId": 7,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "wall clock",
+                    "stopwatch, stop watch",
+                    "hourglass",
+                    "analog clock",
+                    "syringe",
+                    "shoji",
+                    "shower curtain",
+                    "switch, electric switch, electrical switch"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 442,
+        "source": "NINCO_OOD_classes\\donuts\\donuts_054_2324265.jpg",
+        "UserCall": [
+            {
+                "userId": 6,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window shade",
+                    "window screen",
+                    "wall clock",
+                    "hourglass",
+                    "shower curtain",
+                    "syringe",
+                    "analog clock",
+                    "stopwatch, stop watch",
+                    "switch, electric switch, electrical switch",
+                    "matchstick"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 399,
+        "source": "NINCO_OOD_classes\\donuts\\donuts_011_2827347.jpg",
+        "UserCall": [
+            {
+                "userId": 6,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "shower curtain",
+                    "wall clock",
+                    "hourglass",
+                    "syringe",
+                    "stopwatch, stop watch",
+                    "honeycomb",
+                    "sliding door",
+                    "analog clock"
                 ]
             }
         ]
