@@ -11,6 +11,7 @@ from IPython.display import display
 from PIL import Image 
 import random
 import numpy as np
+from class_katalog import NAMES
 
 IMAGESROOTDIR = 'NINCO_OOD_classes'
 
@@ -25,7 +26,8 @@ class ImageDataset(Dataset):
         data_path = self.annotation.iloc[index,0]
         image = Image.open(data_path)
         label = self.annotation.iloc[index,1]
-        return image, label
+        source = data_path
+        return image, label, source
 
     def __len__(self):
         return len(self.annotation)
@@ -54,7 +56,7 @@ class Rescale:
         
     #sample data is a tuple(image, label)
     def __call__(self, sampleData):
-        image, label = sampleData
+        image, label, source = sampleData
         
         size = image.size
         
@@ -62,7 +64,7 @@ class Rescale:
         
         transformedImage = fn.resize(image, [newHeight, newWidth])
         
-        return transformedImage,label
+        return transformedImage, label, source
     
 # Class which is used to center crop non quadratic images
 # input: outputSize: int
@@ -73,16 +75,18 @@ class CenterCrop:
         
     # creates a quadratic image
     def __call__(self, sampleData):
-        image, label = sampleData
+        image, label, source = sampleData
         
         width, height = image.size
         
         if (width != height or width != self.outputSize):
             centerCrop = torchvision.transforms.CenterCrop(self.outputSize)
 
-            return centerCrop(image), label
-        return image,label
+            return centerCrop(image), label, source
+        return image, label, source
     
+
+
 # Constants for the size of the images
 RESCALE = 240
 CROP = 240
@@ -99,6 +103,7 @@ def transform(index):
     tmp = composed(imageDataset[index])
     return tmp
 
+
 # objects for tensor transformation
 pilToTensor = T.ToTensor()
 tensorToPil = T.ToPILImage()
@@ -113,12 +118,12 @@ class DataLoader(Dataset):
     def __getitem__(self, index):
         assert (0 < index <= self.datasetLength)
         self.index = index
-        (picture, label) = transform(index)
+        (picture, label, source) = transform(index)
         image = pilToTensor(picture)
         sample3dim = {'image' : image, 'label' : label}
         image = image.unsqueeze(0)
         sample = {'image': image, 'label': label}
-        return sample, sample3dim
+        return sample, sample3dim, source
     
 # Amount of random samples 
 BATCHSIZE = 4
@@ -135,18 +140,22 @@ def createRandomBatch(batchsize):
     batch = []
     batch3dim = []
     indexList = []
+    sourceList = []
     for i in range(batchsize):
         index = random.randint(0,len(imageDataset))
         indexList.append(index)
-        sample, sample3dim = dataloader[index]
+        sample, sample3dim, source = dataloader[index]
         batch.append(sample)
         batch3dim.append(sample3dim)
-    return batch, batch3dim, indexList
+        sourceList.append(source)
 
-samples, samples3dim, indexList = createRandomBatch(BATCHSIZE)
+    return batch, batch3dim, indexList, sourceList
+
+samples, samples3dim, indexList, sourceList = createRandomBatch(BATCHSIZE)
 
 # loads pretrained model
-model = get_new_model("convnext_tiny", not_original=True)
+modelName = "convnext_tiny"
+model = get_new_model(modelName, not_original=True)
 
 
 '''
@@ -156,15 +165,17 @@ Return: None
 '''
 def feedModel(samples):
     assert(0<len(samples)<len(imageDataset))
+    samplesWithPrediction =[]
     for sample in samples:
         image, label = sample['image'], sample['label']
         prediction = model(image)
         sample["prediction"]=prediction
-    return samples
+        samplesWithPrediction.append(sample)
+    return samplesWithPrediction
         
         
         
-newSamples = feedModel(samples)
+samplesWithPrediction = feedModel(samples)
 
 '''
 function extracts the values from the samples dict
@@ -200,7 +211,47 @@ plt.show()
 
 
 
+# function that finds the top k predictions
+def findMaxPredictions(samples, k:int):
+    
+    predictionsMax = []
+    predictionsIndices = []
+    
+    for dictionary in samples:
+        predictions = dictionary['prediction']
+        tempPredictionsMax = []
+        tempPredictionsIndices = []
+        for i in range (0, k):
+            maximums = []
+            indices = []
+            maximums = predictions.max().item()
+            indices = predictions.argmax().item()
+            tempPredictionsMax.append(maximums)
+            tempPredictionsIndices.append(indices)
+            predictions[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
+        predictionsMax.append(tempPredictionsMax)
+        predictionsIndices.append(tempPredictionsIndices)
+        
+    return (predictionsMax, predictionsIndices)
 
+
+# function that finds the labels to the top k predictions
+def findLabels(samples, k:int, batchsize):
+    
+    (predictionsMax, predictionsIndices) = findMaxPredictions(samples, k)
+    allTopKLabels = []
+    
+    for i in range (0, batchsize):
+        topKLabels = []
+        for j in range (0, k):
+            topILabel = []
+            topILabel = NAMES[predictionsIndices[i][j]]
+            topKLabels.append(topILabel)
+        allTopKLabels.append(topKLabels)
+        
+    return allTopKLabels
+
+print(findLabels(samples, 10, len(samples)))
 
 
 
