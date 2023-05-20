@@ -504,5 +504,74 @@
                 ]
             }
         ]
+    },
+    {
+        "ImgID": 240,
+        "source": "NINCO_OOD_classes/araneus_gemma/araneus_gemma_007_17160592.jpeg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "window screen",
+                    "shower curtain",
+                    "window shade",
+                    "theater curtain, theatre curtain",
+                    "fire screen, fireguard",
+                    "spotlight, spot",
+                    "wall clock",
+                    "microwave, microwave oven",
+                    "lampshade, lamp shade",
+                    "radiator"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 581,
+        "source": "NINCO_OOD_classes/donuts/donuts_016_444911.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "fire screen, fireguard",
+                    "shower curtain",
+                    "theater curtain, theatre curtain",
+                    "analog clock",
+                    "spotlight, spot",
+                    "hourglass",
+                    "wall clock",
+                    "syringe"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 362,
+        "source": "NINCO_OOD_classes/shuttlecock/shuttlecock_039_0426.png",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "fire screen, fireguard",
+                    "shower curtain",
+                    "oscilloscope, scope, cathode-ray oscilloscope, CRO",
+                    "theater curtain, theatre curtain",
+                    "binder, ring-binder",
+                    "analog clock",
+                    "spotlight, spot",
+                    "chainlink fence"
+                ]
+            }
+        ]
     }
 ]
