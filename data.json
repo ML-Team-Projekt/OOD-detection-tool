@@ -573,5 +573,235 @@
                 ]
             }
         ]
+    },
+    {
+        "ImgID": 740,
+        "source": "NINCO_OOD_classes/cup_cakes/cup_cakes_025_2115228.jpg",
+        "UserCall": [
+            {
+                "userId": 1,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "web site, website, internet site, site",
+                    "digital clock",
+                    "matchstick",
+                    "fire screen, fireguard",
+                    "analog clock",
+                    "stopwatch, stop watch",
+                    "shoji",
+                    "theater curtain, theatre curtain"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 652,
+        "source": "NINCO_OOD_classes/donuts/donuts_009_2661491.jpg",
+        "UserCall": [
+            {
+                "userId": 1,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "theater curtain, theatre curtain",
+                    "digital clock",
+                    "honeycomb",
+                    "web site, website, internet site, site",
+                    "stopwatch, stop watch",
+                    "ping-pong ball",
+                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 656,
+        "source": "NINCO_OOD_classes/donuts/donuts_061_824524.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "analog clock",
+                    "digital clock",
+                    "web site, website, internet site, site",
+                    "strainer",
+                    "stopwatch, stop watch",
+                    "spotlight, spot",
+                    "ping-pong ball"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 526,
+        "source": "NINCO_OOD_classes/fire_extinguisher/fire_extinguisher_008_00010.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "analog clock",
+                    "web site, website, internet site, site",
+                    "digital clock",
+                    "fire screen, fireguard",
+                    "window shade",
+                    "theater curtain, theatre curtain",
+                    "rule, ruler",
+                    "stopwatch, stop watch",
+                    "screen, CRT screen"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 648,
+        "source": "NINCO_OOD_classes/donuts/donuts_036_794594.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "window shade",
+                    "fire screen, fireguard",
+                    "web site, website, internet site, site",
+                    "stopwatch, stop watch",
+                    "digital clock",
+                    "analog clock",
+                    "ping-pong ball",
+                    "hourglass",
+                    "matchstick"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 144,
+        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_007_008-15810324.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "analog clock",
+                    "web site, website, internet site, site",
+                    "digital clock",
+                    "screen, CRT screen",
+                    "window shade",
+                    "theater curtain, theatre curtain",
+                    "hourglass",
+                    "oscilloscope, scope, cathode-ray oscilloscope, CRO"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 663,
+        "source": "NINCO_OOD_classes/donuts/donuts_001_952086.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "theater curtain, theatre curtain",
+                    "window screen",
+                    "matchstick",
+                    "screw",
+                    "analog clock",
+                    "jellyfish",
+                    "fire screen, fireguard",
+                    "microphone, mike",
+                    "digital clock",
+                    "parachute, chute"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 172,
+        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_064_098-97702372.jpeg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "digital clock",
+                    "ping-pong ball",
+                    "analog clock",
+                    "window shade",
+                    "mantis, mantid",
+                    "lacewing, lacewing fly",
+                    "stopwatch, stop watch",
+                    "theater curtain, theatre curtain"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 123,
+        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_034_057-58319857.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "ping-pong ball",
+                    "digital clock",
+                    "mantis, mantid",
+                    "lacewing, lacewing fly",
+                    "analog clock",
+                    "cockroach, roach",
+                    "stopwatch, stop watch",
+                    "microwave, microwave oven"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 208,
+        "source": "NINCO_OOD_classes/araneus_gemma/araneus_gemma_089_495225.jpg",
+        "UserCall": [
+            {
+                "userId": 2,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "window screen",
+                    "fire screen, fireguard",
+                    "digital clock",
+                    "ping-pong ball",
+                    "analog clock",
+                    "microwave, microwave oven",
+                    "stopwatch, stop watch",
+                    "lacewing, lacewing fly",
+                    "cockroach, roach",
+                    "mantis, mantid"
+                ]
+            }
+        ]
     }
 ]
