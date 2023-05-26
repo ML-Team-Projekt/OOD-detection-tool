@@ -136,26 +136,60 @@ def generateEval(batchSize, uId):
     addModel(modelName)
     addSource(sourceList)
     
-    for i in range(0, batchSize):
-        displayEval(imageDataset.__getitem__(indexList[i])[0], labels[i], uId)
+    global bSize
+    bSize = batchSize
+    global iList
+    iList = indexList
+    global allLabels
+    allLabels = labels
+    global loop
+    loop = 0
+
+    displayEval()
 
 # user selected IID
-def selectIid():
+def selectIid():#userId, iList, allL, bSize, loop):
   # update json
     addDecesion('IID')
+  # display next eval  
+    global loop
+    global batchSize
+    if loop < (bSize-1):
+        loop = loop + 1
+        displayEval()
+    else: endEval()
 
 # user selected OOD    
 def selectOod():
   # update json
     addDecesion('OOD')
+  # display next eval  
+    global loop
+    global batchSize
+    if loop < (bSize-1):
+        loop = loop + 1
+        displayEval()
+    else: endEval()
 
 # user selected abstinent
 def selectAbstinent():
   # update json
     addDecesion('Abstinent')
+  # display next eval
+    global loop
+    global batchSize
+    if loop < (bSize-1):
+        loop = loop + 1
+        displayEval()
+    else: endEval()
 
 # shows an image, the labels and three buttons
-def displayEval(imgPath, labels, uId):
+def displayEval():#indexList, allLabels, uId, batchSize, loop):
+    global loop
+    global iList
+    global allLabels
+    imgPath = imageDataset.__getitem__(iList[loop])[0]
+    labels = allLabels[loop]
     with gr.Blocks() as demo:
         gr.Markdown('''Please decide if the image is in 'independent identically distribution' (IID) or 'out of distribution' (OOD) related to the predicted labels of the model.
         If your are not sure choose 'abstinent'. ''')
@@ -169,7 +203,6 @@ def displayEval(imgPath, labels, uId):
             iidBtn = gr.Button("IID")
             oodBtn = gr.Button("OOD")
             abstinentBtn = gr.Button("abstinent")
-        userId = gr.Textbox(visible = False, value = uId)
         iidBtn.click(fn=selectIid, inputs=None, outputs=None, api_name="IID")
         oodBtn.click(fn=selectOod, inputs=None, outputs=None, api_name="OOD")
         abstinentBtn.click(fn=selectAbstinent, inputs=None, outputs=None, api_name="abstinent")
@@ -305,7 +338,7 @@ def handleFirstIn(idOrMail):
     else: 
         #add User id to datacollector
         addUserId(int(idOrMail))
-        askAmount(int(idOrMail)) 
+        askAmount(int(idOrMail))
 
 # generates the sign-in page 
 def generateSignIn():
@@ -332,16 +365,20 @@ data = json.loads(json_str)
 dataCollector = dict()
 decesions = []
 
+# end evaluation and save data
+def endEval():
+    #add the new genarated data into database(here as dict)
+    updateData()
+
+    databasePath = 'data.json'
+    # write data into json file
+    with open(databasePath, 'w') as database:
+        json.dump(data, database, indent=4)
+
+    #empty the container
+    dataCollector = dict()
+    decesions = []
+    
+    sys.exit(0)
+
 generateSignIn()
-
-#add the new genarated data into database(here as dict)
-updateData()
-
-databasePath = 'data.json'
-# write data into json file
-with open(databasePath, 'w') as database:
-    json.dump(data, database, indent=4)
-
-#empty the container
-dataCollector = dict()
-decesions = []
