@@ -90,28 +90,25 @@ def creatJsonObject(img):
 #update the Object of the image, which already exists in database.
 def updateObject(img):
     for obj in data:
-        if obj['ImgID'] == img['ImgId']:
+        if obj['source'] == img['source']:
             call = {
                 'userId' : dataCollector['UserId'],
                 'model' : dataCollector['model'],
                 'decesion': img['decesion']
             }
+            obj['UserCall'].append(call)
+            #extend container of topTen if we call a new model for this image 
             key = dataCollector['model']
             if key not in obj['topTen']:
                 obj['topTen'][key] = img['topTen']
-            obj['UserCall'].append(call)
 
 #update our database ,everytime a Usercall happens
 def updateData():
-    imgSet = set()
-    if len(data) > 0:
-        for obj in data:
-            imgSet.add(obj['ImgID'])
     for img in dataCollector['Imgs']:
-        if img['ImgId'] not in imgSet:
+        if img['source'] not in imgSet:
             obj = creatJsonObject(img)
             data.append(obj)
-            imgSet.add(img['ImgId'])
+            imgSet.add(img['source'])
         else:
             updateObject(img)
 
@@ -368,6 +365,12 @@ with open('data.json') as file:
     json_str = file.read()
 
 data = json.loads(json_str)
+
+#load the Set of all images in database, so that we can decide if a new image already exists in database. 
+imgSet = set()
+if len(data) > 0:
+    for obj in data:
+        imgSet.add(obj['source'])
 
 #initialize temporary data container: dataCollector and decesions
 dataCollector = dict()
