@@ -58,7 +58,12 @@ def addDecesion(decesion):
 def addSource(sourceList):
     assert len(sourceList) == len(dataCollector['Imgs'])
     for i in range(len(dataCollector['Imgs'])):
-        dataCollector['Imgs'][i]['source'] = sourceList[i] 
+        dataCollector['Imgs'][i]['source'] = sourceList[i]
+
+def addLabel(labelList):
+    assert len(labelList) == len(dataCollector['Imgs'])
+    for i in range(len(dataCollector['Imgs'])):
+        dataCollector['Imgs'][i]['label'] = labelList[i]
 
 def addModel(model):
     dataCollector['model'] = model
@@ -69,12 +74,13 @@ def creatJsonObject(img):
     object = {
                 'ImgID' : img['ImgId'],
                 'source' : img['source'],
+                'label': img['label'],
+                'topTen': {dataCollector['model']: topTen},
                 'UserCall': [
                     {
                         'userId' : dataCollector['UserId'],
                         'model' : dataCollector['model'],
-                        'decesion': img['decesion'],
-                        'topTen': topTen    
+                        'decesion': img['decesion']
                     }
                 ]
             }
@@ -88,9 +94,11 @@ def updateObject(img):
             call = {
                 'userId' : dataCollector['UserId'],
                 'model' : dataCollector['model'],
-                'decesion': img['decesion'],
-                'topTen': img['topTen']
+                'decesion': img['decesion']
             }
+            key = dataCollector['model']
+            if key not in obj['topTen']:
+                obj['topTen'][key] = img['topTen']
             obj['UserCall'].append(call)
 
 #update our database ,everytime a Usercall happens
@@ -106,11 +114,10 @@ def updateData():
             imgSet.add(img['ImgId'])
         else:
             updateObject(img)
-            break
 
 # returns the labels per image which have to be evaluated and the indices of the images
 def loadDataFromModel(batchSize):
-    batch, batch3dim, indexList, sourceList = createRandomBatch(batchSize)
+    batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize)
     global modelName
     modelName = "convnext_tiny"
     model = get_new_model(modelName, not_original=True)
@@ -125,16 +132,17 @@ def loadDataFromModel(batchSize):
     for i in range(0, batchSize):
         labels.append(topTenList[i])
 
-    return labels, indexList, sourceList, topTenList
+    return labels, indexList, sourceList, topTenList, labelList
 
 # generates the whole evaluation output
 def generateEval(batchSize, uId):
     batchSize = int(batchSize)
-    labels, indexList, sourceList, topTenList = loadDataFromModel(batchSize)
+    labels, indexList, sourceList, topTenList, labelList = loadDataFromModel(batchSize)
     addImg(indexList)
     addTopTen(topTenList)
     addModel(modelName)
     addSource(sourceList)
+    addLabel(labelList)
     
     global bSize
     bSize = batchSize
@@ -184,7 +192,7 @@ def selectAbstinent():
     else: endEval()
 
 # shows an image, the labels and three buttons
-def displayEval():#indexList, allLabels, uId, batchSize, loop):
+def displayEval():#indexList, allLabels, uId, batchSize, loop, labelList):
     global loop
     global iList
     global allLabels
