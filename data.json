@@ -1,805 +1,454 @@
 [
     {
-        "ImgID": 307,
-        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_019_11119377.jpeg",
+        "ImgID": 86,
+        "source": "val/n04357314/ILSVRC2012_val_00027170.JPEG",
         "UserCall": [
             {
-                "userId": 10,
+                "userId": 1000,
                 "model": "convnext_tiny",
                 "decesion": "IID",
                 "topTen": [
-                    "window screen",
-                    "matchstick",
-                    "wall clock",
-                    "switch, electric switch, electrical switch",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "syringe",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "ping-pong ball",
-                    "stopwatch, stop watch"
+                    "lotion",
+                    "medicine chest, medicine cabinet",
+                    "sunscreen, sunblock, sun blocker",
+                    "grocery store, grocery, food market, market",
+                    "hair spray",
+                    "eggnog",
+                    "vending machine",
+                    "Band Aid",
+                    "pop bottle, soda bottle",
+                    "water jug"
                 ]
             }
         ]
     },
     {
-        "ImgID": 618,
-        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_022_10687786.jpg",
+        "ImgID": 404,
+        "source": "val/n03133878/ILSVRC2012_val_00040509.JPEG",
         "UserCall": [
             {
-                "userId": 10,
+                "userId": 1000,
                 "model": "convnext_tiny",
-                "decesion": "OOD",
+                "decesion": "IID",
                 "topTen": [
-                    "window screen",
-                    "window shade",
-                    "matchstick",
-                    "web site, website, internet site, site",
-                    "ballpoint, ballpoint pen, ballpen, Biro",
-                    "fire screen, fireguard",
-                    "letter opener, paper knife, paperknife",
-                    "rule, ruler",
-                    "envelope",
+                    "Crock Pot",
+                    "mushroom",
+                    "strainer",
+                    "soup bowl",
+                    "ladle",
+                    "hot pot, hotpot",
+                    "conch",
+                    "hen-of-the-woods, hen of the woods, Polyporus frondosus, Grifola frondosa",
+                    "bucket, pail",
+                    "mixing bowl"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 380,
+        "source": "val/n03133878/ILSVRC2012_val_00044396.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "Crock Pot",
+                    "potpie",
+                    "corn",
+                    "soup bowl",
+                    "hot pot, hotpot",
+                    "mixing bowl",
+                    "wok",
+                    "butternut squash",
+                    "jellyfish",
+                    "mashed potato"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 355,
+        "source": "val/n04428191/ILSVRC2012_val_00014222.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "thresher, thrasher, threshing machine",
+                    "hay",
+                    "oxcart",
+                    "ox",
+                    "horse cart, horse-cart",
+                    "harvester, reaper",
+                    "lumbermill, sawmill",
+                    "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+                    "cowboy hat, ten-gallon hat",
+                    "corn"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 283,
+        "source": "val/n03873416/ILSVRC2012_val_00029352.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "paddle, boat paddle",
+                    "canoe",
+                    "spatula",
+                    "strainer",
+                    "iron, smoothing iron",
+                    "radio, wireless",
+                    "torch",
+                    "shopping cart",
+                    "sandbar, sand bar",
+                    "tripod"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 391,
+        "source": "val/n03133878/ILSVRC2012_val_00024436.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "Crock Pot",
+                    "hot pot, hotpot",
+                    "ladle",
+                    "jellyfish",
+                    "lotion",
+                    "microphone, mike",
+                    "electric ray, crampfish, numbfish, torpedo",
+                    "airship, dirigible",
+                    "chain",
                     "can opener, tin opener"
                 ]
             }
         ]
     },
     {
-        "ImgID": 68,
-        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_067_35767014.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "Abstinent",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "microwave, microwave oven",
-                    "window shade",
-                    "wall clock",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "lampshade, lamp shade",
-                    "digital clock",
-                    "syringe",
-                    "dishwasher, dish washer, dishwashing machine"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 494,
-        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_006_00007.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "microwave, microwave oven",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "window shade",
-                    "shower curtain",
-                    "radiator",
-                    "television, television system",
-                    "sliding door",
-                    "hourglass"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 440,
-        "source": "NINCO_OOD_classes\\donuts\\donuts_052_3682546.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "wall clock",
-                    "lampshade, lamp shade",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "microwave, microwave oven",
-                    "syringe",
-                    "shower curtain",
-                    "ping-pong ball"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 524,
-        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_036_00041.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "microwave, microwave oven",
-                    "stopwatch, stop watch",
-                    "shower curtain",
-                    "lampshade, lamp shade",
-                    "shoji",
-                    "syringe"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 160,
-        "source": "NINCO_OOD_classes\\Caracal caracal caracal\\Caracal caracal caracal_056_089-89872904.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "wall clock",
-                    "matchstick",
-                    "window shade",
-                    "switch, electric switch, electrical switch",
-                    "syringe",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "ping-pong ball",
-                    "web site, website, internet site, site"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 33,
-        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_032_32035421.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "shower curtain",
-                    "fire screen, fireguard",
-                    "shoji",
-                    "sliding door",
-                    "lampshade, lamp shade",
-                    "wall clock",
-                    "theater curtain, theatre curtain",
-                    "switch, electric switch, electrical switch"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 635,
-        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_039_11440191.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "matchstick",
-                    "fire screen, fireguard",
-                    "stopwatch, stop watch",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "wall clock",
-                    "analog clock",
-                    "cup",
-                    "syringe"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 473,
-        "source": "NINCO_OOD_classes\\donuts\\donuts_085_358440.jpg",
-        "UserCall": [
-            {
-                "userId": 10,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "matchstick",
-                    "web site, website, internet site, site",
-                    "syringe",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system",
-                    "analog clock",
-                    "wall clock",
-                    "stopwatch, stop watch",
-                    "microwave, microwave oven"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 81,
-        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_080_4145911.jpeg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window shade",
-                    "window screen",
-                    "stopwatch, stop watch",
-                    "toilet tissue, toilet paper, bathroom tissue",
-                    "digital clock",
-                    "cleaver, meat cleaver, chopper",
-                    "web site, website, internet site, site",
-                    "television, television system",
-                    "analog clock",
-                    "monitor"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 69,
-        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_068_36274600.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "wall clock",
-                    "window shade",
-                    "window screen",
-                    "switch, electric switch, electrical switch",
-                    "shower curtain",
-                    "syringe",
-                    "analog clock",
-                    "toilet tissue, toilet paper, bathroom tissue",
-                    "hourglass",
-                    "spotlight, spot"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 80,
-        "source": "NINCO_OOD_classes\\araneus_gemma\\araneus_gemma_079_41113909.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "Abstinent",
-                "topTen": [
-                    "wall clock",
-                    "window shade",
-                    "hourglass",
-                    "analog clock",
-                    "shower curtain",
-                    "syringe",
-                    "matchstick",
-                    "window screen",
-                    "stopwatch, stop watch",
-                    "lighter, light, igniter, ignitor"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 193,
-        "source": "NINCO_OOD_classes\\Caracal caracal caracal\\Caracal caracal caracal_089_175-158385310.jpeg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "wall clock",
-                    "syringe",
-                    "hourglass",
-                    "shower curtain",
-                    "ping-pong ball",
-                    "stopwatch, stop watch",
-                    "analog clock",
-                    "matchstick"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 242,
-        "source": "NINCO_OOD_classes\\cup_cakes\\cup_cakes_034_114735.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "stopwatch, stop watch",
-                    "shoji",
-                    "hourglass",
-                    "analog clock",
-                    "syringe",
-                    "wall clock",
-                    "sliding door",
-                    "digital clock"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 511,
-        "source": "NINCO_OOD_classes\\fire_extinguisher\\fire_extinguisher_023_00026.jpg",
-        "UserCall": [
-            {
-                "userId": 4,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "wall clock",
-                    "stopwatch, stop watch",
-                    "syringe",
-                    "analog clock",
-                    "shower curtain",
-                    "hourglass",
-                    "digital clock",
-                    "switch, electric switch, electrical switch"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 694,
-        "source": "NINCO_OOD_classes\\lepomis_auritus\\lepomis_auritus_098_13651977.jpeg",
-        "UserCall": [
-            {
-                "userId": 4,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "wall clock",
-                    "analog clock",
-                    "shower curtain",
-                    "syringe",
-                    "hourglass",
-                    "switch, electric switch, electrical switch",
-                    "stopwatch, stop watch",
-                    "digital clock"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 351,
-        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_063_13304108.jpeg",
-        "UserCall": [
-            {
-                "userId": 4,
-                "model": "convnext_tiny",
-                "decesion": "Abstinent",
-                "topTen": [
-                    "window shade",
-                    "window screen",
-                    "wall clock",
-                    "switch, electric switch, electrical switch",
-                    "syringe",
-                    "shower curtain",
-                    "lampshade, lamp shade",
-                    "toilet tissue, toilet paper, bathroom tissue",
-                    "stopwatch, stop watch",
-                    "hourglass"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 755,
-        "source": "NINCO_OOD_classes\\shuttlecock\\shuttlecock_056_pe11.jpg",
-        "UserCall": [
-            {
-                "userId": 7,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "stopwatch, stop watch",
-                    "hourglass",
-                    "analog clock",
-                    "syringe",
-                    "wall clock",
-                    "digital clock",
-                    "shower curtain",
-                    "shoji"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 383,
-        "source": "NINCO_OOD_classes\\darlingtonia_californica\\darlingtonia_californica_095_14422067.jpeg",
-        "UserCall": [
-            {
-                "userId": 7,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "wall clock",
-                    "stopwatch, stop watch",
-                    "hourglass",
-                    "analog clock",
-                    "syringe",
-                    "shoji",
-                    "shower curtain",
-                    "switch, electric switch, electrical switch"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 442,
-        "source": "NINCO_OOD_classes\\donuts\\donuts_054_2324265.jpg",
-        "UserCall": [
-            {
-                "userId": 6,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window shade",
-                    "window screen",
-                    "wall clock",
-                    "hourglass",
-                    "shower curtain",
-                    "syringe",
-                    "analog clock",
-                    "stopwatch, stop watch",
-                    "switch, electric switch, electrical switch",
-                    "matchstick"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 399,
-        "source": "NINCO_OOD_classes\\donuts\\donuts_011_2827347.jpg",
-        "UserCall": [
-            {
-                "userId": 6,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "shower curtain",
-                    "wall clock",
-                    "hourglass",
-                    "syringe",
-                    "stopwatch, stop watch",
-                    "honeycomb",
-                    "sliding door",
-                    "analog clock"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 240,
-        "source": "NINCO_OOD_classes/araneus_gemma/araneus_gemma_007_17160592.jpeg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "Abstinent",
-                "topTen": [
-                    "window screen",
-                    "shower curtain",
-                    "window shade",
-                    "theater curtain, theatre curtain",
-                    "fire screen, fireguard",
-                    "spotlight, spot",
-                    "wall clock",
-                    "microwave, microwave oven",
-                    "lampshade, lamp shade",
-                    "radiator"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 581,
-        "source": "NINCO_OOD_classes/donuts/donuts_016_444911.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "fire screen, fireguard",
-                    "shower curtain",
-                    "theater curtain, theatre curtain",
-                    "analog clock",
-                    "spotlight, spot",
-                    "hourglass",
-                    "wall clock",
-                    "syringe"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 362,
-        "source": "NINCO_OOD_classes/shuttlecock/shuttlecock_039_0426.png",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "fire screen, fireguard",
-                    "shower curtain",
-                    "oscilloscope, scope, cathode-ray oscilloscope, CRO",
-                    "theater curtain, theatre curtain",
-                    "binder, ring-binder",
-                    "analog clock",
-                    "spotlight, spot",
-                    "chainlink fence"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 740,
-        "source": "NINCO_OOD_classes/cup_cakes/cup_cakes_025_2115228.jpg",
-        "UserCall": [
-            {
-                "userId": 1,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "web site, website, internet site, site",
-                    "digital clock",
-                    "matchstick",
-                    "fire screen, fireguard",
-                    "analog clock",
-                    "stopwatch, stop watch",
-                    "shoji",
-                    "theater curtain, theatre curtain"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 652,
-        "source": "NINCO_OOD_classes/donuts/donuts_009_2661491.jpg",
-        "UserCall": [
-            {
-                "userId": 1,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "theater curtain, theatre curtain",
-                    "digital clock",
-                    "honeycomb",
-                    "web site, website, internet site, site",
-                    "stopwatch, stop watch",
-                    "ping-pong ball",
-                    "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 656,
-        "source": "NINCO_OOD_classes/donuts/donuts_061_824524.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "analog clock",
-                    "digital clock",
-                    "web site, website, internet site, site",
-                    "strainer",
-                    "stopwatch, stop watch",
-                    "spotlight, spot",
-                    "ping-pong ball"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 526,
-        "source": "NINCO_OOD_classes/fire_extinguisher/fire_extinguisher_008_00010.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "analog clock",
-                    "web site, website, internet site, site",
-                    "digital clock",
-                    "fire screen, fireguard",
-                    "window shade",
-                    "theater curtain, theatre curtain",
-                    "rule, ruler",
-                    "stopwatch, stop watch",
-                    "screen, CRT screen"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 648,
-        "source": "NINCO_OOD_classes/donuts/donuts_036_794594.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "window shade",
-                    "fire screen, fireguard",
-                    "web site, website, internet site, site",
-                    "stopwatch, stop watch",
-                    "digital clock",
-                    "analog clock",
-                    "ping-pong ball",
-                    "hourglass",
-                    "matchstick"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 144,
-        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_007_008-15810324.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "analog clock",
-                    "web site, website, internet site, site",
-                    "digital clock",
-                    "screen, CRT screen",
-                    "window shade",
-                    "theater curtain, theatre curtain",
-                    "hourglass",
-                    "oscilloscope, scope, cathode-ray oscilloscope, CRO"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 663,
-        "source": "NINCO_OOD_classes/donuts/donuts_001_952086.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "OOD",
-                "topTen": [
-                    "theater curtain, theatre curtain",
-                    "window screen",
-                    "matchstick",
-                    "screw",
-                    "analog clock",
-                    "jellyfish",
-                    "fire screen, fireguard",
-                    "microphone, mike",
-                    "digital clock",
-                    "parachute, chute"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 172,
-        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_064_098-97702372.jpeg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "Abstinent",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "digital clock",
-                    "ping-pong ball",
-                    "analog clock",
-                    "window shade",
-                    "mantis, mantid",
-                    "lacewing, lacewing fly",
-                    "stopwatch, stop watch",
-                    "theater curtain, theatre curtain"
-                ]
-            }
-        ]
-    },
-    {
-        "ImgID": 123,
-        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_034_057-58319857.jpg",
-        "UserCall": [
-            {
-                "userId": 2,
-                "model": "convnext_tiny",
-                "decesion": "IID",
-                "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "ping-pong ball",
-                    "digital clock",
-                    "mantis, mantid",
-                    "lacewing, lacewing fly",
-                    "analog clock",
-                    "cockroach, roach",
-                    "stopwatch, stop watch",
-                    "microwave, microwave oven"
-                ]
-            }
-        ]
-    },
-    {
         "ImgID": 208,
-        "source": "NINCO_OOD_classes/araneus_gemma/araneus_gemma_089_495225.jpg",
+        "source": "val/n02111889/ILSVRC2012_val_00033101.JPEG",
         "UserCall": [
             {
-                "userId": 2,
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "Samoyed, Samoyede",
+                    "Pomeranian",
+                    "chow, chow chow",
+                    "keeshond",
+                    "Eskimo dog, husky",
+                    "china cabinet, china closet",
+                    "grey whale, gray whale, devilfish, Eschrichtius gibbosus, Eschrichtius robustus",
+                    "microwave, microwave oven",
+                    "Irish terrier",
+                    "Japanese spaniel"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 317,
+        "source": "val/n04428191/ILSVRC2012_val_00006136.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "thresher, thrasher, threshing machine",
+                    "jellyfish",
+                    "thatch, thatched roof",
+                    "ladle",
+                    "golf ball",
+                    "lotion",
+                    "Pekinese, Pekingese, Peke",
+                    "tennis ball",
+                    "abacus",
+                    "perfume, essence"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 203,
+        "source": "val/n02111889/ILSVRC2012_val_00003808.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "Samoyed, Samoyede",
+                    "Pomeranian",
+                    "chow, chow chow",
+                    "Arctic fox, white fox, Alopex lagopus",
+                    "Great Pyrenees",
+                    "keeshond",
+                    "Tibetan terrier, chrysanthemum dog",
+                    "stethoscope",
+                    "kuvasz",
+                    "Eskimo dog, husky"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 49,
+        "source": "val/n03443371/ILSVRC2012_val_00034325.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "goblet",
+                    "red wine",
+                    "abacus",
+                    "wine bottle",
+                    "odometer, hodometer, mileometer, milometer",
+                    "carpenter's kit, tool kit",
+                    "barbell",
+                    "beer glass",
+                    "joystick",
+                    "car wheel"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 395,
+        "source": "val/n03133878/ILSVRC2012_val_00031362.JPEG",
+        "UserCall": [
+            {
+                "userId": 1001,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "Crock Pot",
+                    "jellyfish",
+                    "hot pot, hotpot",
+                    "volcano",
+                    "Dutch oven",
+                    "dugong, Dugong dugon",
+                    "indigo bunting, indigo finch, indigo bird, Passerina cyanea",
+                    "vine snake",
+                    "parachute, chute",
+                    "airship, dirigible"
+                ]
+            },
+            {
+                "userId": 1001,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "Crock Pot",
+                    "jellyfish",
+                    "hot pot, hotpot",
+                    "volcano",
+                    "Dutch oven",
+                    "dugong, Dugong dugon",
+                    "indigo bunting, indigo finch, indigo bird, Passerina cyanea",
+                    "vine snake",
+                    "parachute, chute",
+                    "airship, dirigible"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 143,
+        "source": "val/n01855672/ILSVRC2012_val_00025924.JPEG",
+        "UserCall": [
+            {
+                "userId": 1001,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "goose",
+                    "black grouse",
+                    "bald eagle, American eagle, Haliaeetus leucocephalus",
+                    "drake",
+                    "ruffed grouse, partridge, Bonasa umbellus",
+                    "black swan, Cygnus atratus",
+                    "vulture",
+                    "prairie chicken, prairie grouse, prairie fowl",
+                    "crane",
+                    "hornbill"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 329,
+        "source": "val/n04428191/ILSVRC2012_val_00000416.JPEG",
+        "UserCall": [
+            {
+                "userId": 1001,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "thresher, thrasher, threshing machine",
+                    "scuba diver",
+                    "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias",
+                    "wreck",
+                    "jellyfish",
+                    "alp",
+                    "lakeside, lakeshore",
+                    "hay",
+                    "lumbermill, sawmill",
+                    "ox"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 375,
+        "source": "val/n03133878/ILSVRC2012_val_00022797.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
                 "model": "convnext_tiny",
                 "decesion": "Abstinent",
                 "topTen": [
-                    "window screen",
-                    "fire screen, fireguard",
-                    "digital clock",
-                    "ping-pong ball",
-                    "analog clock",
-                    "microwave, microwave oven",
-                    "stopwatch, stop watch",
-                    "lacewing, lacewing fly",
-                    "cockroach, roach",
-                    "mantis, mantid"
+                    "Crock Pot",
+                    "hot pot, hotpot",
+                    "water jug",
+                    "wok",
+                    "teapot",
+                    "Dutch oven",
+                    "microphone, mike",
+                    "spaghetti squash",
+                    "dough",
+                    "purse"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 430,
+        "source": "val/n02097209/ILSVRC2012_val_00024508.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "standard schnauzer",
+                    "miniature schnauzer",
+                    "seat belt, seatbelt",
+                    "Lhasa, Lhasa apso",
+                    "giant schnauzer",
+                    "Norfolk terrier",
+                    "kelpie",
+                    "Australian terrier",
+                    "car mirror",
+                    "cowboy hat, ten-gallon hat"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 389,
+        "source": "val/n03133878/ILSVRC2012_val_00021118.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "Crock Pot",
+                    "hot pot, hotpot",
+                    "microphone, mike",
+                    "wig",
+                    "mashed potato",
+                    "pretzel",
+                    "wok",
+                    "jellyfish",
+                    "airship, dirigible",
+                    "table lamp"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 118,
+        "source": "val/n01855672/ILSVRC2012_val_00016580.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "Abstinent",
+                "topTen": [
+                    "drake",
+                    "goose",
+                    "American coot, marsh hen, mud hen, water hen, Fulica americana",
+                    "red-breasted merganser, Mergus serrator",
+                    "black swan, Cygnus atratus",
+                    "schipperke",
+                    "lakeside, lakeshore",
+                    "spoonbill",
+                    "magpie",
+                    "malinois"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 280,
+        "source": "val/n03873416/ILSVRC2012_val_00012609.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "IID",
+                "topTen": [
+                    "paddle, boat paddle",
+                    "canoe",
+                    "lifeboat",
+                    "catamaran",
+                    "gondola",
+                    "sandbar, sand bar",
+                    "speedboat",
+                    "drum, membranophone, tympan",
+                    "drilling platform, offshore rig",
+                    "scuba diver"
+                ]
+            }
+        ]
+    },
+    {
+        "ImgID": 390,
+        "source": "val/n03133878/ILSVRC2012_val_00020440.JPEG",
+        "UserCall": [
+            {
+                "userId": 1000,
+                "model": "convnext_tiny",
+                "decesion": "OOD",
+                "topTen": [
+                    "wooden spoon",
+                    "hot pot, hotpot",
+                    "Dutch oven",
+                    "caldron, cauldron",
+                    "wok",
+                    "frying pan, frypan, skillet",
+                    "ladle",
+                    "Crock Pot",
+                    "soup bowl",
+                    "mixing bowl"
                 ]
             }
         ]

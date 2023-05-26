@@ -1,25 +1,28 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
 import torch
 import torchvision
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
-from utilities import createAnnotation
+from  utilities import createAnnotation
 from model_loader import get_new_model
 import pandas as pd
 from IPython.display import display
 from PIL import Image 
 import random
 import numpy as np
-from class_katalog import NAMES
+import class_katalog
 
-IMAGESROOTDIR = 'NINCO_OOD_classes'
+IMAGESROOTDIR = 'val'
 
 class ImageDataset(Dataset):
     def __init__(self, rootDir):
         self.rootDir = rootDir
         createAnnotation(self.rootDir)
-        self.annotation =  pd.read_csv('output.csv')
+        self.annotation = pd.read_csv('output.csv')
 
 
     def __getitem__(self, index):
@@ -36,73 +39,18 @@ class ImageDataset(Dataset):
 # contains all 765 images with their respective labels
 imageDataset = ImageDataset(rootDir=IMAGESROOTDIR)
 
-# Class which is used to rescale the image to a given size
-# input: outputSize: int
-# return: tuple(PIL Image, label)
-class Rescale:
-    def __init__(self, outputSize):
-        self.outputSize = outputSize   
-        
-        
-    def __calculateNewSize(self, size):
-        initialWidth, initialHeight = size
-        
-        
-        RATIO = initialWidth/self.outputSize
-        newWidth = self.outputSize
-        newHeight = initialHeight/RATIO
-        
-        return (round(newWidth), round(newHeight))  
-        
-    #sample data is a tuple(image, label)
-    def __call__(self, sampleData):
-        image, label, source = sampleData
-        
-        size = image.size
-        
-        newWidth, newHeight = self.__calculateNewSize(size)
-        
-        transformedImage = fn.resize(image, [newHeight, newWidth])
-        
-        return transformedImage, label, source
-    
-# Class which is used to center crop non quadratic images
-# input: outputSize: int
-# return: tuple(PIL Image, label)
-class CenterCrop:
-    def __init__(self, outputSize):
-        self.outputSize = outputSize
-        
-    # creates a quadratic image
-    def __call__(self, sampleData):
-        image, label, source = sampleData
-        
-        width, height = image.size
-        
-        if (width != height or width != self.outputSize):
-            centerCrop = torchvision.transforms.CenterCrop(self.outputSize)
-
-            return centerCrop(image), label, source
-        return image, label, source
-    
-
-
 # Constants for the size of the images
-RESCALE = 240
-CROP = 240
-# objects for resizing
-rescale = Rescale(RESCALE)
-crop = CenterCrop(CROP)
-composed = T.Compose([rescale, crop])
+SIZE = round(224/0.875)
 
 # given an Index returns the transformed Image
 # input: Index: int
 # return: tuple(PIL Image, label)
 def transform(index):
     assert index <= len(imageDataset)
-    tmp = composed(imageDataset[index])
-    return tmp
-
+    image, label, source = imageDataset[index]
+    rescaledImage = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
+    transformedImage = fn.center_crop(img=rescaledImage, output_size=[SIZE,SIZE])
+    return transformedImage, label, source
 
 # objects for tensor transformation
 pilToTensor = T.ToTensor()
@@ -116,7 +64,6 @@ class DataLoader(Dataset):
         self.datasetLength = datasetLength
    
     def __getitem__(self, index):
-        assert (0 < index <= self.datasetLength)
         self.index = index
         (picture, label, source) = transform(index)
         image = pilToTensor(picture)
@@ -124,7 +71,12 @@ class DataLoader(Dataset):
         image = image.unsqueeze(0)
         sample = {'image': image, 'label': label}
         return sample, sample3dim, source
-    
+
+dataloader = DataLoader(len(imageDataset))
+iterr = iter(dataloader)
+im, lab, source = next(iterr)
+#print(im['image'].size())
+
 # Amount of random samples 
 BATCHSIZE = 4
 
@@ -136,7 +88,7 @@ Arguments: batchsize:int
 Return: an array with a dict[image:label] 
 '''
 def createRandomBatch(batchsize):
-    assert (0<batchsize <= len(imageDataset))
+    #assert (0<batchsize <= len(imageDataset))
     batch = []
     batch3dim = []
     indexList = []
@@ -148,20 +100,26 @@ def createRandomBatch(batchsize):
         batch.append(sample)
         batch3dim.append(sample3dim)
         sourceList.append(source)
-
     return batch, batch3dim, indexList, sourceList
 
 samples, samples3dim, indexList, sourceList = createRandomBatch(BATCHSIZE)
 
 # loads pretrained model
-modelName = "convnext_tiny"
-model = get_new_model(modelName, not_original=True)
+model = get_new_model("convnext_tiny", not_original=True)
+ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu') #['model']
+                # print(ckpt.keys())
+ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
+#ckpt = {k.replace('base_model.', ''): v for k, v in ckpt.items()}
+#ckpt = {k.replace('se_', 'se_module.'): v for k, v in ckpt.items()}
+#ckpt = {"".join(("model.", k)): v for k, v in ckpt.items()}
 
+model.load_state_dict(ckpt)
+#print(model)
 
 '''
 function feeds the loaded model with data
 Arguments: list[dict[image:tensor,label:str]]
-Return: None
+Return: list[dict[image:tensor,label:str, prediction:tensor]]
 '''
 def feedModel(samples):
     assert(0<len(samples)<len(imageDataset))
@@ -169,11 +127,10 @@ def feedModel(samples):
     for sample in samples:
         image, label = sample['image'], sample['label']
         prediction = model(image)
-        sample["prediction"]=prediction
+        #print(prediction.max(1)[1])
+        sample['prediction'] = prediction
         samplesWithPrediction.append(sample)
     return samplesWithPrediction
-        
-        
         
 samplesWithPrediction = feedModel(samples)
 
@@ -208,9 +165,6 @@ plt.axis('off')
 plt.ioff()
 plt.show()
 
-
-
-
 # function that finds the top k predictions
 def findMaxPredictions(samples, k:int):
     
@@ -234,24 +188,20 @@ def findMaxPredictions(samples, k:int):
         
     return (predictionsMax, predictionsIndices)
 
-
 # function that finds the labels to the top k predictions
-def findLabels(samples, k:int, batchsize):
+def findLabels(samples, k:int):
     
     (predictionsMax, predictionsIndices) = findMaxPredictions(samples, k)
     allTopKLabels = []
     
-    for i in range (0, batchsize):
+    for i in range (0, len(samples)):
         topKLabels = []
         for j in range (0, k):
             topILabel = []
-            topILabel = NAMES[predictionsIndices[i][j]]
+            topILabel = class_katalog.NAMES[predictionsIndices[i][j]]
             topKLabels.append(topILabel)
         allTopKLabels.append(topKLabels)
         
     return allTopKLabels
 
-print(findLabels(samples, 10, len(samples)))
-
-
-
+findLabels(samplesWithPrediction, 10)
