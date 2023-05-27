@@ -93,6 +93,7 @@ def createRandomBatch(batchsize):
     batch3dim = []
     indexList = []
     sourceList = []
+    labelList = []
     for i in range(batchsize):
         index = random.randint(0,len(imageDataset))
         indexList.append(index)
@@ -100,9 +101,11 @@ def createRandomBatch(batchsize):
         batch.append(sample)
         batch3dim.append(sample3dim)
         sourceList.append(source)
-    return batch, batch3dim, indexList, sourceList
+        label = sample['label']
+        labelList.append(label)
+    return batch, batch3dim, indexList, sourceList, labelList
 
-samples, samples3dim, indexList, sourceList = createRandomBatch(BATCHSIZE)
+samples, samples3dim, indexList, sourceList, labelList = createRandomBatch(BATCHSIZE)
 
 # loads pretrained model
 model = get_new_model("convnext_tiny", not_original=True)
