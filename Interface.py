@@ -241,40 +241,23 @@ def askAmount(uId):
         demo.launch()
 
 
-# Example to show the datastructur of dataCollector and Example of the object in json file:
+# Example to show the datastructur of dataCollector:
 # {
 #     'UserId' : 01,
 #     'model' : 'modelname',
-#     'batchsize' : 4
-# 
+#     'batchsize' : 2,
 #     'Imgs' : [
 #         {'ImgId': 1,
+#          'label': n0xxxxxxxx,
 #          'source': '/path1',
 #          'topTen': [0,1,2,3,4,5,6,7,8,9],
 #          'decesion': 'OOD'}
 #          ,
 #          {'ImgId': 2,
-#          'source': '/path2',
-#          'topTen': [0,1,2,3,4,5,6,7,8,9],
-#          'decesion': 'ID'}
-#     ]
-# },
-# {
-#     'ImgID': 0,
-#     'source' : '/path',
-#     'Usercall': [
-#         {
-#             'userId' : 1,
-#             'model' : 'modelname1',
-#             'topTen': [0,1,2,3,4,5,6,7,8,9],
-#             'decesion': 'OOD'
-#         },
-#         {
-#             'userId' : 2,
-#             'model' : 'modelname2',
-#             'topTen': [0,1,2,3,4,5,6,7,8,9],
-#             'decesion': 'OOD'
-#         }
+#           'label': n0xxxxxxxx,
+#           'source': '/path2',
+#           'topTen': [0,1,2,3,4,5,6,7,8,9],
+#           'decesion': 'ID'}
 #     ]
 # }
 # 
