@@ -199,11 +199,10 @@ def displayEval():#indexList, allLabels, uId, batchSize, loop, labelList):
         gr.Markdown('''Please decide if the image is in 'independent identically distribution' (IID) or 'out of distribution' (OOD) related to the predicted labels of the model.
         If your are not sure choose 'abstinent'. ''')
         fn = self
-        inputs = gr.Image(imgPath)
+        inputs = gr.Image(imgPath).style(height=350)
         outputs = None
         gr.Markdown('''The top labels predicted by the model:''')
-        for i in range (0, len(labels)):
-            gr.Markdown(f'''{labels[i]}''')
+        gr.Markdown(f'''{labels}''')
         with gr.Row():
             iidBtn = gr.Button("IID")
             oodBtn = gr.Button("OOD")
@@ -224,7 +223,7 @@ def askAmount(uId):
             uIdExists = True
     if uIdExists == False:
         with gr.Blocks() as demo:
-            gr.Markdown('''This userId isn´t registered. Please reconsider your input or sign in with your e-mail address.''')
+            gr.Markdown('''This userId isnÂ´t registered. Please reconsider your input or sign in with your e-mail address.''')
             backToSignInBtn = gr.Button("Back to sign in")
             backToSignInBtn.click(fn=generateSignIn, inputs=None, outputs=None, api_name="Back to sign in") 
             
@@ -232,12 +231,20 @@ def askAmount(uId):
     else:        
         with gr.Blocks() as demo:
             batchSize = gr.Textbox(label="Please enter the amount of images you want to evaluate:", placeholder="positive number")
+            batchSizeDefault = gr.Textbox(visible = False, value=15)
             userId = gr.Textbox(visible = False, value=uId)
-            startBtn = gr.Button("Start")
+
+            with gr.Row():
+                startBtn = gr.Button("Start")
+                defaultBtn = gr.Button("evaluate 15 images")
+
             startBtn.click(fn=generateEval, inputs = [batchSize, userId], outputs=None)#, api_name="Start")
             # add Batchsize to datacollector
             startBtn.click(fn=addBatchsize, inputs = batchSize, outputs=None)#, api_name="Start")
             
+            defaultBtn.click(fn=generateEval, inputs = [batchSizeDefault, userId], outputs=None)
+            defaultBtn.click(fn=addBatchsize, inputs = batchSizeDefault, outputs=None)
+        
         demo.launch()
 
 
@@ -308,7 +315,7 @@ def checkMail(mail):
         newId = generateId(mail)
         with gr.Blocks() as demo:
             gr.Markdown(f'''
-            That´s your personal userId which is just generated for your sign-in: {newId}
+            ThatÂ´s your personal userId which is just generated for your sign-in: {newId}
             ''')
             gr.Markdown('''Please keep it in mind and sign in again!''')
             backToSignInBtn = gr.Button("Back to sign in")
@@ -331,13 +338,13 @@ def handleFirstIn(idOrMail):
 # generates the sign-in page 
 def generateSignIn():
     with gr.Blocks() as demo:
-        idOrMail = gr.Textbox(label="Please enter your UserID or, in case you don´t have one yet, please enter your e-mail address:", placeholder="UserID or e-mail")
+        idOrMail = gr.Textbox(label="Please enter your UserID or, in case you donÂ´t have one yet, please enter your e-mail address:", placeholder="UserID or e-mail")
         signInBtn = gr.Button("Sign in")
         signInBtn.click(fn=handleFirstIn, inputs=idOrMail, outputs=None, api_name="Sign in")
 
     demo.launch()
 
-# load existing emails and Id´s from database
+# load existing emails and IdÂ´s from database
 with open('emails_ids.json') as file:
     json_str = file.read()
 
