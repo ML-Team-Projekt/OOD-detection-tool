@@ -492,5 +492,83 @@
                 "decesion": "IID"
             }
         ]
+    },
+    {
+        "ImgID": 266,
+        "source": "NINCO_OOD_classes/araneus_gemma/araneus_gemma_066_35759241.jpeg",
+        "label": "araneus_gemma",
+        "topTen": {
+            "convnext_tiny": [
+                "barn spider, Araneus cavaticus",
+                "wolf spider, hunting spider",
+                "fiddler crab",
+                "tarantula",
+                "rock crab, Cancer irroratus",
+                "garden spider, Aranea diademata",
+                "black widow, Latrodectus mactans",
+                "king crab, Alaska crab, Alaskan king crab, Alaska king crab, Paralithodes camtschatica",
+                "agama",
+                "tick"
+            ]
+        },
+        "UserCall": [
+            {
+                "userId": 1002,
+                "model": "convnext_tiny",
+                "decesion": "IID"
+            }
+        ]
+    },
+    {
+        "ImgID": 117,
+        "source": "NINCO_OOD_classes/Caracal caracal caracal/Caracal caracal caracal_084_159-144612736.jpeg",
+        "label": "Caracal caracal caracal",
+        "topTen": {
+            "convnext_tiny": [
+                "grey fox, gray fox, Urocyon cinereoargenteus",
+                "armadillo",
+                "bloodhound, sleuthhound",
+                "tusker",
+                "badger",
+                "syringe",
+                "malinois",
+                "Great Dane",
+                "dhole, Cuon alpinus",
+                "kit fox, Vulpes macrotis"
+            ]
+        },
+        "UserCall": [
+            {
+                "userId": 1002,
+                "model": "convnext_tiny",
+                "decesion": "IID"
+            }
+        ]
+    },
+    {
+        "ImgID": 644,
+        "source": "NINCO_OOD_classes/donuts/donuts_048_1954234.jpg",
+        "label": "donuts",
+        "topTen": {
+            "convnext_tiny": [
+                "bagel, beigel",
+                "pretzel",
+                "bakery, bakeshop, bakehouse",
+                "hognose snake, puff adder, sand viper",
+                "potpie",
+                "paper towel",
+                "limousine, limo",
+                "French loaf",
+                "tray",
+                "car mirror"
+            ]
+        },
+        "UserCall": [
+            {
+                "userId": 1002,
+                "model": "convnext_tiny",
+                "decesion": "IID"
+            }
+        ]
     }
 ]

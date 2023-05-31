@@ -14,9 +14,10 @@ from PIL import Image
 import random
 import class_katalog
 import json
+import gradio as gr
 
 
-IMAGESROOTDIR = 'val'
+IMAGESROOTDIR = 'NINCO_OOD_classes'
 
 class ImageDataset(Dataset):
     def __init__(self, rootDir):
@@ -72,21 +73,17 @@ class DataLoader(Dataset):
         sample = {'image': image, 'label': label}
         return sample, sample3dim, source
 
-dataloader = DataLoader(len(imageDataset))
-iterr = iter(dataloader)
-im, lab, source = next(iterr)
+#dataloader = DataLoader(len(imageDataset))
+#iterr = iter(dataloader)
+#im, lab, source = next(iterr)
 #print(im['image'].size())
 
 # Amount of random samples 
-BATCHSIZE = 4
+#BATCHSIZE = 4
 
 dataloader = DataLoader(len(imageDataset))
 
-global attempts
-attempts = 0
 
-# Number of tries to get another Number
-TRIALSTHRESHOLD = 100
 
 '''
 function creates a random batch of data with a given size
@@ -94,13 +91,19 @@ Arguments: batchsize:int
 Return: an array with a dict[image:label] 
 '''
 def createRandomBatch(batchsize, uId):
-    #assert (0<batchsize <= len(imageDataset))
+    # Number of tries to get another Number
+    TRIALSTHRESHOLD = 100
+    try:
+        assert (0 < batchsize <= len(imageDataset))
+    except AssertionError:
+        errorFkt(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
     global attempts
     batch = []
     batch3dim = []
     indexList = []
     sourceList = []
     labelList = []
+    attempts = 0
 
     i = 0
     with open('data.json', 'r') as file:
@@ -108,13 +111,14 @@ def createRandomBatch(batchsize, uId):
     while i < batchsize:
         i += 1
         if attempts >= TRIALSTHRESHOLD:
-            print("there were mor than 25 tries")
-        iflag = False
+            errorFkt(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
+                     f"Please try to enter a smaller amount of tries than {len(indexList)}.")
+        flag = False
         index = random.randint(0, len(imageDataset))
         if index in indexList:
             i -= 1
             attempts += 0.5
-            iflag = True
+            flag = True
 
         for img in saves:
             if img['ImgID'] == index:
@@ -124,9 +128,9 @@ def createRandomBatch(batchsize, uId):
                         i -= 1
                         attempts += 1
                         #print(attempts)
-                        iflag = True
+                        flag = True
 
-        if iflag:
+        if flag:
             continue
 
         indexList.append(index)
@@ -142,15 +146,15 @@ def createRandomBatch(batchsize, uId):
 #samples, samples3dim, indexList, sourceList, labelList = createRandomBatch(BATCHSIZE, 1000)
 
 # loads pretrained model
-model = get_new_model("convnext_tiny", not_original=True)
-ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu') #['model']
+#model = get_new_model("convnext_tiny", not_original=True)
+#ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu') #['model']
                 # print(ckpt.keys())
-ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
+#ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
 #ckpt = {k.replace('base_model.', ''): v for k, v in ckpt.items()}
 #ckpt = {k.replace('se_', 'se_module.'): v for k, v in ckpt.items()}
 #ckpt = {"".join(("model.", k)): v for k, v in ckpt.items()}
 
-model.load_state_dict(ckpt)
+#model.load_state_dict(ckpt)
 #print(model)
 
 '''
@@ -158,9 +162,9 @@ function feeds the loaded model with data
 Arguments: list[dict[image:tensor,label:str]]
 Return: list[dict[image:tensor,label:str, prediction:tensor]]
 '''
-def feedModel(samples):
-    assert(0<len(samples)<len(imageDataset))
-    samplesWithPrediction =[]
+def feedModel(samples, model):
+    assert(0 < len(samples) < len(imageDataset))
+    samplesWithPrediction = []
     for sample in samples:
         image, label = sample['image'], sample['label']
         prediction = model(image)
@@ -233,8 +237,7 @@ def findLabels(samples, k:int):
     
     for i in range (0, len(samples)):
         topKLabels = []
-        for j in range (0, k):
-            topILabel = []
+        for j in range(0, k):
             topILabel = class_katalog.NAMES[predictionsIndices[i][j]]
             topKLabels.append(topILabel)
         allTopKLabels.append(topKLabels)
@@ -243,3 +246,9 @@ def findLabels(samples, k:int):
 
 #print(findLabels(samplesWithPrediction, 10))
 
+def errorFkt(text):
+
+    with gr.Blocks() as demo:
+        gr.Markdown(f'''{text}''')
+        gr.Markdown('''Please restart the Program''')
+    demo.launch()

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import sys 
-import gradio as gr
+import sys
 from Dataset import *
 import json
 
@@ -106,7 +105,7 @@ def loadDataFromModel(batchSize, uId):
         ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
         ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
         model.load_state_dict(ckpt)
-    samples = feedModel(batch) 
+    samples = feedModel(batch, model)
     topTenList = findLabels(samples, 10)
     labels = []
     # just for test purpose
@@ -336,13 +335,13 @@ with open('data.json') as file:
 
 data = json.loads(json_str)
 
-#load the Set of all images in database, so that we can decide if a new image already exists in database. 
+# load the Set of all images in database, so that we can decide if a new image already exists in database.
 imgSet = set()
 if len(data) > 0:
     for obj in data:
         imgSet.add(obj['source'])
 
-#initialize temporary data container: dataCollector and decesions
+# initialize temporary data container: dataCollector and decesions
 dataCollector = dict()
 decesions = []
 
@@ -357,7 +356,6 @@ def endEval():
     #empty the container
     dataCollector = dict()
     decesions = []
-    
     sys.exit(0)
 
 generateSignIn()
