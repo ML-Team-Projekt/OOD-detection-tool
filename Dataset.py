@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 from  utilities import createAnnotation
 from model_loader import get_new_model
 import pandas as pd
-from IPython.display import display
-from PIL import Image 
+from PIL import Image
 import random
-import numpy as np
 import class_katalog
+import json
+
 
 IMAGESROOTDIR = 'val'
 
@@ -82,20 +82,53 @@ BATCHSIZE = 4
 
 dataloader = DataLoader(len(imageDataset))
 
+global attempts
+attempts = 0
+
+# Number of tries to get another Number
+TRIALSTHRESHOLD = 100
+
 '''
 function creates a random batch of data with a given size
 Arguments: batchsize:int
 Return: an array with a dict[image:label] 
 '''
-def createRandomBatch(batchsize):
+def createRandomBatch(batchsize, uId):
     #assert (0<batchsize <= len(imageDataset))
+    global attempts
     batch = []
     batch3dim = []
     indexList = []
     sourceList = []
     labelList = []
-    for i in range(batchsize):
-        index = random.randint(0,len(imageDataset))
+
+    i = 0
+    with open('data.json', 'r') as file:
+        saves = json.load(file)
+    while i < batchsize:
+        i += 1
+        if attempts >= TRIALSTHRESHOLD:
+            print("there were mor than 25 tries")
+        iflag = False
+        index = random.randint(0, len(imageDataset))
+        if index in indexList:
+            i -= 1
+            attempts += 0.5
+            iflag = True
+
+        for img in saves:
+            if img['ImgID'] == index:
+                user_calls = img['UserCall']
+                for call in user_calls:
+                    if call['userId'] == int(uId):
+                        i -= 1
+                        attempts += 1
+                        #print(attempts)
+                        iflag = True
+
+        if iflag:
+            continue
+
         indexList.append(index)
         sample, sample3dim, source = dataloader[index]
         batch.append(sample)
@@ -103,9 +136,10 @@ def createRandomBatch(batchsize):
         sourceList.append(source)
         label = sample['label']
         labelList.append(label)
+    attempts = 0
     return batch, batch3dim, indexList, sourceList, labelList
 
-samples, samples3dim, indexList, sourceList, labelList = createRandomBatch(BATCHSIZE)
+#samples, samples3dim, indexList, sourceList, labelList = createRandomBatch(BATCHSIZE, 1000)
 
 # loads pretrained model
 model = get_new_model("convnext_tiny", not_original=True)
@@ -135,7 +169,7 @@ def feedModel(samples):
         samplesWithPrediction.append(sample)
     return samplesWithPrediction
         
-samplesWithPrediction = feedModel(samples)
+#samplesWithPrediction = feedModel(samples)
 
 '''
 function extracts the values from the samples dict
@@ -161,12 +195,12 @@ def visualize(samples):
     plt.imshow(grid.detach().numpy().transpose((1,2,0)))
 
 
-plt.figure()
-visualize(samples3dim)
-extractValuesFromDict(samples3dim, 'label')
-plt.axis('off')
-plt.ioff()
-plt.show()
+#plt.figure()
+#visualize(samples3dim)
+#extractValuesFromDict(samples3dim, 'label')
+#plt.axis('off')
+#plt.ioff()
+#plt.show()
 
 # function that finds the top k predictions
 def findMaxPredictions(samples, k:int):
@@ -207,4 +241,5 @@ def findLabels(samples, k:int):
         
     return allTopKLabels
 
-findLabels(samplesWithPrediction, 10)
+#print(findLabels(samplesWithPrediction, 10))
+
