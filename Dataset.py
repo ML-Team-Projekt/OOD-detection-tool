@@ -159,7 +159,7 @@ def createRandomBatch(batchsize, uId):
 
 '''
 function feeds the loaded model with data
-Arguments: list[dict[image:tensor,label:str]]
+Arguments: list[dict[image:tensor,label:str]], model
 Return: list[dict[image:tensor,label:str, prediction:tensor]]
 '''
 def feedModel(samples, model):

@@ -223,31 +223,6 @@ def askAmount(uId):
             
         demo.launch()
 
-
-# Example to show the datastructur of dataCollector:
- #{
- #    'UserId' : 01,
- #    'model' : 'modelname',
- #    'batchsize' : 2,
- #    'Imgs' : [
- #        {'ImgId': 1,
- #         'label': n0xxxxxxxx,
- #         'source': '/path1',
- #         'topTen': [0,1,2,3,4,5,6,7,8,9],
- #         'decesion': 'OOD'}
- #         ,
- #         {'ImgId': 2,
- #          'label': n0xxxxxxxx,
- #          'source': '/path2',
- #          'topTen': [0,1,2,3,4,5,6,7,8,9],
- #          'decesion': 'ID'}
- #    ]
- #}
-# 
-# After a user decide a batch of images, we get all the informations of this time decision as a dict, but this dict is not yet directly an object that we can save in our database.
-# So we need to firstly convert it to the form of expected datastructer of object, and then convert it to .json format.
-
-
 # generates a new userId and updates the emails dict
 def generateId(mail):
     if (len(emails_ids) == 0):
