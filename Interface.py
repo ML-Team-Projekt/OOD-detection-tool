@@ -196,21 +196,17 @@ def displayEval():#indexList, allLabels, uId, batchSize, loop, labelList):
     imgPath = imageDataset.__getitem__(iList[loop])[0]
     labels = allLabels[loop]
     with gr.Blocks() as demo:
-        gr.Markdown('''Please decide if the image is in 'independent identically distribution' (IID) or 'out of distribution' (OOD) related to the predicted labels of the model.
-        If your are not sure choose 'abstinent'. ''')
-        fn = self
-        inputs = gr.Image(imgPath)
-        outputs = None
-        gr.Markdown('''The top labels predicted by the model:''')
-        for i in range (0, len(labels)):
-            gr.Markdown(f'''{labels[i]}''')
         with gr.Row():
-            iidBtn = gr.Button("IID")
-            oodBtn = gr.Button("OOD")
-            abstinentBtn = gr.Button("abstinent")
-        iidBtn.click(fn=selectIid, inputs=None, outputs=None, api_name="IID")
-        oodBtn.click(fn=selectOod, inputs=None, outputs=None, api_name="OOD")
-        abstinentBtn.click(fn=selectAbstinent, inputs=None, outputs=None, api_name="abstinent")
+            image = gr.Image()
+            with gr.Column():
+                gr.Markdown("Test")
+            
+        with gr.Row():
+            gr.Examples(examples=[], inputs=image)
+        with gr.Row():
+            gr.Button("OOD")
+            gr.Button("IID")
+            gr.Button("abstinent")
     
     demo.launch()
 
@@ -375,4 +371,46 @@ def endEval():
     
     sys.exit(0)
 
-generateSignIn()
+#generateSignIn()
+
+data = loadDataFromModel(10)
+imgs = data[2]
+labels= data[3]
+ex = [[imgs[i], labels[i]] for i in range(len(imgs))]
+
+def createDataOutputForExample(data):
+    dic = dict()
+    images = data[2]
+    labels = data[3]
+    for i in range(len(images)):
+        dic[images[i]]= labels[i]
+    return dic;
+
+
+def openLabel(dic,key):
+    for val in dic[key]:
+        gr.Markdown(val)
+            
+
+dic = createDataOutputForExample(data)
+
+with gr.Blocks() as demo:
+    with gr.Row():
+        image = gr.Image().style(height=350)
+        with gr.Column():
+            gr.Markdown("Test")
+            label = gr.Textbox()
+           
+    with gr.Row():
+        with gr.Column():
+            examples= gr.Examples(examples=imgs, inputs=image)
+        
+        
+    with gr.Row():
+        gr.Button("OOD")
+        gr.Button("IID")
+        gr.Button("abstinent")
+      
+ 
+            
+demo.launch()
