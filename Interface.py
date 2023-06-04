@@ -376,7 +376,7 @@ def endEval():
 data = loadDataFromModel(10)
 imgs = data[2]
 labels= data[3]
-ex = [[imgs[i], labels[i]] for i in range(len(imgs))]
+
 
 def createDataOutputForExample(data):
     dic = dict()
@@ -387,30 +387,134 @@ def createDataOutputForExample(data):
     return dic;
 
 
-def openLabel(dic,key):
-    for val in dic[key]:
-        gr.Markdown(val)
-            
-
 dic = createDataOutputForExample(data)
 
-with gr.Blocks() as demo:
-    with gr.Row():
-        image = gr.Image().style(height=350)
-        with gr.Column():
-            gr.Markdown("Test")
-            label = gr.Textbox()
-           
-    with gr.Row():
-        with gr.Column():
-            examples= gr.Examples(examples=imgs, inputs=image)
+from torch import from_numpy
+import torchvision.transforms as T
+
+def findMaxPred(prediction, k=10):
+    
+    predictionsMax = []
+    predictionsIndices = []
+    
+    tempPredictionMax = []
+    tempPredictionIndices = []
+    for i in range (0, k):
+        maximums = []
+        indices = []
+        maximums = prediction.max().item()
+        indices = prediction.argmax().item()
+        predictionsMax.append(maximums)
+        predictionsIndices.append(indices)
+        prediction[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
+    
+                              
+    return (predictionsMax, predictionsIndices)
+
+def findLabels(sample, k=10):
+    
+    (predictionsMax, predictionsIndices) = findMaxPred(sample, k)
+    allTopKLabels = []
+   
+    topKLabels = []
+    for j in range (0, k):
+        topILabel = []
+        topILabel = class_katalog.NAMES[predictionsIndices[j]]
+        topKLabels.append(topILabel)
+    allTopKLabels.append(topKLabels)
         
-        
-    with gr.Row():
-        gr.Button("OOD")
-        gr.Button("IID")
-        gr.Button("abstinent")
-      
- 
+    return allTopKLabels
+
+def handleImageInput(img):
+    modelName = "convnext_tiny"
+    model = get_new_model(modelName, not_original=True)
+    if modelName == "convnext_tiny":
+        ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
+        ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
+        model.load_state_dict(ckpt)
+    pilToTensor = T.ToTensor()
+    img_tensor = pilToTensor(img)
+    img_tensor = img_tensor.unsqueeze(0)
+    
+    prediction = model(img_tensor)
+    sortedPred = findLabels(prediction)
+    
+    
+    return sortedPred
+
+# user selected IID
+def selectIidSpa(img):#userId, iList, allL, bSize, loop):
+  # update json
+    addDecesion('IID')
+
+# user selected OOD    
+def selectOodSpa(img):
+  # update json
+    addDecesion('OOD')
+
+
+# user selected abstinent
+def selectAbstinentSpa(img):
+  # update json
+    addDecesion('Abstinent')
+
+
+
+def SPA():
+    uID = None
+    
+    def authFunction(userInp,passwordInp):
+        users = {("testemail", "1001")}
+        '''
+        with open('emails_ids.json', 'r') as file:
+            jsonData = json.load(file)
+            for user in jsonData:
+                email, uId = user
+                print(type(email))
+                if user["email"] == userInp:
+                    return True
+        '''
+
+        for user in users:
+            email, userId = user
+            if (email == userInp):
+                uID = userId
+                return True
+        return False
+
+    print(uID)
+    
+    with gr.Blocks() as demo:
+        with gr.Row():
+            image = gr.Image().style(height=350)
+            with gr.Column():
+                gr.Markdown("Test")
+                label = gr.Textbox()
+
+        with gr.Row():
+            with gr.Column():
+                examples= gr.Examples(fn=handleImageInput, examples=list(dic.keys()), inputs=image, outputs=label)
+
+
+        with gr.Row():
+            buttonOOD = gr.Button("OOD")
+            buttonIID = gr.Button("IID")
+            buttonABS = gr.Button("abstinent")
             
-demo.launch()
+            buttonOOD.click(selectOodSpa, inputs=image)
+            buttonIID.click(selectIidSpa, inputs=image)
+            buttonABS.click(selectAbstinentSpa, inputs=image)
+            
+
+
+
+
+        image.change(handleImageInput, inputs=[image], outputs=label)
+
+    
+    demo.launch(auth=authFunction)
+SPA()
+
+
+
+
