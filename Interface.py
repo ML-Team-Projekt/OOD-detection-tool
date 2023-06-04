@@ -1,26 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import sys 
-sys.path.insert(0, '/home/lilly/miniconda3/lib/python3.10/site-packages')
-import torch
-import torchvision
-from torch.utils.data import Dataset
-import torchvision.transforms.functional as fn
-import torchvision.transforms as T
-import matplotlib.pyplot as plt
-from utilities import createAnnotation
-from model_loader import get_new_model
-import pandas as pd
-from IPython.display import display
-from PIL import Image 
-import random
-import numpy as np
-import tqdm as notebook_tqdm
-import gradio as gr
+import sys
 from Dataset import *
 import json
-import class_katalog
 
 # returns just its input
 # needed for some outputs
@@ -113,8 +96,8 @@ def updateData():
             updateObject(img)
 
 # returns the labels per image which have to be evaluated and the indices of the images
-def loadDataFromModel(batchSize):
-    batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize)
+def loadDataFromModel(batchSize, uId):
+    batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize, uId)
     global modelName
     modelName = "convnext_tiny"
     model = get_new_model(modelName, not_original=True)
@@ -122,7 +105,7 @@ def loadDataFromModel(batchSize):
         ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
         ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
         model.load_state_dict(ckpt)
-    samples = feedModel(batch) 
+    samples = feedModel(batch, model)
     topTenList = findLabels(samples, 10)
     labels = []
     # just for test purpose
@@ -134,7 +117,7 @@ def loadDataFromModel(batchSize):
 # generates the whole evaluation output
 def generateEval(batchSize, uId):
     batchSize = int(batchSize)
-    labels, indexList, sourceList, topTenList, labelList = loadDataFromModel(batchSize)
+    labels, indexList, sourceList, topTenList, labelList = loadDataFromModel(batchSize, uId)
     addImg(indexList)
     addTopTen(topTenList)
     addModel(modelName)
@@ -240,30 +223,6 @@ def askAmount(uId):
             
         demo.launch()
 
-
-# Example to show the datastructur of dataCollector:
-# {
-#     'UserId' : 01,
-#     'model' : 'modelname',
-#     'batchsize' : 2,
-#     'Imgs' : [
-#         {'ImgId': 1,
-#          'label': n0xxxxxxxx,
-#          'source': '/path1',
-#          'topTen': [0,1,2,3,4,5,6,7,8,9],
-#          'decesion': 'OOD'}
-#          ,
-#          {'ImgId': 2,
-#           'label': n0xxxxxxxx,
-#           'source': '/path2',
-#           'topTen': [0,1,2,3,4,5,6,7,8,9],
-#           'decesion': 'ID'}
-#     ]
-# }
-# 
-# After a user decide a batch of images, we get all the informations of this time decision as a dict, but this dict is not yet directly an object that we can save in our database. So we need to firstly convert it to the form of expected datastructer of object, and then convert it to .json format. 
-
-
 # generates a new userId and updates the emails dict
 def generateId(mail):
     if (len(emails_ids) == 0):
@@ -327,6 +286,8 @@ def handleFirstIn(idOrMail):
         #add User id to datacollector
         addUserId(int(idOrMail))
         askAmount(int(idOrMail))
+        global UsrId
+        UsrId = idOrMail
 
 # generates the sign-in page 
 def generateSignIn():
@@ -349,13 +310,13 @@ with open('data.json') as file:
 
 data = json.loads(json_str)
 
-#load the Set of all images in database, so that we can decide if a new image already exists in database. 
+# load the Set of all images in database, so that we can decide if a new image already exists in database.
 imgSet = set()
 if len(data) > 0:
     for obj in data:
         imgSet.add(obj['source'])
 
-#initialize temporary data container: dataCollector and decesions
+# initialize temporary data container: dataCollector and decesions
 dataCollector = dict()
 decesions = []
 
@@ -363,16 +324,14 @@ decesions = []
 def endEval():
     #add the new genarated data into database(here as dict)
     updateData()
-
     databasePath = 'data.json'
     # write data into json file
     with open(databasePath, 'w') as database:
         json.dump(data, database, indent=4)
-
     #empty the container
     dataCollector = dict()
     decesions = []
-    
     sys.exit(0)
 
 generateSignIn()
+
