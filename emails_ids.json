@@ -6,5 +6,9 @@
     {
         "email": "testmail",
         "userId": 1001
+    },
+    {
+        "email": "thorstenstock@student.uni-tuebingen.de",
+        "userId": 1002
     }
 ]
