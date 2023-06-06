@@ -12,6 +12,7 @@ from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
+import wikipedia
 from utilities import createAnnotation 
 from model_loader import get_new_model
 import pandas as pd
@@ -34,9 +35,9 @@ class SPA_Interface():
         self.index = 0
         self.uID = None
         self.batchSize = self.defaultBatchSize
-        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self._loadDataFromModel(self.batchSize)
+        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(self.batchSize)
         
-    def _loadDataFromModel(self,batchSize):
+    def __loadDataFromModel(self,batchSize):
         batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize)
         global modelName
         modelName = "convnext_tiny"
@@ -53,7 +54,6 @@ class SPA_Interface():
             labels.append(topTenList[i])
 
         return labels, indexList, sourceList, topTenList, labelList
-        
         
     def findMaxPred(self,prediction, k=10):
     
@@ -83,12 +83,22 @@ class SPA_Interface():
         allTopKLabels.append(topKLabels)
             
         return allTopKLabels
+    
+    def fetchSummaryFromWiki(self, pageTitle):
+        try:
+            pageTitle.capitalize()
+            summary =  wikipedia.summary(pageTitle).split(".")[0]
+        except wikipedia.exceptions.PageError:
+            summary = ""
+        return summary
+      
 
     def handleImageInput(self):
         firstLabel = self.topTenList[self.index][0]
         restLabels = self.topTenList[self.index][1:-1]
-        print(restLabels)
-        return firstLabel,restLabels
+        summaryFirstLabel = self.fetchSummaryFromWiki(firstLabel)
+        firstLabel = firstLabel
+        return firstLabel,summaryFirstLabel,restLabels
         
     def __authFunction(self,userInp,passwordInp):
         users = {("testemail", "1001")}
@@ -136,7 +146,7 @@ class SPA_Interface():
         if not self.loggedIn:
             self.loggedIn=True
             self.batchSize = int(batchSize)
-            return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
+            return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
     
         
         return None
@@ -153,18 +163,18 @@ class SPA_Interface():
                 batchSize = gr.Textbox(label="Batchsize")
             with gr.Row() as login3:
                 submitButton = gr.Button("submit")
-            
-            
         
             # image classifier
             with gr.Row(visible=False) as classifier1:
                 image = gr.Image(self.sourceList[self.index]).style(height=350)
-            with gr.Row(visible=False) as classifier2:
-                gr.Markdown("Test")
+            
+            with gr.Row(visible=False) as classifier2: 
                 labelOne = gr.Markdown(value=f"{self.topTenList[self.index][0]}")
-                labelRest = gr.Textbox(value=self.topTenList[self.index][1:-1])
-
+                description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(self.topTenList[self.index][0])}")
             with gr.Row(visible=False) as classifier3:
+                labelRest = gr.Textbox(label="Other labels",value=", ".join(self.topTenList[self.index][1:-1]))
+
+            with gr.Row(visible=False) as classifier4:
                 buttonOOD = gr.Button("OOD")
                 buttonIID = gr.Button("IID")
                 buttonABS = gr.Button("abstinent")
@@ -173,8 +183,8 @@ class SPA_Interface():
                 buttonIID.click(self.__selectIID, inputs=None, outputs=image)
                 buttonABS.click(self.__selectAbstinent, inputs=None, outputs=image)
                 
-            image.change(self.handleImageInput, inputs=None, outputs=[labelOne, labelRest])
-            submitButton.click(self.submitHandler, inputs=batchSize, outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3])
+            image.change(self.handleImageInput, inputs=None, outputs=[labelOne, description,labelRest])
+            submitButton.click(self.submitHandler, inputs=batchSize, outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4])
 
         
         demo.launch()
