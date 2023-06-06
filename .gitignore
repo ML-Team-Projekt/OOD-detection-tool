@@ -1,3 +1,5 @@
 *.pt
 .idea/
 __pycache__/
+__MACOSX/
+.ipynb_checkpoints/
