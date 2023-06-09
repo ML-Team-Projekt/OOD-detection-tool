@@ -103,25 +103,45 @@ class SPA_Interface():
         firstLabel = firstLabel
         return firstLabel,summaryFirstLabel,restLabels
         
-    def __authFunction(self,userInp,passwordInp):
-        users = {("testemail", "1001")}
-        '''
-            with open('emails_ids.json', 'r') as file:
-                jsonData = json.load(file)
-                for user in jsonData:
-                    email, uId = user
-                    print(type(email))
-                    if user["email"] == userInp:
-                        return True
-        '''
+    def __authFunction(self,userInp):
+        # load existing emails and Id´s from database
+        with open('emails_ids.json') as file:
+            json_str = file.read()
 
-        for user in users:
-            email, userId = user
-            if (email == userInp):
-                self.uID = userId
-                return True
-            
-        return False
+        emails_ids = json.loads(json_str)
+        
+        try: 
+            int(userInp)
+        except:
+            for obj in emails_ids:
+                if obj['email'] == userInp:
+                    self.uID = obj['userId']
+                    return True
+            if (len(emails_ids) == 0):
+                newId = 1000
+            else:
+                maxId = 1000
+                for obj in emails_ids:
+                    if obj['userId'] > maxId:
+                        maxId = obj['userId']
+                newId = maxId + 1
+            dictIn = {
+                'email': userInp,
+                'userId': newId
+            }
+            emails_ids.append(dictIn)
+            databasePath = 'emails_ids.json'
+            # write email and new Id into json file
+            with open(databasePath, 'w') as database:
+                json.dump(emails_ids, database, indent=4)
+            self.uID = newId
+            return False # user has to get to know new Id
+        else:
+            for obj in emails_ids:
+                if obj['userId'] == int(userInp):
+                    self.uID = int(userInp)
+                    return True
+            return False # user inputted a not existing Id
     
     def __incrementIndex(self):
         self.index +=1
@@ -153,16 +173,22 @@ class SPA_Interface():
             self.__incrementIndex()
             return gr.update(value=self.sourceList[self.index]),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
     
-    def submitHandler(self,batchSize):
-        if not self.loggedIn:
-            self.loggedIn=True
+    def submitHandler(self,batchSize, userInput):
+        self.loggedIn = self.__authFunction(userInput)
+        if self.loggedIn:
             try:            
                 self.batchSize = int(batchSize)
             finally:
-                return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
+                return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)
     
-        
-        return None
+        else:
+            try:
+                int(userInput)
+            except: # user has to get to know new Id
+                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), gr.update(visible=False)
+            else: # user inputted a not existing Id
+                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False), gr.update(visible=True)
+                
     
     def saveData(self):
         # update json
@@ -184,11 +210,15 @@ class SPA_Interface():
             with gr.Row() as title:
                 text= gr.Markdown(value="Please insert your username or your user ID and your desired batchsize. If you don´t enter a batchsize a batch of 10 samples will automatically be generated.")
             with gr.Row() as login1:
-                username = gr.Textbox(label="Username")
+                username = gr.Textbox(label="Username or user ID")
             with gr.Row()as login2:
                 batchSize = gr.Textbox(label="Batchsize")
             with gr.Row() as login3:
                 submitButton = gr.Button("submit")
+            with gr.Row(visible=True) as login4:
+                auth = gr.Textbox(visible=False, value="")
+            with gr.Row(visible=False) as login5:
+                auth2 = gr.Textbox(value="ID does not exist.")
         
             # image classifier
             with gr.Row(visible=False) as classifier1:
@@ -215,7 +245,7 @@ class SPA_Interface():
                 buttonClose = gr.Button("Close")
                 
             image.change(self.handleImageInput, inputs=None, outputs=[labelOne, description,labelRest]) 
-            submitButton.click(self.submitHandler, inputs=batchSize, outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4])
+            submitButton.click(self.submitHandler, inputs=[batchSize, username], outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4, auth, login5])
             buttonOOD.click(self.__selectOOD, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonIID.click(self.__selectIID, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonABS.click(self.__selectAbstinent, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
