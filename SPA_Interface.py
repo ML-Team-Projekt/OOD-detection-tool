@@ -7,20 +7,8 @@ import sys
 
 sys.path.insert(0, '/home/lilly/miniconda3/lib/python3.10/site-packages')
 import torch
-import torchvision
-from torch.utils.data import Dataset
-import torchvision.transforms.functional as fn
-import torchvision.transforms as T
-import matplotlib.pyplot as plt
 import wikipedia
-from utilities import createAnnotation 
 from model_loader import get_new_model
-import pandas as pd
-from IPython.display import display
-from PIL import Image 
-import random
-import numpy as np
-import tqdm as notebook_tqdm
 import gradio as gr
 from Dataset import *
 import json
@@ -36,16 +24,20 @@ class SPA_Interface():
         self.defaultBatchSize = 10
         self.index = 0
         self.uID = None
+        self.modelName = "convnext_tiny"
         self.batchSize = self.defaultBatchSize
         self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(self.batchSize)
         self.finished = False
+        self.data = []
+        self.decesions = []
+        self.dataCollector = {}
+        self.imgSet = set()
+
         
     def __loadDataFromModel(self,batchSize):
         batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
-        global modelName
-        modelName = "convnext_tiny"
-        model = get_new_model(modelName, not_original=True)
-        if modelName == "convnext_tiny":
+        model = get_new_model(self.modelName, not_original=True)
+        if self.modelName == "convnext_tiny":
             ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
             ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
             model.load_state_dict(ckpt)
@@ -57,6 +49,113 @@ class SPA_Interface():
             labels.append(topTenList[i])
 
         return labels, indexList, sourceList, topTenList, labelList
+    
+    def initImgSet(self):
+        if len(self.data) > 0:
+            for obj in self.data:
+                self.imgSet.add(obj['source'])
+
+    def initData(self):
+        # load existing data from database
+        with open('data.json') as file:
+            json_str = file.read()
+
+        self.data = json.loads(json_str)
+
+    def addImgs(self):
+        self.addBatchsize()
+        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(self.batchSize)
+        self.addImg(self.indexList)
+        self.addTopTen(self.topTenList)
+        self.addModel(self.modelName)
+        self.addSource(self.sourceList)
+        self.addLabel(self.labelList)
+
+    
+    #Here we configure the Datacollector, which contains all informations of once Usercall
+    def addUserId(self, UserId):
+        self.dataCollector['UserId'] = UserId
+
+    def addBatchsize(self):
+        self.dataCollector['batchsize'] = int(self.batchSize)
+
+    def addImg(self, imgIds):
+        assert self.dataCollector['batchsize'] == len(imgIds)
+        Samples = []
+        for i in range(self.dataCollector['batchsize']):
+            Samples.append({'ImgId': imgIds[i], 'topTen': []})
+        self.dataCollector['Imgs'] = Samples
+
+    def addTopTen(self, topTenList):
+        assert len(topTenList) == len(self.dataCollector['Imgs'])
+        for i in range(len(topTenList)):
+            self.dataCollector['Imgs'][i]['topTen'] = topTenList[i]
+
+    def addDecesion(self, decesion):
+        self.decesions.append(decesion)
+        if len(self.decesions) == self.dataCollector['batchsize']:
+            assert self.dataCollector['batchsize'] == len(self.dataCollector['Imgs'])
+            for i in range(len(self.dataCollector['Imgs'])):
+                self.dataCollector['Imgs'][i]['decesion'] = self.decesions[i]
+            self.decesions = []
+        
+    def addSource(self, sourceList):
+        assert len(sourceList) == len(self.dataCollector['Imgs'])
+        for i in range(len(self.dataCollector['Imgs'])):
+            self.dataCollector['Imgs'][i]['source'] = sourceList[i]
+
+    def addLabel(self, labelList):
+        assert len(labelList) == len(self.dataCollector['Imgs'])
+        for i in range(len(self.dataCollector['Imgs'])):
+            self.dataCollector['Imgs'][i]['label'] = labelList[i]
+
+    def addModel(self, model):
+        self.dataCollector['model'] = model
+
+    #create an object for a Usercall, in case that we want to insert a new image into our database
+    def creatJsonObject(self, img):
+        topTen = img['topTen']
+        object = {
+                    'ImgID' : img['ImgId'],
+                    'source' : img['source'],
+                    'label': img['label'],
+                    'topTen': {self.dataCollector['model']: topTen},
+                    'UserCall': [
+                        {
+                            'userId' : self.dataCollector['UserId'],
+                            'model' : self.dataCollector['model'],
+                            'decesion': img['decesion']
+                        }
+                    ]
+                }
+
+        return object
+
+    #update the Object of the image, which already exists in database.
+    def updateObject(self, img):
+        for obj in self.data:
+            if obj['source'] == img['source']:
+                call = {
+                    'userId' : self.dataCollector['UserId'],
+                    'model' : self.dataCollector['model'],
+                    'decesion': img['decesion']
+                }
+                obj['UserCall'].append(call)
+                #extend container of topTen if we call a new model for this image 
+                key = self.dataCollector['model']
+                if key not in obj['topTen']:
+                    obj['topTen'][key] = img['topTen']
+
+    #update our database ,everytime a Usercall happens
+    def updateData(self):
+        for img in self.dataCollector['Imgs']:
+            if img['source'] not in self.imgSet:
+                obj = self.creatJsonObject(img)
+                self.data.append(obj)
+                self.imgSet.add(img['source'])
+            else:
+                self.updateObject(img)
+
         
     def findMaxPred(self,prediction, k=10):
     
@@ -107,7 +206,7 @@ class SPA_Interface():
         # load existing emails and Id´s from database
         with open('emails_ids.json') as file:
             json_str = file.read()
-
+        
         emails_ids = json.loads(json_str)
         
         try: 
@@ -116,6 +215,7 @@ class SPA_Interface():
             for obj in emails_ids:
                 if obj['email'] == userInp:
                     self.uID = obj['userId']
+                    self.addUserId(self.uID)
                     return True
             if (len(emails_ids) == 0):
                 newId = 1000
@@ -140,6 +240,7 @@ class SPA_Interface():
             for obj in emails_ids:
                 if obj['userId'] == int(userInp):
                     self.uID = int(userInp)
+                    self.addUserId(self.uID)
                     return True
             return False # user inputted a not existing Id
     
@@ -151,6 +252,7 @@ class SPA_Interface():
     
     # user selected IID
     def __selectIID(self):#userId, iList, allL, bSize, loop):
+        self.addDecesion("IID")
         if self.index >= self.batchSize-1:
             return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
         else:
@@ -159,6 +261,7 @@ class SPA_Interface():
 
     # user selected OOD    
     def __selectOOD(self):
+        self.addDecesion("OOD")
         if self.index >= self.batchSize-1:
             return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
         else:
@@ -167,6 +270,7 @@ class SPA_Interface():
 
     # user selected abstinent
     def __selectAbstinent(self):
+        self.addDecesion("Abstinent")
         if self.index >= self.batchSize-1:
             return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
         else:
@@ -179,6 +283,8 @@ class SPA_Interface():
             try:            
                 self.batchSize = int(batchSize)
             finally:
+                self.initData()
+                self.addImgs()
                 return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)
     
         else:
@@ -191,11 +297,23 @@ class SPA_Interface():
                 
     
     def saveData(self):
+        #add the new genarated data into database(here as dict)
+        self.updateData()
+
+        databasePath = 'data.json'
+        # write data into json file
+        with open(databasePath, 'w') as database:
+            json.dump(self.data, database, indent=4)
+
         # update json
         return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(value="Evaluation got saved. You can now exit the execution by clicking 'Close' once and then you can close the tab."),gr.update(visible=False),gr.update(visible=True)
     
     def lastPage(self):
         self.finished = True
+        #empty the container
+        self.dataCollector = dict()
+        self.decesions = []
+
         return gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
     
     def sysExit(self):
