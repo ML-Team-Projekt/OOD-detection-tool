@@ -121,7 +121,7 @@ def createRandomBatch(batchsize, uId):
             flag = True
 
         for img in saves:
-            if img['ImgID'] == index:
+            if uId != None and img['ImgID'] == index:
                 user_calls = img['UserCall']
                 for call in user_calls:
                     if call['userId'] == int(uId):
