@@ -56,6 +56,7 @@ class SPA_Interface():
                 self.imgSet.add(obj['source'])
 
     def initData(self):
+        self.initImgSet()
         # load existing data from database
         with open('data.json') as file:
             json_str = file.read()
