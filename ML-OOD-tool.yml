@@ -1,0 +1,25 @@
+name: ML-OOD-tool
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - conda
+  - setuptools
+  - pip
+  - wheel
+  - conda-content-trust
+  - ipywidgets
+  - pyparsing
+  - wikipedia
+  - timm
+  - pandas
+  - gradio
+  - typing
+  - numpy
+  - matplotlib
+  - pillow
+  - pip:
+    - torchvision
+    - torch
+
