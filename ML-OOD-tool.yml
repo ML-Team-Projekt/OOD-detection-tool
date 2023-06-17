@@ -9,16 +9,16 @@ dependencies:
   - pip
   - wheel
   - conda-content-trust
-  - ipywidgets
-  - pyparsing
-  - wikipedia
-  - timm
-  - pandas
-  - gradio
-  - typing
-  - numpy
-  - matplotlib
-  - pillow
+  - ipywidgets=8.0
+  - pyparsing=3.0
+  - wikipedia=1.4
+  - timm=0.9
+  - pandas=1.5
+  - gradio=3.23
+  - typing=3.10
+  - numpy=1.24
+  - matplotlib=3.7
+  - pillow=9.4
   - pip:
     - torchvision
     - torch
