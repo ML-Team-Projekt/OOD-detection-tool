@@ -7,7 +7,7 @@ from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
-from  utilities import createAnnotation
+from utilities import createAnnotation
 from model_loader import get_new_model
 import pandas as pd
 from PIL import Image
@@ -24,7 +24,6 @@ class ImageDataset(Dataset):
         self.rootDir = rootDir
         createAnnotation(self.rootDir)
         self.annotation = pd.read_csv('output.csv')
-
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
@@ -73,17 +72,8 @@ class DataLoader(Dataset):
         sample = {'image': image, 'label': label}
         return sample, sample3dim, source
 
-#dataloader = DataLoader(len(imageDataset))
-#iterr = iter(dataloader)
-#im, lab, source = next(iterr)
-#print(im['image'].size())
-
-# Amount of random samples 
-#BATCHSIZE = 4
 
 dataloader = DataLoader(len(imageDataset))
-
-
 
 '''
 function creates a random batch of data with a given size
@@ -91,7 +81,7 @@ Arguments: batchsize:int
 Return: an array with a dict[image:label] 
 '''
 def createRandomBatch(batchsize, uId):
-    # Number of tries to get another Number
+    # Number of tries to get another number
     TRIALSTHRESHOLD = 100
     try:
         assert (0 < batchsize <= len(imageDataset))
@@ -127,7 +117,6 @@ def createRandomBatch(batchsize, uId):
                     if call['userId'] == int(uId):
                         i -= 1
                         attempts += 1
-                        #print(attempts)
                         flag = True
 
         if flag:
@@ -142,20 +131,6 @@ def createRandomBatch(batchsize, uId):
         labelList.append(label)
     attempts = 0
     return batch, batch3dim, indexList, sourceList, labelList
-
-#samples, samples3dim, indexList, sourceList, labelList = createRandomBatch(BATCHSIZE, 1000)
-
-# loads pretrained model
-#model = get_new_model("convnext_tiny", not_original=True)
-#ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu') #['model']
-                # print(ckpt.keys())
-#ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
-#ckpt = {k.replace('base_model.', ''): v for k, v in ckpt.items()}
-#ckpt = {k.replace('se_', 'se_module.'): v for k, v in ckpt.items()}
-#ckpt = {"".join(("model.", k)): v for k, v in ckpt.items()}
-
-#model.load_state_dict(ckpt)
-#print(model)
 
 '''
 function feeds the loaded model with data
@@ -172,8 +147,6 @@ def feedModel(samples, model):
         sample['prediction'] = prediction
         samplesWithPrediction.append(sample)
     return samplesWithPrediction
-        
-#samplesWithPrediction = feedModel(samples)
 
 '''
 function extracts the values from the samples dict
@@ -189,7 +162,6 @@ def extractValuesFromDict(samples, key:str):
         print(values)
     return values
 
-
 # function to visualize the batch
 def visualize(samples):
     tensors = extractValuesFromDict(samples, 'image')
@@ -198,17 +170,8 @@ def visualize(samples):
     grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
     plt.imshow(grid.detach().numpy().transpose((1,2,0)))
 
-
-#plt.figure()
-#visualize(samples3dim)
-#extractValuesFromDict(samples3dim, 'label')
-#plt.axis('off')
-#plt.ioff()
-#plt.show()
-
 # function that finds the top k predictions
 def findMaxPredictions(samples, k:int):
-    
     predictionsMax = []
     predictionsIndices = []
     
@@ -231,7 +194,6 @@ def findMaxPredictions(samples, k:int):
 
 # function that finds the labels to the top k predictions
 def findLabels(samples, k:int):
-    
     (predictionsMax, predictionsIndices) = findMaxPredictions(samples, k)
     allTopKLabels = []
     
@@ -243,8 +205,6 @@ def findLabels(samples, k:int):
         allTopKLabels.append(topKLabels)
         
     return allTopKLabels
-
-#print(findLabels(samplesWithPrediction, 10))
 
 def errorFkt(text):
 

@@ -159,7 +159,6 @@ class SPA_Interface():
 
         
     def findMaxPred(self,prediction, k=10):
-    
         predictionsMax = []
         predictionsIndices = []
         
@@ -170,15 +169,15 @@ class SPA_Interface():
             indices = prediction.argmax().item()
             predictionsMax.append(maximums)
             predictionsIndices.append(indices)
-            prediction[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum                
+            prediction[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum    
+                        
         return (predictionsMax, predictionsIndices)
 
     def findLabels(self,sample, k=10):
-        
         (predictionsMax, predictionsIndices) = self.findMaxPred(sample, k)
         allTopKLabels = []
-    
         topKLabels = []
+
         for j in range (0, k):
             topILabel = []
             topILabel = class_katalog.NAMES[predictionsIndices[j]]
@@ -195,7 +194,6 @@ class SPA_Interface():
             summary = ""
         return summary
       
-
     def handleImageInput(self):
         firstLabel = self.topTenList[self.index][0]
         restLabels = self.topTenList[self.index][1:-1]
@@ -246,38 +244,17 @@ class SPA_Interface():
             return False # user inputted a not existing Id
     
     def __incrementIndex(self):
-        self.index +=1
-        #if (self.index >= self.batchSize):
-            #sys.exit(0)
-            
+        self.index +=1            
     
-    # user selected IID
-    def __selectIID(self):#userId, iList, allL, bSize, loop):
-        self.addDecesion("IID")
+     # user selected decision (OOD/ IID/ abstinent)
+    def __selectDecision(self, decision:str):
+        self.addDecesion(decision)
         if self.index >= self.batchSize-1:
             return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
         else:
             self.__incrementIndex()
             return gr.update(value=self.sourceList[self.index]),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
-    # user selected OOD    
-    def __selectOOD(self):
-        self.addDecesion("OOD")
-        if self.index >= self.batchSize-1:
-            return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
-        else:
-            self.__incrementIndex()
-            return gr.update(value=self.sourceList[self.index]),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
-
-    # user selected abstinent
-    def __selectAbstinent(self):
-        self.addDecesion("Abstinent")
-        if self.index >= self.batchSize-1:
-            return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
-        else:
-            self.__incrementIndex()
-            return gr.update(value=self.sourceList[self.index]),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
-    
     def submitHandler(self,batchSize, userInput):
         self.loggedIn = self.__authFunction(userInput)
         if self.loggedIn:
@@ -346,6 +323,7 @@ class SPA_Interface():
             with gr.Row(visible=False) as classifier2: 
                 labelOne = gr.Markdown(value=f"{self.topTenList[self.index][0]}")
                 description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(self.topTenList[self.index][0])}")
+
             with gr.Row(visible=False) as classifier3:
                 labelRest = gr.Textbox(label="Other labels",value=", ".join(self.topTenList[self.index][1:-1]))
 
@@ -353,6 +331,11 @@ class SPA_Interface():
                 buttonOOD = gr.Button("OOD")
                 buttonIID = gr.Button("IID")
                 buttonABS = gr.Button("abstinent")
+
+            # for decision of user
+            decisionOOD = gr.Textbox(visible=False, value="OOD")
+            decisionIID = gr.Textbox(visible=False, value="IID")
+            decisionAbstinent = gr.Textbox(visible=False, value="Abstinent")
                 
             # end page
             with gr.Row(visible=False) as end1:
@@ -365,9 +348,9 @@ class SPA_Interface():
                 
             image.change(self.handleImageInput, inputs=None, outputs=[labelOne, description,labelRest]) 
             submitButton.click(self.submitHandler, inputs=[batchSize, username], outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4, auth, login5])
-            buttonOOD.click(self.__selectOOD, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonIID.click(self.__selectIID, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonABS.click(self.__selectAbstinent, inputs=None, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, text1, end2, end3])
             buttonClose.click(self.lastPage, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, end1, end2, end3])
         
@@ -380,6 +363,3 @@ thread_2 = Thread(target=SPA.sysExit)
 
 thread_1.start()
 thread_2.start()
-
-#SPA = SPA_Interface()
-#SPA.interface()
