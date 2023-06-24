@@ -25,22 +25,22 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 - The emails_ids.json file stores all these correspondings in a list of JSON object literals in the following way: \
 &nbsp; \
 &nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/29fbb308-e2fb-4cd9-816f-4cb3fba34e9c)" width="400" height="200">
-- The batchsize can be choosen. There is also the possibility to decide for the default batchsize of 10.
-- The machine learning model can be choosen as well. At the moment the repo offers access to convnext_tiny and ... . For both the repo contains a .pt file so that during the evaluation every image of the randomly generated batch can be passed to the model and the predictions can be further processed. \
+- The batchsize (amount of images which has to be evaluated) can be choosen. There is also the possibility to decide for the default batchsize of 10.
+- The machine learning model can be choosen as well. At the moment the repo offers access to convnext_tiny and ... . For both the repo contains a .pt file so that during the evaluation every image of the randomly generated batch can be passed to the model and the predictions can be further processed. 
 
 #### Evaluation page:
 - It´s ensured that every user has to evaluate the predictions of one specific image at most once per model.
-- At the moment the images are randomly choosen from a set of images within the repo. Each image gets rescaled by pytorches ineterpolation and center-cropped to a size of 256x256.
+- At the moment the images are randomly choosen from a set of images within the repo. Each image gets rescaled by pytorches interpolation and center-cropped to a size of 256x256.
 -  Next to the image there are displayed the top ten out of 1000 labels with their probabilities predicted by the model in decreasing order.
 -  For the most likeliest label a short explanation from wikipedia gets displayed as well.
 -  Finally on the page can be found three buttons: 'identically and indipendent distributed', 'out of detection', 'abstain'. With these the user can evaluate if the labels match the image, don´t match the image or unsure.
 
 #### Last page:
 - After the evaluation is over, the user can decide if their answers should be saved or not. In case the data should be saved, it gets added to the data.json file. It consists of a list of JSON object literals which all correspond to exactly one image. \
-Either a new literal gets added to the list of 'UserCall' in one of these or if a picture has not got evaluated so far, a new JSON object literal gets added to the list. \
+Either a new literal gets added to the list of the key 'UserCall' in one of these or, if a picture has not got evaluated so far, a new JSON object literal gets added to the list. \
 The structure in particular: ...
 
 ## How to contribute to this repo
-- If there shows up a bug or there comes off an idea for extra features, there has to be created an issue and a new branch.
+- If there shows up a bug or there comes up an idea for extra features, there has to be created an issue and a new branch.
 - After working on an issue, there needs be created a PR. At least one approval is acquired to enable merging the changes on main.
 - Don´t push directly on the main branch!
