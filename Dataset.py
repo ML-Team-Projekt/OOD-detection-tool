@@ -3,6 +3,7 @@
 
 import torch
 import torchvision
+import torch.nn.functional as F
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
@@ -144,7 +145,8 @@ def feedModel(samples, model):
         image, label = sample['image'], sample['label']
         prediction = model(image)
         #print(prediction.max(1)[1])
-        sample['prediction'] = prediction
+        sample['prediction'] = F.softmax(prediction, dim=1)
+        #sample['prediction'] = prediction
         samplesWithPrediction.append(sample)
     return samplesWithPrediction
 
@@ -177,6 +179,7 @@ def findMaxPredictions(samples, k:int):
     
     for dictionary in samples:
         predictions = dictionary['prediction']
+        
         tempPredictionsMax = []
         tempPredictionsIndices = []
         for i in range (0, k):
@@ -189,19 +192,25 @@ def findMaxPredictions(samples, k:int):
             predictions[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
         predictionsMax.append(tempPredictionsMax)
         predictionsIndices.append(tempPredictionsIndices)
-        
+ 
     return (predictionsMax, predictionsIndices)
+
+
+        
+        
 
 # function that finds the labels to the top k predictions
 def findLabels(samples, k:int):
     (predictionsMax, predictionsIndices) = findMaxPredictions(samples, k)
     allTopKLabels = []
     
+   
+    
     for i in range (0, len(samples)):
-        topKLabels = []
+        topKLabels = {}
         for j in range(0, k):
             topILabel = class_katalog.NAMES[predictionsIndices[i][j]]
-            topKLabels.append(topILabel)
+            topKLabels[topILabel] = predictionsMax[i][j]
         allTopKLabels.append(topKLabels)
         
     return allTopKLabels

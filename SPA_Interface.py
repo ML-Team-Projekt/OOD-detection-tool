@@ -33,6 +33,7 @@ class SPA_Interface():
         self.dataCollector = {}
         self.imgSet = set()
 
+
         
     def __loadDataFromModel(self,batchSize):
         batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
@@ -42,6 +43,8 @@ class SPA_Interface():
             ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
             model.load_state_dict(ckpt)
         samples = feedModel(batch, model) 
+        
+        
         topTenList = findLabels(samples, 10)
         labels = []
         # just for test purpose
@@ -173,18 +176,18 @@ class SPA_Interface():
                         
         return (predictionsMax, predictionsIndices)
 
-    def findLabels(self,sample, k=10):
-        (predictionsMax, predictionsIndices) = self.findMaxPred(sample, k)
-        allTopKLabels = []
-        topKLabels = []
+    # def findLabels(self,sample, k=10):
+    #     (predictionsMax, predictionsIndices) = self.findMaxPred(sample, k)
+    #     allTopKLabels = []
+    #     topKLabels = []
 
-        for j in range (0, k):
-            topILabel = []
-            topILabel = class_katalog.NAMES[predictionsIndices[j]]
-            topKLabels.append(topILabel)
-        allTopKLabels.append(topKLabels)
+    #     for j in range (0, k):
+    #         topILabel = []
+    #         topILabel = class_katalog.NAMES[predictionsIndices[j]]
+    #         topKLabels.append(topILabel)
+    #     allTopKLabels.append(topKLabels)
             
-        return allTopKLabels
+    #     return allTopKLabels
     
     def fetchSummaryFromWiki(self, pageTitle):
         try:
@@ -192,14 +195,15 @@ class SPA_Interface():
             summary =  wikipedia.summary(pageTitle).split(".")[0]
         except wikipedia.exceptions.PageError:
             summary = ""
+        except wikipedia.exceptions.DisambiguationError:
+            summary = ""
         return summary
       
     def handleImageInput(self):
-        firstLabel = self.topTenList[self.index][0]
-        restLabels = self.topTenList[self.index][1:-1]
+        firstLabel = list(self.topTenList[self.index].keys())[0]
         summaryFirstLabel = self.fetchSummaryFromWiki(firstLabel)
-        firstLabel = firstLabel
-        return firstLabel,summaryFirstLabel,restLabels
+        return summaryFirstLabel
+        
         
     def __authFunction(self,userInp):
         # load existing emails and Id´s from database
@@ -253,7 +257,7 @@ class SPA_Interface():
             return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
         else:
             self.__incrementIndex()
-            return gr.update(value=self.sourceList[self.index]),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
+            return gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index])  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
     def submitHandler(self,batchSize, userInput):
         self.loggedIn = self.__authFunction(userInput)
@@ -306,9 +310,9 @@ class SPA_Interface():
             with gr.Row() as title:
                 text= gr.Markdown(value="Please insert your username or your user ID and your desired batchsize. If you don´t enter a batchsize a batch of 10 samples will automatically be generated.")
             with gr.Row() as login1:
-                username = gr.Textbox(label="Username or user ID")
+                username = gr.Textbox(label="Username or user ID", placeholder="Insert your username")
             with gr.Row()as login2:
-                batchSize = gr.Textbox(label="Batchsize")
+                batchSize = gr.Textbox(label="Batchsize", placeholder="Insert your Batchsize")
             with gr.Row() as login3:
                 submitButton = gr.Button("submit")
             with gr.Row(visible=True) as login4:
@@ -318,14 +322,31 @@ class SPA_Interface():
         
             # image classifier
             with gr.Row(visible=False) as classifier1:
-                image = gr.Image(self.sourceList[self.index]).style(height=350)
+
+                    with gr.Column():
+                        image = gr.Image(self.sourceList[self.index]).style(height=400)
+                        description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
+                    with gr.Column():
+                        with gr.Row():
+                            modelname = gr.Markdown("Your Model: ")
+                            userID = gr.Markdown("Your User ID XXXXX")
+                    #     labelOne = gr.Textbox(label="Best Prediction",value=f"{self.topTenList[self.index][0]}")
+                        
+                    #     # gr.Markdown(value="Other Predictions")
+                    #     # for i in range(1,len(self.topTenList)):
+                    #     #     with gr.Row():
+                    #     #         label = gr.Markdown(value=f"{self.topTenList[self.index][i]}")
+                        labels = gr.Label(label="Predictions",value=self.topTenList[self.index])
+                    # with gr.Row(visible=False):
+                    #     labelRest = gr.Textbox(label="Other labels",value=", ".join(self.topTenList[self.index][1:-1]))
+                        
+                       
             
             with gr.Row(visible=False) as classifier2: 
-                labelOne = gr.Markdown(value=f"{self.topTenList[self.index][0]}")
-                description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(self.topTenList[self.index][0])}")
+                    d = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
 
             with gr.Row(visible=False) as classifier3:
-                labelRest = gr.Textbox(label="Other labels",value=", ".join(self.topTenList[self.index][1:-1]))
+                    pass
 
             with gr.Row(visible=False) as classifier4:
                 buttonOOD = gr.Button("OOD")
@@ -346,11 +367,12 @@ class SPA_Interface():
             with gr.Row(visible=False) as end3:
                 buttonClose = gr.Button("Close")
                 
-            image.change(self.handleImageInput, inputs=None, outputs=[labelOne, description,labelRest]) 
+            image.change(self.handleImageInput, inputs=None, outputs=[description]) 
+   
             submitButton.click(self.submitHandler, inputs=[batchSize, username], outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4, auth, login5])
-            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[image,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[image, labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, text1, end2, end3])
             buttonClose.click(self.lastPage, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, end1, end2, end3])
         
