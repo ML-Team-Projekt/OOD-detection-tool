@@ -32,6 +32,8 @@ class SPA_Interface():
         self.decesions = []
         self.dataCollector = {}
         self.imgSet = set()
+        
+        self.models = ["convnext_tiny", "model_2"]
 
 
         
@@ -259,7 +261,9 @@ class SPA_Interface():
             self.__incrementIndex()
             return gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index])  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
-    def submitHandler(self,batchSize, userInput):
+    def submitHandler(self,batchSize, userInput, model):
+        
+        
         self.loggedIn = self.__authFunction(userInput)
         if self.loggedIn:
             try:            
@@ -267,16 +271,18 @@ class SPA_Interface():
             finally:
                 self.initData()
                 self.addImgs()
-                return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)
+                
+                return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}")
     
         else:
             try:
                 int(userInput)
             except: # user has to get to know new Id
-                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), gr.update(visible=False)
+                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=True), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), gr.update(visible=False), gr.update(visible=False)
             else: # user inputted a not existing Id
-                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False), gr.update(visible=True)
-                
+                return gr.update(visible=True), gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False),  gr.update(visible=False), gr.update(visible=False)
+    
+        # [login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4]
     
     def saveData(self):
         #add the new genarated data into database(here as dict)
@@ -307,18 +313,24 @@ class SPA_Interface():
         with gr.Blocks() as demo:
             
             # login
-            with gr.Row() as title:
-                text= gr.Markdown(value="Please insert your username or your user ID and your desired batchsize. If you don´t enter a batchsize a batch of 10 samples will automatically be generated.")
             with gr.Row() as login1:
-                username = gr.Textbox(label="Username or user ID", placeholder="Insert your username")
-            with gr.Row()as login2:
-                batchSize = gr.Textbox(label="Batchsize", placeholder="Insert your Batchsize")
+                text= gr.Markdown(value="Please insert your username or your user ID and your desired batchsize.")
+            with gr.Row() as login2:
+                defualtBatchText = gr.Markdown("If you don't enter a batchsize a batch of 10 samples will automatically be generated.")
             with gr.Row() as login3:
+                username = gr.Textbox(label="Username or user ID", placeholder="Insert your username")
+            with gr.Row()as login4:
+                batchSize = gr.Textbox(label="Batchsize", placeholder="Insert the amount of images you want to classify")
+                
+            with gr.Row() as login5:
+                dropdown = gr.Dropdown(choices=self.models, value=self.modelName, interactive=True, label="Choose your Model")
+                
+            with gr.Row() as login6:
                 submitButton = gr.Button("submit")
-            with gr.Row(visible=True) as login4:
+            with gr.Row(visible=True) as newAcc:
                 auth = gr.Textbox(visible=False, value="")
-            with gr.Row(visible=False) as login5:
-                auth2 = gr.Textbox(value="ID does not exist.")
+            with gr.Row(visible=False) as IDinv:
+                auth2 = gr.Textbox(visible=True, value="ID does not exist.")
         
             # image classifier
             with gr.Row(visible=False) as classifier1:
@@ -328,17 +340,11 @@ class SPA_Interface():
                         description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
                     with gr.Column():
                         with gr.Row():
-                            modelname = gr.Markdown("Your Model: ")
-                            userID = gr.Markdown("Your User ID XXXXX")
-                    #     labelOne = gr.Textbox(label="Best Prediction",value=f"{self.topTenList[self.index][0]}")
-                        
-                    #     # gr.Markdown(value="Other Predictions")
-                    #     # for i in range(1,len(self.topTenList)):
-                    #     #     with gr.Row():
-                    #     #         label = gr.Markdown(value=f"{self.topTenList[self.index][i]}")
+                            choosenModel = gr.Markdown("")
+                            userID = gr.Markdown("Your User ID:")
+                    
                         labels = gr.Label(label="Predictions",value=self.topTenList[self.index])
-                    # with gr.Row(visible=False):
-                    #     labelRest = gr.Textbox(label="Other labels",value=", ".join(self.topTenList[self.index][1:-1]))
+                   
                         
                        
             
@@ -369,7 +375,7 @@ class SPA_Interface():
                 
             image.change(self.handleImageInput, inputs=None, outputs=[description]) 
    
-            submitButton.click(self.submitHandler, inputs=[batchSize, username], outputs=[title,login1,login2,login3,classifier1,classifier2, classifier3, classifier4, auth, login5])
+            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4, choosenModel, userID])
             buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[image, labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
