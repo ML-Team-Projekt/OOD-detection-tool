@@ -240,7 +240,7 @@ class SPA_Interface():
             with open(databasePath, 'w') as database:
                 json.dump(emails_ids, database, indent=4)
             self.uID = newId
-            return False # user has to get to know new Id
+            return True # user has to get to know new Id
         else:
             for obj in emails_ids:
                 if obj['userId'] == int(userInp):
@@ -256,10 +256,10 @@ class SPA_Interface():
     def __selectDecision(self, decision:str):
         self.addDecesion(decision)
         if self.index >= self.batchSize-1:
-            return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True)
+            return *[gr.update(visible=False) for _ in range(5)],*[gr.update(visible=True) for _ in range(3)]
         else:
             self.__incrementIndex()
-            return gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index])  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
+            return *[gr.update() for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), [gr.update(visible=False) for _ in range(3)]  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
     def submitHandler(self,batchSize, userInput, model):
         
@@ -272,17 +272,17 @@ class SPA_Interface():
                 self.initData()
                 self.addImgs()
                 
-                return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}")
+                return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}")
     
         else:
             try:
                 int(userInput)
             except: # user has to get to know new Id
-                return gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True), gr.update(visible=True), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), gr.update(visible=False), gr.update(visible=False)
+                return *[gr.update(visible=True) for _ in range(7)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."),*[gr.update(visible=False) for _ in range(4)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), *[gr.update(visible=False) for _ in range(2)]
             else: # user inputted a not existing Id
-                return gr.update(visible=True), gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False), gr.update(visible=False),  gr.update(visible=False), gr.update(visible=False)
+                return *[gr.update(visible=True) for _ in range(6)],*[gr.update(visible=False) for _ in range(2)] ,gr.update(visible=True),*[gr.update(visible=False) for _ in range(5)]
     
-        # [login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4]
+       # [login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4, choosenModel, userID]
     
     def saveData(self):
         #add the new genarated data into database(here as dict)
@@ -294,7 +294,7 @@ class SPA_Interface():
             json.dump(self.data, database, indent=4)
 
         # update json
-        return gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False),gr.update(value="Evaluation got saved. You can now exit the execution by clicking 'Close' once and then you can close the tab."),gr.update(visible=False),gr.update(visible=True)
+        return *[gr.update(visible=False) for _ in range(2)],gr.update(value="Evaluation got saved. You can now exit the execution by clicking 'Close' once and then you can close the tab."),gr.update(visible=False),gr.update(visible=True)
     
     def lastPage(self):
         self.finished = True
@@ -302,7 +302,7 @@ class SPA_Interface():
         self.dataCollector = dict()
         self.decesions = []
 
-        return gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
+        return *[gr.update(visible=False) for _ in range(2)], *[gr.update(visible=False) for _ in range(3)]
     
     def sysExit(self):
         while self.finished == False:
@@ -334,27 +334,22 @@ class SPA_Interface():
         
             # image classifier
             with gr.Row(visible=False) as classifier1:
+                choosenModel = gr.Markdown("")
+                userID = gr.Markdown("Your User ID:")
+            with gr.Row(visible=False) as classifier2:
 
-                    with gr.Column():
-                        image = gr.Image(self.sourceList[self.index]).style(height=400)
-                        description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
-                    with gr.Column():
-                        with gr.Row():
-                            choosenModel = gr.Markdown("")
-                            userID = gr.Markdown("Your User ID:")
+                with gr.Column():
+                    image = gr.Image(self.sourceList[self.index]).style(height=400)
+                    description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
+                with gr.Column():
+                        
                     
-                        labels = gr.Label(label="Predictions",value=self.topTenList[self.index])
+                    labels = gr.Label(label="Predictions",value=self.topTenList[self.index])
                    
                         
                        
-            
-            with gr.Row(visible=False) as classifier2: 
-                    d = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
 
             with gr.Row(visible=False) as classifier3:
-                    pass
-
-            with gr.Row(visible=False) as classifier4:
                 buttonOOD = gr.Button("OOD")
                 buttonIID = gr.Button("IID")
                 buttonABS = gr.Button("abstinent")
@@ -375,12 +370,12 @@ class SPA_Interface():
                 
             image.change(self.handleImageInput, inputs=None, outputs=[description]) 
    
-            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4, choosenModel, userID])
-            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[image,labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[image, labels]) #,classifier2, classifier3, classifier4, end1, end2, end3])
-            buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, text1, end2, end3])
-            buttonClose.click(self.lastPage, inputs=None, outputs=[classifier1,classifier2, classifier3, classifier4, end1, end2, end3])
+            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, choosenModel, userID])
+            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[classifier1,classifier2, classifier3,image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[classifier1,classifier2, classifier3,image, labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier2,classifier3, text1, end2, end3])
+            buttonClose.click(self.lastPage, inputs=None, outputs=[classifier2,classifier3, end1, end2, end3])
         
         demo.launch()
 
