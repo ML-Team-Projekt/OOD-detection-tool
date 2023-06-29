@@ -259,7 +259,7 @@ class SPA_Interface():
             return *[gr.update(visible=False) for _ in range(5)],*[gr.update(visible=True) for _ in range(3)]
         else:
             self.__incrementIndex()
-            return *[gr.update() for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), [gr.update(visible=False) for _ in range(3)]  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
+            return *[gr.update() for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), *[gr.update(visible=False) for _ in range(3)]  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
     def submitHandler(self,batchSize, userInput, model):
         
