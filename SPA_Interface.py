@@ -34,6 +34,10 @@ class SPA_Interface():
         self.imgSet = set()
         
         self.models = ["convnext_tiny", "model_2"]
+        
+    
+    def __recreateBatchWithBatchsize(batchsize):
+        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(batchSize)
 
 
         
@@ -209,6 +213,9 @@ class SPA_Interface():
         
     def __authFunction(self,userInp):
         # load existing emails and Id´s from database
+        
+        self.index = 0
+        
         with open('emails_ids.json') as file:
             json_str = file.read()
         
@@ -254,12 +261,15 @@ class SPA_Interface():
     
      # user selected decision (OOD/ IID/ abstinent)
     def __selectDecision(self, decision:str):
+        
+        print(self.index)
+        
         self.addDecesion(decision)
         if self.index >= self.batchSize-1:
             return *[gr.update(visible=False) for _ in range(5)],*[gr.update(visible=True) for _ in range(3)]
         else:
             self.__incrementIndex()
-            return *[gr.update() for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), *[gr.update(visible=False) for _ in range(3)]  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
+            return *[gr.update(visible=True) for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), *[gr.update(visible=False) for _ in range(3)]  #,gr.update(visible=True),gr.update(visible=True),gr.update(visible=False),gr.update(visible=False),gr.update(visible=False)
 
     def submitHandler(self,batchSize, userInput, model):
         
@@ -268,6 +278,14 @@ class SPA_Interface():
         if self.loggedIn:
             try:            
                 self.batchSize = int(batchSize)
+                
+                
+                
+                # TEST
+                self.__recreateBatchWithBatchsize(self.batchSize)
+                
+                
+                
             finally:
                 self.initData()
                 self.addImgs()
@@ -371,7 +389,7 @@ class SPA_Interface():
             image.change(self.handleImageInput, inputs=None, outputs=[description]) 
    
             submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, choosenModel, userID])
-            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
+            buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[classifier1,classifier2, classifier3,image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[classifier1,classifier2, classifier3,image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[classifier1,classifier2, classifier3,image, labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier2,classifier3, text1, end2, end3])
