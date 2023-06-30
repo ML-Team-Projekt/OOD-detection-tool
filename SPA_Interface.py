@@ -68,9 +68,8 @@ class SPA_Interface():
         # load existing data from database
         with open('data.json') as file:
             json_str = file.read()
-
         self.data = json.loads(json_str)
-	self.initImgSet()
+        self.initImgSet()
 
     def addImgs(self):
         self.addBatchsize()
