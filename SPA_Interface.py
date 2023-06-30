@@ -289,7 +289,7 @@ class SPA_Interface():
             finally:
                 self.initData()
                 self.addImgs()
-                
+                self.addModel(model)
                 return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}")
     
         else:
