@@ -247,6 +247,7 @@ class SPA_Interface():
             with open(databasePath, 'w') as database:
                 json.dump(emails_ids, database, indent=4)
             self.uID = newId
+            self.addUserId(self.uID)
             return True # user has to get to know new Id
         else:
             for obj in emails_ids:
