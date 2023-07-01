@@ -9,9 +9,10 @@ SIZES = ["url_o", "url_k", "url_h", "url_l", "url_c"]
 def getPhotos(imageTag):
     # All the extra data that we want to have
     extras = 'owner_name,description, url_o, url_k, url_h, url_l, url_c'
+    print(imageTag)
 
     photos = flickr.photos.search(
-        tag=imageTag,  # Search term
+        tags=imageTag,  # Search term
         per_page=50,  # Number of results per page
         license='4,5,6,7,8,9,10',  # Attribution Licenses
         extras=extras,
@@ -34,6 +35,7 @@ def getUrls(imageTag, max):
     pics = data['photos']['photo']
     counter=0
     urls=[]
+    print(pics)
 
 
     for pic in pics:
