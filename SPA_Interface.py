@@ -33,7 +33,7 @@ class SPA_Interface():
         self.dataCollector = {}
         self.imgSet = set()
         
-        self.models = ["convnext_tiny", "model_2"]
+        self.models = ["convnext_tiny", "convnext_small"]
         
     
     def __recreateBatchWithBatchsize(batchsize):
@@ -43,11 +43,17 @@ class SPA_Interface():
         
     def __loadDataFromModel(self,batchSize):
         batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
-        model = get_new_model(self.modelName, not_original=True)
+        
         if self.modelName == "convnext_tiny":
+            model = get_new_model(self.modelName, not_original=True)
             ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
             ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
             model.load_state_dict(ckpt)
+        if self.modelName == "convnext_small":
+            model = get_new_model(self.modelName, pretrained= False, not_original = True)
+            ckpt = torch.load('convnext_s_cvst_clean.pt', map_location='cpu')
+            ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
+            model.load_state_dict(ckpt) 
         samples = feedModel(batch, model) 
         
         
@@ -65,12 +71,11 @@ class SPA_Interface():
                 self.imgSet.add(obj['source'])
 
     def initData(self):
-        self.initImgSet()
         # load existing data from database
         with open('data.json') as file:
             json_str = file.read()
-
         self.data = json.loads(json_str)
+        self.initImgSet()
 
     def addImgs(self):
         self.addBatchsize()
@@ -288,7 +293,7 @@ class SPA_Interface():
             finally:
                 self.initData()
                 self.addImgs()
-                
+                self.addModel(model)
                 return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}"), gr.update(value=self.sourceList[self.index]) ,gr.update(value=self.topTenList[self.index])
     
         else:
