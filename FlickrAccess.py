@@ -1,6 +1,10 @@
-
+import sys
 from flickrapi import FlickrAPI
-import FLICKR_API_Keys as Keys
+try:
+    import FLICKR_API_Keys as Keys
+except ModuleNotFoundError:
+    print("Please make sure you have API keys for Flickr saved in FLICKR_API_Keys.py")
+    sys.exit(0)
 
 # limiting the sizes we are interested in
 flickr = FlickrAPI(Keys.FLICKR_KEY, Keys.FLICKR_SECRET, format='parsed-json')
@@ -9,7 +13,6 @@ SIZES = ["url_o", "url_k", "url_h", "url_l", "url_c"]
 def getPhotos(imageTag):
     # All the extra data that we want to have
     extras = 'owner_name,description, url_o, url_k, url_h, url_l, url_c'
-    print(imageTag)
 
     photos = flickr.photos.search(
         tags=imageTag,  # Search term
@@ -35,8 +38,6 @@ def getUrls(imageTag, max):
     pics = data['photos']['photo']
     counter=0
     urls=[]
-    print(pics)
-
 
     for pic in pics:
         if counter < max:
