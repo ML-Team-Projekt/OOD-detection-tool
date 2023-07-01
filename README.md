@@ -30,7 +30,7 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 &nbsp; \
 &nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/29fbb308-e2fb-4cd9-816f-4cb3fba34e9c)" width="400" height="200">
 - The batchsize (amount of images which has to be evaluated) can be choosen. There is also the possibility to decide for the default batchsize of 10.
-- The machine learning model can be choosen as well. At the moment the app offers access to convnext_tiny and convnext_small. For the evaluation every image of the randomly generated batch can be passed to the chosen model and its predictions can be further processed. 
+- The machine learning model can be choosen as well. At the moment the app offers access to convnext_tiny and convnext_small. For the evaluation every image of the randomly generated batch gets passed to the chosen model and its predictions get further processed. 
 
 #### Evaluation page:
 - It´s ensured that every user has to evaluate the predictions of one specific image at most once per model.
