@@ -10,7 +10,10 @@ The answers of the users will be identifiable by unique IDs which correspond to 
 #### 1. Clone repo 
 Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
 
-#### 2. Activate conda environment
+#### 2. Download models
+Download the necessary files for the actually available models for this app (these are too big to offer them via github). 
+
+#### 3. Activate conda environment
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
 To activate this environment conda needs to be installed first. Then run `conda env create -f ML-OOD-tool.yml` under the project root. Next the environment can be activated by running `conda activate ML-OOD-tool`.
 
@@ -26,14 +29,14 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 &nbsp; \
 &nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/29fbb308-e2fb-4cd9-816f-4cb3fba34e9c)" width="400" height="200">
 - The batchsize (amount of images which has to be evaluated) can be choosen. There is also the possibility to decide for the default batchsize of 10.
-- The machine learning model can be choosen as well. At the moment the repo offers access to convnext_tiny and ... . For both the repo contains a .pt file so that during the evaluation every image of the randomly generated batch can be passed to the model and the predictions can be further processed. 
+- The machine learning model can be choosen as well. At the moment the repo offers access to convnext_tiny and convnext_small. For neither of them the repo contains a .pt file because these files are too big. That´s why they need to downloaded manually as described in the Quickstart (Step 2). For the evaluation every image of the randomly generated batch can be passed to the chosen model and its predictions can be further processed. 
 
 #### Evaluation page:
 - It´s ensured that every user has to evaluate the predictions of one specific image at most once per model.
 - At the moment the images are randomly choosen from a set of images within the repo. Each image gets rescaled by pytorches interpolation and center-cropped to a size of 256x256.
 -  Next to the image there are displayed the top ten out of 1000 labels with their probabilities predicted by the model in decreasing order.
 -  For the most likeliest label a short explanation from wikipedia gets displayed as well.
--  Finally on the page can be found three buttons: 'identically and indipendent distributed', 'out of detection', 'abstain'. With these the user can evaluate if the labels match the image, don´t match the image or unsure.
+-  Finally on the page can be found three buttons: 'identically and indipendent distributed', 'out of distribution', 'abstain'. With these the user can evaluate if the labels match the image, don´t match the image or unsure.
 
 #### Last page:
 - After the evaluation is over, the user can decide if their answers should be saved or not. In case the data should be saved, it gets added to the data.json file. It consists of a list of JSON object literals which all correspond to exactly one image. \
