@@ -203,10 +203,12 @@ class SPA_Interface():
     def fetchSummaryFromWiki(self, pageTitle):
         try:
             pageTitle.capitalize()
-            summary =  wikipedia.summary(pageTitle).split(".")[0]
+            summary = wikipedia.summary(pageTitle).split(".")[0]
         except wikipedia.exceptions.PageError:
             summary = ""
         except wikipedia.exceptions.DisambiguationError:
+            summary = ""
+        except:
             summary = ""
         return summary
       
