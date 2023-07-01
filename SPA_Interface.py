@@ -268,8 +268,6 @@ class SPA_Interface():
      # user selected decision (OOD/ IID/ abstinent)
     def __selectDecision(self, decision:str):
         
-        print(self.index)
-        
         self.addDecesion(decision)
         if self.index >= self.batchSize-1:
             return *[gr.update(visible=False) for _ in range(5)],*[gr.update(visible=True) for _ in range(3)]
@@ -296,17 +294,16 @@ class SPA_Interface():
                 self.initData()
                 self.addImgs()
                 self.addModel(model)
-                return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}")
+                return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your user id: {self.uID}"), gr.update(value=self.sourceList[self.index]) ,gr.update(value=self.topTenList[self.index])
     
         else:
             try:
                 int(userInput)
             except: # user has to get to know new Id
-                return *[gr.update(visible=True) for _ in range(7)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."),*[gr.update(visible=False) for _ in range(4)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), *[gr.update(visible=False) for _ in range(2)]
+                return *[gr.update(visible=True) for _ in range(7)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."),*[gr.update(visible=False) for _ in range(4)], gr.update(visible=True, value=f"Your new Id: {self.uID}. Please insert it in the first input field and submit again."), *[gr.update(visible=False) for _ in range(2)], gr.update(value=self.sourceList[self.index]) ,gr.update(value=self.topTenList[self.index])
             else: # user inputted a not existing Id
-                return *[gr.update(visible=True) for _ in range(6)],*[gr.update(visible=False) for _ in range(2)] ,gr.update(visible=True),*[gr.update(visible=False) for _ in range(5)]
-    
-       # [login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, classifier4, choosenModel, userID]
+                return *[gr.update(visible=True) for _ in range(6)],*[gr.update(visible=False) for _ in range(2)] ,gr.update(visible=True),*[gr.update(visible=False) for _ in range(7)]
+       # [login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, choosenModel, userID, image, labels])
     
     def saveData(self):
         #add the new genarated data into database(here as dict)
@@ -394,7 +391,7 @@ class SPA_Interface():
                 
             image.change(self.handleImageInput, inputs=None, outputs=[description]) 
    
-            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, choosenModel, userID])
+            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown], outputs=[login1,login2,login3,login4,login5,login6,newAcc, auth,IDinv,classifier1,classifier2, classifier3, choosenModel, userID, image, labels])
             buttonOOD.click(self.__selectDecision, inputs=decisionOOD, outputs=[classifier1,classifier2, classifier3,image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonIID.click(self.__selectDecision, inputs=decisionIID, outputs=[classifier1,classifier2, classifier3,image,labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
             buttonABS.click(self.__selectDecision, inputs=decisionAbstinent, outputs=[classifier1,classifier2, classifier3,image, labels,end1, end2, end3]) #,classifier2, classifier3, classifier4, end1, end2, end3])
