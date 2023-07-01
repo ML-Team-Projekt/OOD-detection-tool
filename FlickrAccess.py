@@ -1,11 +1,9 @@
 
 from flickrapi import FlickrAPI
-
-KEY = '50c7d487720201a7e74b98f517058eec'
-SECRET = 'd45273e1b393ef1a'
+import FLICKR_API_Keys as Keys
 
 # limiting the sizes we are interested in
-flickr = FlickrAPI(KEY, SECRET, format='parsed-json')
+flickr = FlickrAPI(Keys.FLICKR_KEY, Keys.FLICKR_SECRET, format='parsed-json')
 SIZES = ["url_o", "url_k", "url_h", "url_l", "url_c"]
 
 def getPhotos(imageTag):
