@@ -11,7 +11,8 @@ The answers of the users will be identifiable by unique IDs which correspond to 
 Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
 
 #### 2. Download models
-Download the necessary files for the actually available models for this app (these are too big to offer them via github). 
+Download the necessary .pt files for the currently available models for this app manually (these are too big to offer them via this github repo). After download they just need to be copied into the root folder of the local copy of this repo. \
+Links: https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2TrTJy7 (convnext_tiny), https://nc.mlcloud.uni-tuebingen.de/index.php/s/3QizZD7NxgAEpiT (convnext_small)
 
 #### 3. Activate conda environment
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
@@ -29,7 +30,7 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 &nbsp; \
 &nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/29fbb308-e2fb-4cd9-816f-4cb3fba34e9c)" width="400" height="200">
 - The batchsize (amount of images which has to be evaluated) can be choosen. There is also the possibility to decide for the default batchsize of 10.
-- The machine learning model can be choosen as well. At the moment the repo offers access to convnext_tiny and convnext_small. For neither of them the repo contains a .pt file because these files are too big. That´s why they need to downloaded manually as described in the Quickstart (Step 2). For the evaluation every image of the randomly generated batch can be passed to the chosen model and its predictions can be further processed. 
+- The machine learning model can be choosen as well. At the moment the app offers access to convnext_tiny and convnext_small. For the evaluation every image of the randomly generated batch can be passed to the chosen model and its predictions can be further processed. 
 
 #### Evaluation page:
 - It´s ensured that every user has to evaluate the predictions of one specific image at most once per model.
