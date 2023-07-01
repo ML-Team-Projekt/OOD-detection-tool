@@ -28,7 +28,7 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 - Visiting the application for the first time, the user has to enter their e-mail-address. Then their personal ID will be generated.
 - The emails_ids.json file stores all these correspondings in a list of JSON object literals in the following way: \
 &nbsp; \
-&nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/29fbb308-e2fb-4cd9-816f-4cb3fba34e9c)" width="400" height="200">
+&nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/9ecb80a9-2c34-41ec-b146-79adf0c9a90d)" width="400" height="150">
 - The batchsize (amount of images which has to be evaluated) can be choosen. There is also the possibility to decide for the default batchsize of 10.
 - The machine learning model can be choosen as well. At the moment the app offers access to convnext_tiny and convnext_small. For the evaluation every image of the randomly generated batch gets passed to the chosen model and its predictions get further processed. 
 
@@ -42,7 +42,9 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 #### Last page:
 - After the evaluation is over, the user can decide if their answers should be saved or not. In case the data should be saved, it gets added to the data.json file. It consists of a list of JSON object literals which all correspond to exactly one image. \
 Either a new literal gets added to the list of the key 'UserCall' in one of these or, if a picture has not got evaluated so far, a new JSON object literal gets added to the list. \
-The structure in particular: ...
+The structure in particular: \
+&nbsp; \
+&nbsp; <img src="https://github.com/ML-Team-Projekt/OOD-detection-tool/assets/116190225/ee999c3c-138d-47f2-91ad-522a6f17e57b" width="600" height="300">
 
 ## How to contribute to this repo
 - If there shows up a bug or there comes up an idea for extra features, there has to be created an issue and a new branch.
