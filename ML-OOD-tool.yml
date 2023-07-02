@@ -22,4 +22,6 @@ dependencies:
   - pip:
     - torchvision
     - torch
+    - flickr
+    - progress
 
