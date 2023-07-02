@@ -34,7 +34,7 @@ Run `python3 SPA_Interface.py` under the project root. A link will be generated 
 
 #### Evaluation page:
 - It´s ensured that every user has to evaluate the predictions of one specific image at most once per model.
-- At the moment the images are randomly choosen from a set of images within the repo. Each image gets rescaled by pytorches interpolation and center-cropped to a size of 256x256.
+- At the moment the images are randomly choosen from a set of images within the repo. We also have access to flickerApi but this not public yet. Each image gets rescaled by pytorches interpolation and center-cropped to a size of 256x256.
 -  Next to the image there are displayed the top ten out of 1000 labels with their probabilities predicted by the model in decreasing order.
 -  For the most likeliest label a short explanation from wikipedia gets displayed as well.
 -  Finally on the page can be found three buttons: 'identically and indipendent distributed', 'out of distribution', 'abstain'. With these the user can evaluate if the labels match the image, don´t match the image or unsure.
