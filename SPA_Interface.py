@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-#paths 
+import random
+#paths
 
 import sys 
 
@@ -15,7 +15,8 @@ import json
 import class_katalog
 from threading import Thread
 import time
-
+random.seed(0)
+np.random.seed(0)
 class SPA_Interface():
     
     def __init__(self) -> None:
@@ -326,6 +327,8 @@ class SPA_Interface():
             json.dump(self.data, database, indent=4)
         self.dataCollector = dict()
         self.decisions = []
+        random.seed(0)
+        np.random.seed(0)
         return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID), gr.update(value=self.batchSize), gr.update(value=self.modelName), *[gr.update(visible=False) for _ in range(3)]
 
 
