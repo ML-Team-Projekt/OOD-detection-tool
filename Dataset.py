@@ -16,6 +16,12 @@ import random
 import class_katalog
 import json
 import gradio as gr
+import numpy as np
+
+random.seed(0)
+np.random.seed(0)
+
+
 
 
 IMAGESROOTDIR = 'NINCO_OOD_classes'
