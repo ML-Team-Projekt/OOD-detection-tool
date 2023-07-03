@@ -89,7 +89,9 @@ Return: an array with a dict[image:label]
 '''
 def createRandomBatch(batchsize, uId):
     # Number of tries to get another number
-    TRIALSTHRESHOLD = 100
+    random.seed(0)
+    np.random.seed(0)
+    TRIALSTHRESHOLD = 10000
     try:
         assert (0 < batchsize <= len(imageDataset))
     except AssertionError:
