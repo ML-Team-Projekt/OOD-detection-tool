@@ -8,7 +8,7 @@ The answers of the users will be identifiable by unique IDs which correspond to 
 ## Quickstart
 
 #### 0. Just for wsl users:
-To get the function of an automation of the path after running the script the following is required: \
+To get the function of an automation of the path after running the script the following is required (Please be aware that this is just a recommendation. If this step gets skipped the application can even be used without any error): \
 Install wslu via PPA: https://launchpad.net/~wslutilities/+archive/ubuntu/wslu \
 After, the command "export BROWSER=wslview" needs to be added to the file .bashrc. Then the terminal has to be closed and opened again.
 
