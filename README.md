@@ -7,6 +7,11 @@ The answers of the users will be identifiable by unique IDs which correspond to 
 
 ## Quickstart
 
+#### 0. Just for wsl users:
+To get the function of an automation of the path after running the script the following is required: \
+Install wslu via PPA: https://launchpad.net/~wslutilities/+archive/ubuntu/wslu \
+After, the command "export BROWSER=wslview" needs to be added to the file .bashrc. Then the terminal has to be closed and opened again.
+
 #### 1. Clone repo 
 Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
 
@@ -18,7 +23,7 @@ Links: https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2TrTJy7 (convnext
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
 To activate this environment conda needs to be installed first. Then run `conda env create -f ML-OOD-tool.yml` under the project root. Next the environment can be activated by running `conda activate ML-OOD-tool`.
 
-#### 3. Run the application
+#### 4. Run the application
 Run `python3 SPA_Interface.py` under the project root. A link will be generated which has to be copied and pasted in a any browser. Then the first page of the application will be displayed.
 
 ## Usage
