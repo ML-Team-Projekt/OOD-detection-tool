@@ -280,7 +280,6 @@ class SPA_Interface():
 
     def submitHandler(self,batchSize, userInput, model):
         
-        
         self.loggedIn = self.__authFunction(userInput)
         if self.loggedIn:
             try:            
@@ -413,9 +412,9 @@ class SPA_Interface():
             buttonBack.click(self.saveAndBack, inputs=None, outputs=[login1, login2, login3, login4, login5, login6, username, batchSize, dropdown, end1, end2, end3])
             buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier2, classifier3, end1, end2, end3])
             buttonClose.click(self.lastPage, inputs=None, outputs=[classifier2,classifier3, end1, end2, end3])
-        
-        demo.launch()
 
+        demo.launch(inbrowser=True)
+        
 SPA = SPA_Interface()
 
 thread_1 = Thread(target=SPA.interface)
