@@ -2,22 +2,24 @@
 
 - This app enables the evaluation of labels predicted by a specific machine learning model on single images.
 - The project is a single page web application.
-- The whole functionality is implemented in python and the GUI is built with Gradio.
+- The whole functionality is implemented in Python and the GUI is built with Gradio.
 - The answers of the users will be identifiable by unique IDs which correspond to their e-mail addresses.
 
 ## Quickstart
 
-#### 0. Just for wsl users:
-To get the function of an automation of the path after running the script the following is required (Please be aware that this is just a recommendation. If this step gets skipped the application can even be used without any error): \
-Install wslu via PPA: https://launchpad.net/~wslutilities/+archive/ubuntu/wslu \
-After, the command "export BROWSER=wslview" needs to be added to the file .bashrc. Then the terminal has to be closed and opened again.
+#### 0. Just for WSL users:
+:exclamation: Please be aware that this is just a recommendation. If this step gets skipped, the application can also be used without any error. \
+\
+To get the function of an automation of the path after running the script, the following is required: \
+[Install wslu via PPA](https://launchpad.net/~wslutilities/+archive/ubuntu/wslu) \
+After, the command "export BROWSER=wslview" needs to be added to the file .bashrc. Then, the terminal has to be closed and opened again.
 
-#### 1. Clone repo 
+#### 1. Clone repo
 Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
 
 #### 2. Download models
-Download the necessary .pt files for the currently available models for this app manually (these are too big to offer them via this github repo). After download they just need to be copied into the root folder of the local copy of this repo. \
-Links: https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2TrTJy7 (convnext_tiny), https://nc.mlcloud.uni-tuebingen.de/index.php/s/3QizZD7NxgAEpiT (convnext_small)
+Download the necessary .pt files for the currently available models for this app manually (these are too big to offer them via this github repo). After the download they just need to be copied into the root folder of the local copy of this repo. \
+Links: [convnext_tiny](https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2TrTJy7), [convnext_small](https://nc.mlcloud.uni-tuebingen.de/index.php/s/3QizZD7NxgAEpiT)
 
 #### 3. Activate conda environment
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
