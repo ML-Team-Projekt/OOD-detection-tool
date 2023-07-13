@@ -1,9 +1,9 @@
 # OOD-detection-tool
 
-This app enables the evaluation of labels predicted by a specific machine learning model on single images. \
-The project is a single page web application. \
-The whole functionality is implemented in python and the GUI is built with Gradio. \
-The answers of the users will be identifiable by unique IDs which correspond to their e-mail addresses.
+- This app enables the evaluation of labels predicted by a specific machine learning model on single images.
+- The project is a single page web application.
+- The whole functionality is implemented in python and the GUI is built with Gradio.
+- The answers of the users will be identifiable by unique IDs which correspond to their e-mail addresses.
 
 ## Quickstart
 
