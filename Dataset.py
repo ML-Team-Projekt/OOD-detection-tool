@@ -8,8 +8,7 @@ from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
-from utilities import createAnnotation
-from model_loader import get_new_model
+from utilities import fetchOneImg
 import pandas as pd
 from PIL import Image
 import random
@@ -17,6 +16,7 @@ import class_katalog
 import json
 import gradio as gr
 import numpy as np
+from io import BytesIO
 
 random.seed(0)
 np.random.seed(0)
@@ -27,14 +27,21 @@ np.random.seed(0)
 IMAGESROOTDIR = 'NINCO_OOD_classes'
 
 class ImageDataset(Dataset):
-    def __init__(self, rootDir):
-        self.rootDir = rootDir
-        createAnnotation(self.rootDir)
-        self.annotation = pd.read_csv('output.csv')
+    def __init__(self, annotation):
+        self.annotation = pd.read_csv(annotation)
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
         image = Image.open(data_path)
+        label = self.annotation.iloc[index,1]
+        source = data_path
+        return image, label, source
+
+    def __getitem__(self, index):
+        data_path = self.annotation.iloc[index,0]
+        image = fetchOneImg(index)
+        image = BytesIO(image)
+        image = Image.open(image)
         label = self.annotation.iloc[index,1]
         source = data_path
         return image, label, source
@@ -44,7 +51,7 @@ class ImageDataset(Dataset):
 
 # instance of class ImageDataset
 # contains all 765 images with their respective labels
-imageDataset = ImageDataset(rootDir=IMAGESROOTDIR)
+imageDataset = ImageDataset(annotation='output.csv')
 
 # Constants for the size of the images
 SIZE = round(224/0.875)
