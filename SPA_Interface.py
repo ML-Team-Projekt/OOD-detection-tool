@@ -13,7 +13,6 @@ import sys
 
 sys.path.insert(0, '/home/lilly/miniconda3/lib/python3.10/site-packages')
 import torch
-import wikipedia
 from model_loader import get_new_model
 import gradio as gr
 from Dataset import *
