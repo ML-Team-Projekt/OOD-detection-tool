@@ -3,6 +3,12 @@
 import random
 #paths
 
+import nltk
+nltk.download('wordnet')
+
+from nltk.corpus import wordnet as wn
+from myImageNetDict import getDictRep
+
 import sys 
 
 sys.path.insert(0, '/home/lilly/miniconda3/lib/python3.10/site-packages')
@@ -201,21 +207,67 @@ class SPA_Interface():
             
     #     return allTopKLabels
     
-    def fetchSummaryFromWiki(self, pageTitle):
-        try:
-            pageTitle.capitalize()
-            summary = wikipedia.summary(pageTitle).split(".")[0]
-        except wikipedia.exceptions.PageError:
-            summary = ""
-        except wikipedia.exceptions.DisambiguationError:
-            summary = ""
-        except:
-            summary = ""
+     # gets the corresponding wordnet id from a given prediction
+    def findWordNetID(self,prediction:str):
+        synsnetID = ""
+        dictionaryMap = getDictRep()
+        for _, value in dictionaryMap.items():
+            foundID = value["id"]
+            label = value["label"]
+            
+            if label.lower() == prediction.lower():
+                
+                trimmedID = foundID.split("-")[0]
+                
+                synsnetID = trimmedID
+                break;
+
+        return synsnetID
+        
+    
+    # fetches a description from the WordNet hierarchy for a given prediction
+    def fetchSummaryFromNLTK(self, firstPrediction:str):
+        idForNLTK = self.findWordNetID(firstPrediction)
+        summary = ""
+        
+        synset = wn.synset_from_pos_and_offset('n', offset=int(idForNLTK))
+
+    
+            
+        definition = synset.definition()
+        hypernyms = synset.hypernyms()
+            
+        if definition == "" or definition == None:
+            while (hypernyms != null):
+                synsnetHypernym = hypernyms[0]
+                   
+                hypernymDefinition = synsnetHypernym.definition()
+                   
+                if hypernymDefinition != "":
+                    summary = hypernymDefinition
+                    break
+                hypernyms = synsnetHypernym.hypernyms()
+                print(hypernyms)
+        else:
+            summary = definition
+
         return summary
+    
+    # def fetchSummaryFromWiki(self, pageTitle):
+    #     try:
+    #         pageTitle.capitalize()
+    #         summary = wikipedia.summary(pageTitle).split(".")[0]
+    #     except wikipedia.exceptions.PageError:
+    #         summary = ""
+    #     except wikipedia.exceptions.DisambiguationError:
+    #         summary = ""
+    #     except:
+    #         summary = ""
+    #     return summary
       
     def handleImageInput(self):
         firstLabel = list(self.topTenList[self.index].keys())[0]
-        summaryFirstLabel = self.fetchSummaryFromWiki(firstLabel)
+        summaryFirstLabel = self.fetchSummaryFromNLTK(firstLabel)
         return summaryFirstLabel
         
         
@@ -375,7 +427,7 @@ class SPA_Interface():
 
                 with gr.Column():
                     image = gr.Image(self.sourceList[self.index]).style(height=400)
-                    description = gr.Markdown(value=f"{self.fetchSummaryFromWiki(list(self.topTenList[self.index].keys())[0])}")
+                    description = gr.Markdown(value=f"{self.fetchSummaryFromNLTK(list(self.topTenList[self.index].keys())[0])}")
                 with gr.Column():
                         
                     
