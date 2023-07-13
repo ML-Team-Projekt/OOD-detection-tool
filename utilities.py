@@ -40,9 +40,6 @@ def createUrl(row_number):
 def fetchOneImg(imgIndex):
     url, img = createUrl(imgIndex)
     response = requests.get(url)
-    # filename = imgFolder + '/' + img
-    # with open(filename, 'wb') as file:
-    #     file.write(response.content)
     return response.content
 
 def fetchBatch(indexList):
