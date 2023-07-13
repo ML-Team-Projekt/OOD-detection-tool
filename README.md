@@ -12,7 +12,7 @@
 \
 To get the function of an automation of the path after running the script, the following is required: \
 [Install wslu via PPA](https://launchpad.net/~wslutilities/+archive/ubuntu/wslu) \
-After, the command "export BROWSER=wslview" needs to be added to the file .bashrc. Then, the terminal has to be closed and opened again.
+After, the command `export BROWSER=wslview` needs to be added to the file .bashrc. Then, the terminal has to be closed and opened again.
 
 #### 1. Clone repo
 Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
