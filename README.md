@@ -25,7 +25,7 @@ This repo provides a .yml file which creates a conda environment. It contains ch
 To $\textcolor{red}{\textsf{activate this environment}}$, conda needs to be installed first. Then, run `conda env create -f ML-OOD-tool.yml` under the project root. Next, the environment can be activated by running `conda activate ML-OOD-tool`.
 
 #### 4. Run the application
-$\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\textsf{under the project root.}}$ A link will be generated which has to be copied and pasted in a any browser. Then, the first page of the application will be displayed.
+$\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\textsf{under the project root.}}$ The application will be opened automatically and the first page of the application will be displayed. WSL users who skipped step 0 will have to copy and paste the link manually into any browser.
 
 ## Usage
 
