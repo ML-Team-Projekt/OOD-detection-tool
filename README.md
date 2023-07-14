@@ -4,29 +4,28 @@
 - The project is a single page web application.
 - The whole functionality is implemented in Python and the GUI is built with Gradio.
 - The answers of the users will be identifiable by unique IDs which correspond to their e-mail addresses.
-
 ## Quickstart
 
 #### 0. Just for WSL users:
-:exclamation: Please be aware that this is just a recommendation. If this step gets skipped, the application can also be used without any error. \
+$\color{#D29922}\textsf{\Large\&#x26A0;\kern{0.2cm}\normalsize}$  Please be aware that this is just a recommendation. If this step gets skipped, the application can also be used without any error. \
 \
 To get the function of an automation of the path after running the script, the following is required: \
 [Install wslu via PPA](https://launchpad.net/~wslutilities/+archive/ubuntu/wslu) \
 After, the command `export BROWSER=wslview` needs to be added to the file .bashrc. Then, the terminal has to be closed and opened again.
 
 #### 1. Clone repo
-Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to create a local copy of this repo on your machine.
+Copy this repo (HTTPS or SSH) and use `git clone 'copied string'` in your terminal to  $\textcolor{red}{\textsf{create a local copy of this repo}}$ on your machine.
 
 #### 2. Download models
-Download the necessary .pt files for the currently available models for this app manually (these are too big to offer them via this github repo). After the download, they just need to be copied into the root folder of the local copy of this repo. \
+$\textcolor{red}{\textsf{Download the necessary .pt files}}$ for the currently available models for this app manually (these are too big to offer them via this github repo). After the download, they just need to be copied into the root folder of the local copy of this repo. \
 Links: [convnext_tiny](https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2TrTJy7), [convnext_small](https://nc.mlcloud.uni-tuebingen.de/index.php/s/3QizZD7NxgAEpiT)
 
 #### 3. Activate conda environment
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
-To activate this environment, conda needs to be installed first. Then, run `conda env create -f ML-OOD-tool.yml` under the project root. Next, the environment can be activated by running `conda activate ML-OOD-tool`.
+To $\textcolor{red}{\textsf{activate this environment}}$, conda needs to be installed first. Then, run `conda env create -f ML-OOD-tool.yml` under the project root. Next, the environment can be activated by running `conda activate ML-OOD-tool`.
 
 #### 4. Run the application
-Run `python3 SPA_Interface.py` under the project root. A link will be generated which has to be copied and pasted in a any browser. Then, the first page of the application will be displayed.
+$\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\textsf{under the project root.}}$ A link will be generated which has to be copied and pasted in a any browser. Then, the first page of the application will be displayed.
 
 ## Usage
 
@@ -56,4 +55,4 @@ The structure in particular: \
 ## How to contribute to this repo
 - If there shows up a bug or there comes up an idea for extra features, an issue and a new branch have to be created.
 - After working on an issue, there needs be created a PR. At least one approval is acquired to enable merging the changes on main.
-- Don't push directly on the main branch!
+- $\textcolor{red}{\textsf{Don't push directly on the main branch!}}$
