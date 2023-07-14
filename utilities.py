@@ -37,9 +37,12 @@ def createUrl(row_number):
     url = f"https://nc.mlcloud.uni-tuebingen.de/index.php/s/TgSK4n8ctPbWP4K/download?path=%2F{dict['label']}&files={dict['img']}"
     return url, imgName
 
-def fetchOneImg(imgIndex):
+def fetchOneImg(imgIndex, imgFolder):
     url, img = createUrl(imgIndex)
     response = requests.get(url)
+    filename = imgFolder + '/' + img
+    with open(filename, 'wb') as file:
+         file.write(response.content)
     return response.content
 
 def fetchBatch(indexList):
@@ -49,3 +52,9 @@ def fetchBatch(indexList):
     for index in indexList:
         fetchOneImg(index, dirName)
     
+def getFileNames(folder_path):
+    file_names = []
+    for file in os.listdir(folder_path):
+        if os.path.isfile(os.path.join(folder_path, file)):
+            file_names.append(file)
+    return file_names

@@ -16,6 +16,7 @@ import class_katalog
 import json
 import gradio as gr
 import numpy as np
+import os
 from io import BytesIO
 
 random.seed(0)
@@ -29,17 +30,13 @@ IMAGESROOTDIR = 'NINCO_OOD_classes'
 class ImageDataset(Dataset):
     def __init__(self, annotation):
         self.annotation = pd.read_csv(annotation)
+        self.batchFolder = 'imgBatch'
+        if not os.path.exists('imgBatch'):
+            os.makedirs('imgBatch')
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
-        image = Image.open(data_path)
-        label = self.annotation.iloc[index,1]
-        source = data_path
-        return image, label, source
-
-    def __getitem__(self, index):
-        data_path = self.annotation.iloc[index,0]
-        image = fetchOneImg(index)
+        image = fetchOneImg(index, self.batchFolder)
         image = BytesIO(image)
         image = Image.open(image)
         label = self.annotation.iloc[index,1]
@@ -105,7 +102,7 @@ def createRandomBatch(batchsize, uId):
         errorFkt(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
     global attempts
     batch = []
-    batch3dim = []
+    #batch3dim = []
     indexList = []
     sourceList = []
     labelList = []
@@ -140,30 +137,33 @@ def createRandomBatch(batchsize, uId):
 
         indexList.append(index)
         sample, sample3dim, source = dataloader[index]
-        batch.append(sample)
-        batch3dim.append(sample3dim)
+
+        #batch3dim.append(sample3dim)
         sourceList.append(source)
+        imgFile = source.split('\\')[-1]
+        batch.append(imgFile)
         label = sample['label']
         labelList.append(label)
     attempts = 0
-    return batch, batch3dim, indexList, sourceList, labelList
+    return batch, indexList, sourceList, labelList
 
 '''
 function feeds the loaded model with data
 Arguments: list[dict[image:tensor,label:str]], model
 Return: list[dict[image:tensor,label:str, prediction:tensor]]
 '''
-def feedModel(samples, model):
-    assert(0 < len(samples) < len(imageDataset))
-    samplesWithPrediction = []
-    for sample in samples:
-        image, label = sample['image'], sample['label']
-        prediction = model(image)
-        #print(prediction.max(1)[1])
-        sample['prediction'] = F.softmax(prediction, dim=1)
-        #sample['prediction'] = prediction
-        samplesWithPrediction.append(sample)
-    return samplesWithPrediction
+def feedModel(img, model):
+
+    image = Image.open('imgBatch/'+ img)
+    image = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
+    image = fn.center_crop(img=image, output_size=[SIZE,SIZE])
+    image = pilToTensor(image)
+    image = image.unsqueeze(0)
+
+    prediction = model(image)
+    prediction = F.softmax(prediction, dim=1)
+
+    return prediction
 
 '''
 function extracts the values from the samples dict
@@ -188,47 +188,35 @@ def visualize(samples):
     plt.imshow(grid.detach().numpy().transpose((1,2,0)))
 
 # function that finds the top k predictions
-def findMaxPredictions(samples, k:int):
-    predictionsMax = []
-    predictionsIndices = []
-    
-    for dictionary in samples:
-        predictions = dictionary['prediction']
-        
-        tempPredictionsMax = []
-        tempPredictionsIndices = []
-        for i in range (0, k):
-            maximums = []
-            indices = []
-            maximums = predictions.max().item()
-            indices = predictions.argmax().item()
-            tempPredictionsMax.append(maximums)
-            tempPredictionsIndices.append(indices)
-            predictions[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
-        predictionsMax.append(tempPredictionsMax)
-        predictionsIndices.append(tempPredictionsIndices)
+def findMaxPredictions(prediction, k:int):            
+    tempPredictionsMax = []
+    tempPredictionsIndices = []
+
+    for i in range (0, k):
+        maximums = []
+        indices = []
+        maximums = prediction.max().item()
+        indices = prediction.argmax().item()
+        tempPredictionsMax.append(maximums)
+        tempPredictionsIndices.append(indices)
+        prediction[indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
  
-    return (predictionsMax, predictionsIndices)
+    return (tempPredictionsMax, tempPredictionsIndices)
 
 
         
         
 
 # function that finds the labels to the top k predictions
-def findLabels(samples, k:int):
-    (predictionsMax, predictionsIndices) = findMaxPredictions(samples, k)
-    allTopKLabels = []
-    
-   
-    
-    for i in range (0, len(samples)):
-        topKLabels = {}
-        for j in range(0, k):
-            topILabel = class_katalog.NAMES[predictionsIndices[i][j]]
-            topKLabels[topILabel] = predictionsMax[i][j]
-        allTopKLabels.append(topKLabels)
-        
-    return allTopKLabels
+def findLabels(prediction, k:int):
+    (predictionMax, predictionIndices) = findMaxPredictions(prediction, k)
+
+    topKLabels = {}
+    for j in range(0, k):
+        topILabel = class_katalog.NAMES[predictionIndices[j]]
+        topKLabels[topILabel] = predictionMax[j]
+
+    return topKLabels
 
 def errorFkt(text):
 
