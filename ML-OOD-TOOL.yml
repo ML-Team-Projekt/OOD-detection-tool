@@ -1,7 +1,9 @@
-name: ML-OOD-tool
-channels:
+name: ML-OOD-TOOL
+
+default: 
   - defaults
   - conda-forge
+
 dependencies:
   - python=3.10
   - conda
@@ -9,19 +11,20 @@ dependencies:
   - pip
   - wheel
   - conda-content-trust
-  - ipywidgets=8.0
+  - ipywidgets = 8.0
   - pyparsing=3.0
-  - wikipedia=1.4
-  - timm=0.9
-  - pandas=1.5
-  - gradio=3.23
-  - typing=3.10
-  - numpy=1.24
-  - matplotlib=3.7
-  - pillow=9.4
+  - pandas 
+  - numpy
+  - matplotlib
+  - pillow
+
   - pip:
     - torchvision
     - torch
-    - flickr
+    - nltk
+    - flickrapi
     - progress
+    - requests
+    - timm 
+    - gradio
 
