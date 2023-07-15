@@ -22,10 +22,10 @@ Links: [convnext_tiny](https://nc.mlcloud.uni-tuebingen.de/index.php/s/Xgwt7iYb2
 
 #### 3. Activate conda environment
 This repo provides a .yml file which creates a conda environment. It contains channels and specified versions of dependencies on which this application is built. \
-To $\textcolor{red}{\textsf{activate this environment}}$, conda needs to be installed first. Then, run `conda env create -f ML-OOD-tool.yml` under the project root. Next, the environment can be activated by running `conda activate ML-OOD-tool`.
+To $\textcolor{red}{\textsf{activate this environment}}$, conda needs to be installed first. Then, run `conda env create -f ML-OOD-TOOL.yml` under the project root. Next, the environment can be activated by running `conda activate ML-OOD-tool`.
 
 #### 4. Run the application
-$\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\textsf{under the project root.}}$ The application will be opened automatically and the first page of the application will be displayed. WSL users who skipped step 0 will have to copy and paste the link manually into any browser.
+$\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\textsf{or}}$ `gradio SPA_Interface.py` (depending on your OS) $\textcolor{red}{\textsf{under the project root.}}$ The application will be opened automatically and the first page of the application will be displayed. WSL users who skipped step 0 will have to copy and paste the link manually into any browser.
 
 ## Usage
 
