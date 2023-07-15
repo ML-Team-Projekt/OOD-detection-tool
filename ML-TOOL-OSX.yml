@@ -1,0 +1,30 @@
+name: ML-TOOL-OSX
+
+default: 
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - conda
+  - setuptools
+  - pip
+  - wheel
+  - conda-content-trust
+  - ipywidgets = 8.0
+  - pyparsing=3.0
+  - pandas 
+  - numpy
+  - matplotlib
+  - pillow
+
+  - pip:
+    - torchvision
+    - torch
+    - nltk
+    - flickrapi
+    - progress
+    - requests
+    - timm 
+    - gradio
+
