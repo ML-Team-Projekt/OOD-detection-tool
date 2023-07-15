@@ -140,7 +140,7 @@ def createRandomBatch(batchsize, uId):
 
         #batch3dim.append(sample3dim)
         sourceList.append(source)
-        imgFile = source.split('\\')[-1]
+        imgFile = source.split('/')[-1]
         batch.append(imgFile)
         label = sample['label']
         labelList.append(label)
