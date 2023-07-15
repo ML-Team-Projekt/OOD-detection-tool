@@ -363,6 +363,8 @@ class SPA_Interface():
         self.finished = True
         self.dataCollector = dict()
         self.decisions = []
+        folder_path = 'imgBatch/'
+        shutil.rmtree(folder_path)
 
         return *[gr.update(visible=False) for _ in range(2)], *[gr.update(visible=False) for _ in range(3)]
     
