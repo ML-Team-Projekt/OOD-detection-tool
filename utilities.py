@@ -28,7 +28,7 @@ def getRow(row_number, file_path = 'output.csv'):
         
         assert not (row_number < 0 or row_number >= len(rows))
         row = rows[row_number]
-        img = row['Data'].split('\\')[-1]
+        img = row['Data'].split('/')[-1]
         return {'label':row['Label'], 'img':img}
 
 def createUrl(row_number):
