@@ -20,6 +20,8 @@ import json
 import class_katalog
 from threading import Thread
 import time
+import shutil
+
 random.seed(0)
 np.random.seed(0)
 class SPA_Interface():
@@ -48,7 +50,7 @@ class SPA_Interface():
 
         
     def __loadDataFromModel(self,batchSize):
-        batch, batch3dim, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
+        batch, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
         
         if self.modelName == "convnext_tiny":
             model = get_new_model(self.modelName, not_original=True)
@@ -59,11 +61,16 @@ class SPA_Interface():
             model = get_new_model(self.modelName, pretrained= False, not_original = True)
             ckpt = torch.load('convnext_s_cvst_clean.pt', map_location='cpu')
             ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
-            model.load_state_dict(ckpt) 
-        samples = feedModel(batch, model) 
-        
-        
-        topTenList = findLabels(samples, 10)
+            model.load_state_dict(ckpt)
+
+        if not os.path.exists('predictions'):
+            os.makedirs('predictions')
+        #predictions = feedModel(batch, model)
+        topTenList = []
+        for img in batch:
+            prediction = feedModel(img, model)
+            topTen = findLabels(prediction[0], 10)
+            topTenList.append(topTen)
         labels = []
         # just for test purpose
         for i in range(0, batchSize):
@@ -84,6 +91,9 @@ class SPA_Interface():
         self.initImgSet()
 
     def addImgs(self):
+        folder_path = 'imgBatch/'
+        shutil.rmtree(folder_path)
+        os.makedirs('imgBatch')
         self.addBatchsize()
         self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(self.batchSize)
         self.addImg(self.indexList)
@@ -192,19 +202,6 @@ class SPA_Interface():
             prediction[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum    
                         
         return (predictionsMax, predictionsIndices)
-
-    # def findLabels(self,sample, k=10):
-    #     (predictionsMax, predictionsIndices) = self.findMaxPred(sample, k)
-    #     allTopKLabels = []
-    #     topKLabels = []
-
-    #     for j in range (0, k):
-    #         topILabel = []
-    #         topILabel = class_katalog.NAMES[predictionsIndices[j]]
-    #         topKLabels.append(topILabel)
-    #     allTopKLabels.append(topKLabels)
-            
-    #     return allTopKLabels
     
      # gets the corresponding wordnet id from a given prediction
     def findWordNetID(self,prediction:str):
@@ -337,7 +334,7 @@ class SPA_Interface():
                 self.batchSize = int(batchSize)
                 
                 # TEST
-                self.__recreateBatchWithBatchsize(self.batchSize)
+                #self.__recreateBatchWithBatchsize(self.batchSize)
                 
             finally:
                 self.initData()
