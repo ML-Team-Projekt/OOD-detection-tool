@@ -424,8 +424,7 @@ class SPA_Interface():
             with gr.Row(visible=False) as classifier2:
 
                 with gr.Column():
-                    source = self.sourceList[self.index]
-                    image = gr.Image('imgBatch/'+source.split('/')[-1]).style(height=400)
+                    image = gr.Image(self.sourceList[self.index]).style(height=400)
                     description = gr.Markdown(value=f"{self.fetchSummaryFromNLTK(list(self.topTenList[self.index].keys())[0])}")
                 with gr.Column():
                         
