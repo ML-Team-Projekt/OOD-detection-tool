@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import torch
-import torchvision
-import torch.nn.functional as F
+
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
-import matplotlib.pyplot as plt
 from utilities import fetchOneImg
 import pandas as pd
 from PIL import Image
 import random
-import class_katalog
-import json
-import gradio as gr
 import numpy as np
 import os
 from io import BytesIO
@@ -23,204 +17,57 @@ random.seed(0)
 np.random.seed(0)
 
 
-
-
-IMAGESROOTDIR = 'NINCO_OOD_classes'
-
 class ImageDataset(Dataset):
     def __init__(self, annotation):
+        self.SIZE = round(224 / 0.875)
         self.annotation = pd.read_csv(annotation)
         self.batchFolder = 'imgBatch'
         if not os.path.exists('imgBatch'):
             os.makedirs('imgBatch')
+        # objects for tensor transformation
+        self.pilToTensor = T.ToTensor()
+        self.tensorToPil = T.ToPILImage()
+        self.datasetLength = len(self)
 
     def __getitem__(self, index):
-        data_path = self.annotation.iloc[index,0]
+        self.index = index
+        (image, label, source) = self.transform(index)
+        sample3dim = {'image': image, 'label': label}
+        image = image.unsqueeze(0)
+        sample = {'image': image, 'label': label}
+        return sample, sample3dim, source
+
+    def __fetchImageLabelAndSource(self, index):
+        data_path = self.annotation.iloc[index, 0]
         image = fetchOneImg(index, self.batchFolder)
         image = BytesIO(image)
         image = Image.open(image)
-        label = self.annotation.iloc[index,1]
+        label = self.annotation.iloc[index, 1]
         source = data_path
+        print(image)
+
         return image, label, source
 
     def __len__(self):
         return len(self.annotation)
 
+    # given an Index returns the transformed Image
+    # input: Index: int
+    # return: tuple(PIL Image, label)
+    def transform(self, index):
+        # Constants for the size of the images
+
+        assert index <= len(imageDataset)
+        print("transform")
+        image, label, source = self.__fetchImageLabelAndSource(index)
+        print("t2 \n")
+        rescaledImage = fn.resize(img=image, size=[self.SIZE, self.SIZE], interpolation=T.InterpolationMode.BICUBIC)
+        transformedImage = fn.center_crop(img=rescaledImage, output_size=[self.SIZE, self.SIZE])
+        transformedImage = self.pilToTensor(transformedImage)
+        transformedImage = transformedImage.unsqueeze(0)
+        return transformedImage, label, source
+
+
 # instance of class ImageDataset
 # contains all 765 images with their respective labels
 imageDataset = ImageDataset(annotation='output.csv')
-
-# Constants for the size of the images
-SIZE = round(224/0.875)
-
-# given an Index returns the transformed Image
-# input: Index: int
-# return: tuple(PIL Image, label)
-def transform(index):
-    assert index <= len(imageDataset)
-    image, label, source = imageDataset[index]
-    rescaledImage = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    transformedImage = fn.center_crop(img=rescaledImage, output_size=[SIZE,SIZE])
-    return transformedImage, label, source
-
-# objects for tensor transformation
-pilToTensor = T.ToTensor()
-tensorToPil = T.ToPILImage()
-
-# Class which is used to get the resized images with label
-# input: datasetLength: int
-# output:{'image': Tensor, 'label': String}
-class DataLoader(Dataset):
-    def __init__(self, datasetLength):
-        self.datasetLength = datasetLength
-   
-    def __getitem__(self, index):
-        self.index = index
-        (picture, label, source) = transform(index)
-        image = pilToTensor(picture)
-        sample3dim = {'image' : image, 'label' : label}
-        image = image.unsqueeze(0)
-        sample = {'image': image, 'label': label}
-        return sample, sample3dim, source
-
-
-dataloader = DataLoader(len(imageDataset))
-
-'''
-function creates a random batch of data with a given size
-Arguments: batchsize:int
-Return: an array with a dict[image:label] 
-'''
-def createRandomBatch(batchsize, uId):
-    # Number of tries to get another number
-    random.seed(0)
-    np.random.seed(0)
-    TRIALSTHRESHOLD = 10000
-    try:
-        assert (0 < batchsize <= len(imageDataset))
-    except AssertionError:
-        errorFkt(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
-    global attempts
-    batch = []
-    #batch3dim = []
-    indexList = []
-    sourceList = []
-    labelList = []
-    attempts = 0
-
-    i = 0
-    with open('data.json', 'r') as file:
-        saves = json.load(file)
-    while i < batchsize:
-        i += 1
-        if attempts >= TRIALSTHRESHOLD:
-            errorFkt(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
-                     f"Please try to enter a smaller amount of tries than {len(indexList)}.")
-        flag = False
-        index = random.randint(0, len(imageDataset))
-        if index in indexList:
-            i -= 1
-            attempts += 0.5
-            flag = True
-
-        for img in saves:
-            if uId != None and img['ImgID'] == index:
-                user_calls = img['UserCall']
-                for call in user_calls:
-                    if call['userId'] == int(uId):
-                        i -= 1
-                        attempts += 1
-                        flag = True
-
-        if flag:
-            continue
-
-        indexList.append(index)
-        sample, sample3dim, source = dataloader[index]
-
-        #batch3dim.append(sample3dim)
-        sourceList.append(source)
-        imgFile = source.split('/')[-1]
-        batch.append(imgFile)
-        label = sample['label']
-        labelList.append(label)
-    attempts = 0
-    return batch, indexList, sourceList, labelList
-
-'''
-function feeds the loaded model with data
-Arguments: list[dict[image:tensor,label:str]], model
-Return: list[dict[image:tensor,label:str, prediction:tensor]]
-'''
-def feedModel(img, model):
-
-    image = Image.open('imgBatch/'+ img)
-    image = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    image = fn.center_crop(img=image, output_size=[SIZE,SIZE])
-    image = pilToTensor(image)
-    image = image.unsqueeze(0)
-
-    prediction = model(image)
-    prediction = F.softmax(prediction, dim=1)
-
-    return prediction
-
-'''
-function extracts the values from the samples dict
-Arguments: dict which contains random batch dict
-Return: returns the values from samples list
-'''
-def extractValuesFromDict(samples, key:str):
-    values = []
-    for dictionary in samples:
-        values.append(dictionary[key])
-        
-    if key == 'label':
-        print(values)
-    return values
-
-# function to visualize the batch
-def visualize(samples):
-    tensors = extractValuesFromDict(samples, 'image')
-    grid_border_size = 2
-    elementsPerRow = 4
-    grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
-    plt.imshow(grid.detach().numpy().transpose((1,2,0)))
-
-# function that finds the top k predictions
-def findMaxPredictions(prediction, k:int):            
-    tempPredictionsMax = []
-    tempPredictionsIndices = []
-
-    for i in range (0, k):
-        maximums = []
-        indices = []
-        maximums = prediction.max().item()
-        indices = prediction.argmax().item()
-        tempPredictionsMax.append(maximums)
-        tempPredictionsIndices.append(indices)
-        prediction[indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
- 
-    return (tempPredictionsMax, tempPredictionsIndices)
-
-
-        
-        
-
-# function that finds the labels to the top k predictions
-def findLabels(prediction, k:int):
-    (predictionMax, predictionIndices) = findMaxPredictions(prediction, k)
-
-    topKLabels = {}
-    for j in range(0, k):
-        topILabel = class_katalog.NAMES[predictionIndices[j]]
-        topKLabels[topILabel] = predictionMax[j]
-
-    return topKLabels
-
-def errorFkt(text):
-
-    with gr.Blocks() as demo:
-        gr.Markdown(f'''{text}''')
-        gr.Markdown('''Please restart the Program''')
-    demo.launch()
