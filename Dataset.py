@@ -17,7 +17,7 @@ import gradio as gr
 import numpy as np
 import os
 from io import BytesIO
-#from utilities import fetchOneImg
+#from utilities import __fetchOneImg
 random.seed(0)
 np.random.seed(0)
 
@@ -31,7 +31,7 @@ class ImageDataset(Dataset):
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
-        image = self.fetchOneImg(index, self.batchFolder)
+        image = self.__fetchOneImg(index, self.batchFolder)
         image = BytesIO(image)
         image = Image.open(image)
         label = self.annotation.iloc[index,1]
@@ -41,7 +41,7 @@ class ImageDataset(Dataset):
     def __len__(self):
         return len(self.annotation)
     
-    def getRow(self,row_number, file_path = 'output.csv'):
+    def __getRow(self,row_number, file_path = 'output.csv'):
         with open(file_path, 'r', newline='') as file:
             reader = csv.DictReader(file)
             rows = list(reader)
@@ -52,14 +52,14 @@ class ImageDataset(Dataset):
             return {'label':row['Label'], 'img':img}
         
     # creates url for fetching images from server
-    def createUrl(self,row_number):
-        dict = self.getRow(row_number)
+    def __createUrl(self,row_number):
+        dict = self.__getRow(row_number)
         imgName = dict['img']
         url = f"https://nc.mlcloud.uni-tuebingen.de/index.php/s/TgSK4n8ctPbWP4K/download?path=%2F{dict['label']}&files={dict['img']}"
         return url, imgName
 
-    def fetchOneImg(self, imgIndex, imgFolder):
-        url, img = self.createUrl(imgIndex)
+    def __fetchOneImg(self, imgIndex, imgFolder):
+        url, img = self.__createUrl(imgIndex)
         response = requests.get(url)
         filename = imgFolder + '/' + img
         with open(filename, 'wb') as file:
@@ -79,13 +79,13 @@ class DataLoader(Dataset):
         self.datasetLength = datasetLength
         self.SIZE = round(224/0.875)
         
-        # objects for tensor transformation
+        # objects for tensor __transformation
         self.pilToTensor = T.ToTensor()
         self.tensorToPil = T.ToPILImage()
    
     def __getitem__(self, index):
         self.index = index
-        (picture, label, source) = self.transform(index)
+        (picture, label, source) = self.__transform(index)
         image = self.pilToTensor(picture)
         sample3dim = {'image' : image, 'label' : label}
         image = image.unsqueeze(0)
@@ -94,14 +94,14 @@ class DataLoader(Dataset):
     
     # Constants for the size of the images
 
-    # given an Index returns the transformed Image
+    # given an Index returns the __transformed Image
     # input: Index: int
     # return: tuple(PIL Image, label)
-    def transform(self,index):
+    def __transform(self,index):
         assert index <= len(imageDataset)
         image, label, source = imageDataset[index]
         rescaledImage = fn.resize(img=image, size=[self.SIZE, self.SIZE], interpolation=T.InterpolationMode.BICUBIC)
-        transformedImage = fn.center_crop(img=rescaledImage, output_size=[self.SIZE,self.SIZE])
-        return transformedImage, label, source
+        __transformedImage = fn.center_crop(img=rescaledImage, output_size=[self.SIZE,self.SIZE])
+        return __transformedImage, label, source
 
 dataloader = DataLoader(len(imageDataset))
