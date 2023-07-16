@@ -40,7 +40,7 @@ class ImageDataset(Dataset):
         image = BytesIO(image)
         image = Image.open(image)
         label = self.annotation.iloc[index,1]
-        source = data_path
+        source = 'imgBatch/'+data_path.split('/')[-1]
         return image, label, source
 
     def __len__(self):
