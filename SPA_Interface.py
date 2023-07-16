@@ -116,7 +116,7 @@ class SPA_Interface():
             self.decisions = []
 
     # Fill the source(file name) for each image in the batch into datacollector
-    # input: decision: List[String]: List of file name for each image in the batch
+    # input: sourceList: List[String]: List of file name for each image in the batch
     def __addSource(self, sourceList):
         assert len(sourceList) == len(self.dataCollector['Imgs'])
         for i in range(len(self.dataCollector['Imgs'])):
