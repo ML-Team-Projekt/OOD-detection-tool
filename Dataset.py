@@ -22,7 +22,7 @@ np.random.seed(0)
 
 
 
-IMAGESROOTDIR = 'NINCO_OOD_classes'
+
 
 class ImageDataset(Dataset):
     def __init__(self, annotation):
@@ -96,7 +96,7 @@ def createRandomBatch(batchsize, uId):
     try:
         assert (0 < batchsize <= len(imageDataset))
     except AssertionError:
-        errorFkt(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
+        RuntimeError(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
     batch = []
     indexList = []
     sourceList = []
@@ -109,8 +109,9 @@ def createRandomBatch(batchsize, uId):
     while iterator < batchsize:
         iterator += 1
         if attempts >= TRIALSTHRESHOLD:
-            errorFkt(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
+            RuntimeError(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
                      f"Please try to enter a smaller amount of tries than {len(indexList)}.")
+            
         flag = False
         index = random.randint(0, len(imageDataset))
         if index in indexList:
@@ -153,9 +154,6 @@ def extractValuesFromDict(samples, key:str):
     values = []
     for dictionary in samples:
         values.append(dictionary[key])
-        
-    if key == 'label':
-        print(values)
     return values
 
 # function to visualize the batch
@@ -168,10 +166,5 @@ def visualize(samples):
 
 
 
-def errorFkt(text):
 
-    with gr.Blocks() as demo:
-        gr.Markdown(f'''{text}''')
-        gr.Markdown('''Please restart the Program''')
-    demo.launch()
 
