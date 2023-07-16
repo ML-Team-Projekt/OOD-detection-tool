@@ -79,6 +79,7 @@ def createTopk(batch, model, amount, path='imgBatch/'):
     return topTenList
 
 
+
 # callable object to transform PIL to Tensor
 pilToTensor = T.ToTensor()
 
@@ -117,10 +118,8 @@ def findLabels(prediction, k:int):
 def findMaxPredictions(prediction, k: int):
     tempPredictionsMax = []
     tempPredictionsIndices = []
-
-    for i in range(0, k):
-        maximums = []
-        indices = []
+    
+    for _ in range(0, k):
         maximums = prediction.max().item()
         indices = prediction.argmax().item()
         tempPredictionsMax.append(maximums)

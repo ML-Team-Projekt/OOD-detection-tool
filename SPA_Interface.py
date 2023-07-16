@@ -177,21 +177,7 @@ class SPA_Interface():
             else:
                 self.updateObject(img)
 
-    # finds the max k predictions in the tensor  
-    def findMaxPred(self,prediction, k=10):
-        predictionsMax = []
-        predictionsIndices = []
-        
-        for i in range (0, k):
-            maximums = []
-            indices = []
-            maximums = prediction.max().item()
-            indices = prediction.argmax().item()
-            predictionsMax.append(maximums)
-            predictionsIndices.append(indices)
-            prediction[0][indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum    
-                        
-        return (predictionsMax, predictionsIndices)
+   
     
      # gets the corresponding wordnet id from a given prediction
     def findWordNetID(self,prediction:str):
