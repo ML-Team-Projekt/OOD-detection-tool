@@ -14,6 +14,7 @@ import class_katalog
 
 SIZE = round(224/0.875)
 
+
 def createAnnotation(folderPath):
     dataList = []
     labelList = []
@@ -33,6 +34,7 @@ def createAnnotation(folderPath):
         for i in range(totalNumberOfData):
             writer.writerow([dataList[i], labelList[i]])
 
+
 def getRow(row_number, file_path = 'output.csv'):
     with open(file_path, 'r', newline='') as file:
         reader = csv.DictReader(file)
@@ -43,6 +45,8 @@ def getRow(row_number, file_path = 'output.csv'):
         img = row['Data'].split('/')[-1]
         return {'label':row['Label'], 'img':img}
 
+
+# creates url for fetching images from server
 def createUrl(row_number):
     dict = getRow(row_number)
     imgName = dict['img']
@@ -56,20 +60,6 @@ def fetchOneImg(imgIndex, imgFolder):
     with open(filename, 'wb') as file:
          file.write(response.content)
     return response.content
-
-def fetchBatch(indexList):
-    dirName = 'imgBatch'
-    if not os.path.exists(dirName):
-        os.makedirs(dirName)
-    for index in indexList:
-        fetchOneImg(index, dirName)
-    
-def getFileNames(folder_path):
-    file_names = []
-    for file in os.listdir(folder_path):
-        if os.path.isfile(os.path.join(folder_path, file)):
-            file_names.append(file)
-    return file_names
 
 
 def createModel(modelName):
@@ -87,6 +77,7 @@ def createModel(modelName):
     return model
 
 
+# creates list of the topK predictions
 def createTopk(batch, model, amount, path='imgBatch/'):
     topTenList = []
     for img in batch:
@@ -101,6 +92,7 @@ def createTopk(batch, model, amount, path='imgBatch/'):
     return topTenList
 
 
+# callable object to transform PIL to Tensor
 pilToTensor = T.ToTensor()
 
 

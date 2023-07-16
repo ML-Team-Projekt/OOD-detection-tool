@@ -97,26 +97,24 @@ def createRandomBatch(batchsize, uId):
         assert (0 < batchsize <= len(imageDataset))
     except AssertionError:
         errorFkt(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
-    global attempts
     batch = []
-    #batch3dim = []
     indexList = []
     sourceList = []
     labelList = []
     attempts = 0
 
-    i = 0
+    iterator = 0
     with open('data.json', 'r') as file:
         saves = json.load(file)
-    while i < batchsize:
-        i += 1
+    while iterator < batchsize:
+        iterator += 1
         if attempts >= TRIALSTHRESHOLD:
             errorFkt(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
                      f"Please try to enter a smaller amount of tries than {len(indexList)}.")
         flag = False
         index = random.randint(0, len(imageDataset))
         if index in indexList:
-            i -= 1
+            iterator -= 1
             attempts += 0.5
             flag = True
 
@@ -125,7 +123,7 @@ def createRandomBatch(batchsize, uId):
                 user_calls = img['UserCall']
                 for call in user_calls:
                     if call['userId'] == int(uId):
-                        i -= 1
+                        iterator -= 1
                         attempts += 1
                         flag = True
 
@@ -135,7 +133,7 @@ def createRandomBatch(batchsize, uId):
         indexList.append(index)
         sample, sample3dim, source = dataloader[index]
 
-        #batch3dim.append(sample3dim)
+
         sourceList.append(source)
         imgFile = source.split('/')[-1]
         batch.append(imgFile)
@@ -167,13 +165,6 @@ def visualize(samples):
     elementsPerRow = 4
     grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
     plt.imshow(grid.detach().numpy().transpose((1,2,0)))
-
-
-
-
-
-        
-        
 
 
 
