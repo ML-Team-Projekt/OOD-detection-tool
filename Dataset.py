@@ -3,22 +3,19 @@
 
 import torch
 import torchvision
-import torch.nn.functional as F
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as fn
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
-from utilities import fetchOneImg
 import pandas as pd
 from PIL import Image
 import random
-import class_katalog
 import json
 import gradio as gr
 import numpy as np
 import os
 from io import BytesIO
-
+from utilities import fetchOneImg
 random.seed(0)
 np.random.seed(0)
 
@@ -31,8 +28,8 @@ class ImageDataset(Dataset):
     def __init__(self, annotation):
         self.annotation = pd.read_csv(annotation)
         self.batchFolder = 'imgBatch'
-        if not os.path.exists('imgBatch'):
-            os.makedirs('imgBatch')
+        if not os.path.exists(self.batchFolder):
+            os.makedirs(self.batchFolder)
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
@@ -147,23 +144,7 @@ def createRandomBatch(batchsize, uId):
     attempts = 0
     return batch, indexList, sourceList, labelList
 
-'''
-function feeds the loaded model with data
-Arguments: list[dict[image:tensor,label:str]], model
-Return: list[dict[image:tensor,label:str, prediction:tensor]]
-'''
-def feedModel(img, model):
 
-    image = Image.open('imgBatch/'+ img)
-    image = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    image = fn.center_crop(img=image, output_size=[SIZE,SIZE])
-    image = pilToTensor(image)
-    image = image.unsqueeze(0)
-
-    prediction = model(image)
-    prediction = F.softmax(prediction, dim=1)
-
-    return prediction
 
 '''
 function extracts the values from the samples dict
@@ -187,36 +168,14 @@ def visualize(samples):
     grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
     plt.imshow(grid.detach().numpy().transpose((1,2,0)))
 
-# function that finds the top k predictions
-def findMaxPredictions(prediction, k:int):            
-    tempPredictionsMax = []
-    tempPredictionsIndices = []
 
-    for i in range (0, k):
-        maximums = []
-        indices = []
-        maximums = prediction.max().item()
-        indices = prediction.argmax().item()
-        tempPredictionsMax.append(maximums)
-        tempPredictionsIndices.append(indices)
-        prediction[indices] = - float('inf') # set probability of maximum to -inf to search for the next maximum
- 
-    return (tempPredictionsMax, tempPredictionsIndices)
+
 
 
         
         
 
-# function that finds the labels to the top k predictions
-def findLabels(prediction, k:int):
-    (predictionMax, predictionIndices) = findMaxPredictions(prediction, k)
 
-    topKLabels = {}
-    for j in range(0, k):
-        topILabel = class_katalog.NAMES[predictionIndices[j]]
-        topKLabels[topILabel] = predictionMax[j]
-
-    return topKLabels
 
 def errorFkt(text):
 
@@ -224,3 +183,4 @@ def errorFkt(text):
         gr.Markdown(f'''{text}''')
         gr.Markdown('''Please restart the Program''')
     demo.launch()
+

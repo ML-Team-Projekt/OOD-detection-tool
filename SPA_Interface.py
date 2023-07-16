@@ -13,7 +13,6 @@ import sys
 
 sys.path.insert(0, '/home/lilly/miniconda3/lib/python3.10/site-packages')
 import torch
-from model_loader import get_new_model
 import gradio as gr
 from Dataset import *
 import json
@@ -21,6 +20,7 @@ import class_katalog
 from threading import Thread
 import time
 import shutil
+from utilities import createModel, createTopk
 
 random.seed(0)
 np.random.seed(0)
@@ -51,33 +51,22 @@ class SPA_Interface():
         
     def __loadDataFromModel(self,batchSize):
         batch, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
-        
-        if self.modelName == "convnext_tiny":
-            model = get_new_model(self.modelName, not_original=True)
-            ckpt = torch.load('convnext_tiny_cvst_clean.pt', map_location='cpu')
-            ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
-            model.load_state_dict(ckpt)
-        if self.modelName == "convnext_small":
-            model = get_new_model(self.modelName, pretrained= False, not_original = True)
-            ckpt = torch.load('convnext_s_cvst_clean.pt', map_location='cpu')
-            ckpt = {k.replace('module.', ''): v for k, v in ckpt.items()}
-            model.load_state_dict(ckpt)
+
+        model = createModel(self.modelName)
 
         if not os.path.exists('predictions'):
             os.makedirs('predictions')
         #predictions = feedModel(batch, model)
-        topTenList = []
-        for img in batch:
-            prediction = feedModel(img, model)
-            topTen = findLabels(prediction[0], 10)
-            topTenList.append(topTen)
+        topTenList = createTopk(batch, model, amount=10)
         labels = []
         # just for test purpose
         for i in range(0, batchSize):
             labels.append(topTenList[i])
 
         return labels, indexList, sourceList, topTenList, labelList
-    
+
+
+
     def initImgSet(self):
         if len(self.data) > 0:
             for obj in self.data:
