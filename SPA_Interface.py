@@ -429,7 +429,7 @@ class SPA_Interface():
                 with gr.Column():
                         
                     
-                    labels = gr.Label(label="Predictions",value=self.topTenList[self.index])
+                    labels = gr.Label(label="Top 10 Predictions",value=self.topTenList[self.index])
                    
                         
                        
