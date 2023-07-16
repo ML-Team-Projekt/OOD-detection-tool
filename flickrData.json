@@ -1,0 +1,2462 @@
+[
+    {
+        "name": "flickr-data/sheep/53026509765_f5edc878e4_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.5591883063316345,
+                "llama": 0.15433847904205322,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.010084403678774834,
+                "kelpie": 0.008416012860834599,
+                "Border collie": 0.007138743065297604,
+                "guinea pig, Cavia cobaya": 0.004910138435661793,
+                "Angora, Angora rabbit": 0.0046370853669941425,
+                "wood rabbit, cottontail, cottontail rabbit": 0.0031348734628409147,
+                "Cardigan, Cardigan Welsh corgi": 0.0027799264062196016,
+                "weasel": 0.002304019872099161
+            },
+            "convnext_small": {
+                "ram, tup": 0.844168484210968,
+                "llama": 0.017374392598867416,
+                "kelpie": 0.004841534420847893,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.003505714237689972,
+                "Angora, Angora rabbit": 0.0033769956789910793,
+                "wallaby, brush kangaroo": 0.00158878811635077,
+                "guinea pig, Cavia cobaya": 0.0015413305955007672,
+                "wool, woolen, woollen": 0.0013588606379926205,
+                "collie": 0.001046760706230998,
+                "ostrich, Struthio camelus": 0.0009262803359888494
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53026572403_bf9dc1ff36_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.7494673132896423,
+                "wool, woolen, woollen": 0.004761051386594772,
+                "kelpie": 0.003727152943611145,
+                "llama": 0.0025577079504728317,
+                "water snake": 0.0017076676012948155,
+                "Angora, Angora rabbit": 0.0013968608109280467,
+                "Cardigan, Cardigan Welsh corgi": 0.0013366101775318384,
+                "screw": 0.0011904898565262556,
+                "Shetland sheepdog, Shetland sheep dog, Shetland": 0.0011825419496744871,
+                "guinea pig, Cavia cobaya": 0.0010578319197520614
+            },
+            "convnext_small": {
+                "ram, tup": 0.8392836451530457,
+                "wool, woolen, woollen": 0.0036610132083296776,
+                "kelpie": 0.002305724425241351,
+                "llama": 0.0016792499227449298,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.001275746151804924,
+                "kuvasz": 0.0007037146715447307,
+                "Angora, Angora rabbit": 0.0006932074320502579,
+                "collie": 0.0005245797801762819,
+                "komondor": 0.0005199606530368328,
+                "Great Pyrenees": 0.00047320700832642615
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53030270172_133698a375_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.5377386212348938,
+                "kelpie": 0.011078797280788422,
+                "wool, woolen, woollen": 0.008422961458563805,
+                "Cardigan, Cardigan Welsh corgi": 0.003641202813014388,
+                "Shetland sheepdog, Shetland sheep dog, Shetland": 0.003246898064389825,
+                "llama": 0.003164628753438592,
+                "Border collie": 0.003053721971809864,
+                "cauliflower": 0.002419686410576105,
+                "collie": 0.0023470560554414988,
+                "lawn mower, mower": 0.0019346268381923437
+            },
+            "convnext_small": {
+                "ram, tup": 0.6471511125564575,
+                "wool, woolen, woollen": 0.005422230344265699,
+                "kelpie": 0.0027848039753735065,
+                "collie": 0.0014890060992911458,
+                "kuvasz": 0.0014302005292847753,
+                "llama": 0.0013287544716149569,
+                "Border collie": 0.0012330152094364166,
+                "Great Pyrenees": 0.0011997097171843052,
+                "cauliflower": 0.0010222502751275897,
+                "volcano": 0.0009598707547411323
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53031337428_eb0295f950_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "Great Pyrenees": 0.21300144493579865,
+                "ram, tup": 0.21088038384914398,
+                "dingo, warrigal, warragal, Canis dingo": 0.017345670610666275,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.010930522345006466,
+                "ice bear, polar bear, Ursus Maritimus, Thalarctos maritimus": 0.010827038437128067,
+                "kuvasz": 0.010766889899969101,
+                "kelpie": 0.010707147419452667,
+                "tiger, Panthera tigris": 0.007754309102892876,
+                "brown bear, bruin, Ursus arctos": 0.007271287497133017,
+                "white wolf, Arctic wolf, Canis lupus tundrarum": 0.006983175873756409
+            },
+            "convnext_small": {
+                "ram, tup": 0.28889569640159607,
+                "Great Pyrenees": 0.12689070403575897,
+                "kuvasz": 0.09271657466888428,
+                "white wolf, Arctic wolf, Canis lupus tundrarum": 0.04108090326189995,
+                "lakeside, lakeshore": 0.0238844882696867,
+                "kelpie": 0.01685725711286068,
+                "timber wolf, grey wolf, gray wolf, Canis lupus": 0.007690737023949623,
+                "bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky Mountain sheep, Ovis canadensis": 0.006671637296676636,
+                "Labrador retriever": 0.005879707634449005,
+                "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis": 0.005415546707808971
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53026248209_7e8aa031f5_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.34596484899520874,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.04862399771809578,
+                "guinea pig, Cavia cobaya": 0.02631743811070919,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.018239343538880348,
+                "cougar, puma, catamount, mountain lion, painter, panther, Felis concolor": 0.008851447142660618,
+                "street sign": 0.008352802135050297,
+                "sunglass": 0.0061814868822693825,
+                "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM": 0.006015910301357508,
+                "Angora, Angora rabbit": 0.005499923601746559,
+                "Arabian camel, dromedary, Camelus dromedarius": 0.004632268100976944
+            },
+            "convnext_small": {
+                "hog, pig, grunter, squealer, Sus scrofa": 0.3409167230129242,
+                "ram, tup": 0.16901211440563202,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.06090470775961876,
+                "street sign": 0.015590489841997623,
+                "chainlink fence": 0.012218952178955078,
+                "hippopotamus, hippo, river horse, Hippopotamus amphibius": 0.010530314408242702,
+                "Arabian camel, dromedary, Camelus dromedarius": 0.007327844854444265,
+                "bloodhound, sleuthhound": 0.00627443753182888,
+                "kelpie": 0.005655765533447266,
+                "shopping cart": 0.004783295094966888
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53026503285_b8d97e5dea_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.5651341080665588,
+                "llama": 0.016361214220523834,
+                "Arctic fox, white fox, Alopex lagopus": 0.009116167202591896,
+                "warthog": 0.007421628572046757,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.005332523491233587,
+                "Angora, Angora rabbit": 0.005326249171048403,
+                "guinea pig, Cavia cobaya": 0.004821943584829569,
+                "kelpie": 0.004000481683760881,
+                "wild boar, boar, Sus scrofa": 0.003441972192376852,
+                "wool, woolen, woollen": 0.0033400324173271656
+            },
+            "convnext_small": {
+                "ram, tup": 0.7638599872589111,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.008261398412287235,
+                "kelpie": 0.007619224488735199,
+                "llama": 0.004290197975933552,
+                "Angora, Angora rabbit": 0.0025436501018702984,
+                "wool, woolen, woollen": 0.0023148106411099434,
+                "wild boar, boar, Sus scrofa": 0.0017762586940079927,
+                "collie": 0.001634474378079176,
+                "wallaby, brush kangaroo": 0.0014904072741046548,
+                "guinea pig, Cavia cobaya": 0.0014460546663030982
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53026254864_70b85c482f_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.46835723519325256,
+                "kelpie": 0.005415161605924368,
+                "wool, woolen, woollen": 0.004648775327950716,
+                "king penguin, Aptenodytes patagonica": 0.004519469570368528,
+                "Cardigan, Cardigan Welsh corgi": 0.0027099624276161194,
+                "sandbar, sand bar": 0.002484757686033845,
+                "water snake": 0.002329631708562374,
+                "bucket, pail": 0.0023140169214457273,
+                "cliff, drop, drop-off": 0.0022728287149220705,
+                "toy terrier": 0.0021529558580368757
+            },
+            "convnext_small": {
+                "ram, tup": 0.6928382515907288,
+                "wool, woolen, woollen": 0.00599520280957222,
+                "kelpie": 0.0013283818261697888,
+                "kuvasz": 0.0012353284982964396,
+                "llama": 0.0011301269987598062,
+                "Angora, Angora rabbit": 0.0010810932144522667,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.0010802547913044691,
+                "guinea pig, Cavia cobaya": 0.0010470107663422823,
+                "bucket, pail": 0.0009686153498478234,
+                "bath towel": 0.000963832950219512
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53043828814_6f9f6b115f_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "stone wall": 0.6751139760017395,
+                "megalith, megalithic structure": 0.005733049940317869,
+                "hay": 0.003281346522271633,
+                "rapeseed": 0.00304184528067708,
+                "brass, memorial tablet, plaque": 0.0023507431615144014,
+                "castle": 0.0021520487498492002,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.0017592160729691386,
+                "dowitcher": 0.001572417444549501,
+                "thatch, thatched roof": 0.0015323946718126535,
+                "barn": 0.0014760862104594707
+            },
+            "convnext_small": {
+                "stone wall": 0.6312025189399719,
+                "megalith, megalithic structure": 0.013778974302113056,
+                "rapeseed": 0.004085385240614414,
+                "hay": 0.0029507644940167665,
+                "castle": 0.0021049242932349443,
+                "valley, vale": 0.0019200632814317942,
+                "cliff, drop, drop-off": 0.0013484909432008862,
+                "viaduct": 0.0013445833465084434,
+                "thatch, thatched roof": 0.0013213391648605466,
+                "alp": 0.0013080546632409096
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53048049331_c0c0df951c_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.2600363790988922,
+                "lakeside, lakeshore": 0.19911843538284302,
+                "bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky Mountain sheep, Ovis canadensis": 0.035809218883514404,
+                "pelican": 0.015482887625694275,
+                "milk can": 0.014463907107710838,
+                "goose": 0.011148396879434586,
+                "canoe": 0.009481492452323437,
+                "plastic bag": 0.007344313431531191,
+                "black stork, Ciconia nigra": 0.006735864095389843,
+                "flamingo": 0.006393236108124256
+            },
+            "convnext_small": {
+                "lakeside, lakeshore": 0.45452356338500977,
+                "ram, tup": 0.10659186542034149,
+                "pelican": 0.023050833493471146,
+                "goose": 0.01754564233124256,
+                "canoe": 0.01208309456706047,
+                "komondor": 0.011508041061460972,
+                "hen": 0.01064271666109562,
+                "kuvasz": 0.010104119777679443,
+                "white stork, Ciconia ciconia": 0.009733396582305431,
+                "bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky Mountain sheep, Ovis canadensis": 0.008197958581149578
+            }
+        }
+    },
+    {
+        "name": "flickr-data/sheep/53025519047_e3cb0c3ec0_o.jpg",
+        "label": "sheep",
+        "models": {
+            "convnext_tiny": {
+                "ram, tup": 0.6107999682426453,
+                "llama": 0.01947491243481636,
+                "Angora, Angora rabbit": 0.005438152235001326,
+                "kelpie": 0.004445499274879694,
+                "guinea pig, Cavia cobaya": 0.0038611842319369316,
+                "Shetland sheepdog, Shetland sheep dog, Shetland": 0.0036560671869665384,
+                "Border collie": 0.0034330624621361494,
+                "collie": 0.003212893148884177,
+                "wool, woolen, woollen": 0.0026939825620502234,
+                "Tibetan mastiff": 0.0022755637764930725
+            },
+            "convnext_small": {
+                "ram, tup": 0.5080457925796509,
+                "llama": 0.04688338190317154,
+                "kelpie": 0.010189262218773365,
+                "wool, woolen, woollen": 0.0030611101537942886,
+                "Angora, Angora rabbit": 0.002824891824275255,
+                "Great Pyrenees": 0.002106748055666685,
+                "collie": 0.0019516762113198638,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.001832687295973301,
+                "Border collie": 0.0018158846069127321,
+                "guinea pig, Cavia cobaya": 0.0016716058598831296
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/5951944121_8af86a2480_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "rain barrel": 0.06843109428882599,
+                "vacuum, vacuum cleaner": 0.03187892958521843,
+                "space heater": 0.02838039956986904,
+                "amphibian, amphibious vehicle": 0.024100525304675102,
+                "recreational vehicle, RV, R.V.": 0.02286682464182377,
+                "screw": 0.022861598059535027,
+                "water jug": 0.02260133996605873,
+                "minivan": 0.02102776989340782,
+                "grille, radiator grille": 0.019989343360066414,
+                "pickup, pickup truck": 0.01786753162741661
+            },
+            "convnext_small": {
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.18794779479503632,
+                "ambulance": 0.07357492297887802,
+                "grille, radiator grille": 0.07014712691307068,
+                "convertible": 0.0611472986638546,
+                "minivan": 0.050584498792886734,
+                "car wheel": 0.049516014754772186,
+                "amphibian, amphibious vehicle": 0.040511250495910645,
+                "recreational vehicle, RV, R.V.": 0.03972543776035309,
+                "minibus": 0.03456473723053932,
+                "pickup, pickup truck": 0.028602777048945427
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/10629673716_8d12dc625b_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "pickup, pickup truck": 0.2790325880050659,
+                "grille, radiator grille": 0.27116698026657104,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.10813989490270615,
+                "convertible": 0.05233608931303024,
+                "cab, hack, taxi, taxicab": 0.01217256486415863,
+                "car wheel": 0.007877462543547153,
+                "passenger car, coach, carriage": 0.005463278386741877,
+                "racer, race car, racing car": 0.004698552656918764,
+                "ambulance": 0.0019077026518061757,
+                "CD player": 0.0018765581771731377
+            },
+            "convnext_small": {
+                "pickup, pickup truck": 0.3895281255245209,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.08955810964107513,
+                "convertible": 0.06068531423807144,
+                "grille, radiator grille": 0.04243169352412224,
+                "car wheel": 0.014600692316889763,
+                "cab, hack, taxi, taxicab": 0.003750884672626853,
+                "tow truck, tow car, wrecker": 0.002157004550099373,
+                "passenger car, coach, carriage": 0.0019516891334205866,
+                "apiary, bee house": 0.0011942486744374037,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.001166803645901382
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/10629650744_591c42f4c1_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "pickup, pickup truck": 0.7239539623260498,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.020540699362754822,
+                "car wheel": 0.01029189396649599,
+                "racer, race car, racing car": 0.008473683148622513,
+                "grille, radiator grille": 0.008005709387362003,
+                "convertible": 0.002118978649377823,
+                "tow truck, tow car, wrecker": 0.001948266988620162,
+                "cab, hack, taxi, taxicab": 0.0017273812554776669,
+                "passenger car, coach, carriage": 0.001679916400462389,
+                "modem": 0.0012442596489563584
+            },
+            "convnext_small": {
+                "pickup, pickup truck": 0.4162174463272095,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.06894578784704208,
+                "grille, radiator grille": 0.0184981357306242,
+                "convertible": 0.01730210892856121,
+                "car wheel": 0.010809086263179779,
+                "passenger car, coach, carriage": 0.002620717976242304,
+                "tow truck, tow car, wrecker": 0.002084842650219798,
+                "bison": 0.001989017939195037,
+                "cab, hack, taxi, taxicab": 0.0019216701621189713,
+                "airship, dirigible": 0.0018930677324533463
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/5598144341_2900491946_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "thatch, thatched roof": 0.10013789683580399,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.07460528612136841,
+                "menu": 0.05930527299642563,
+                "pay-phone, pay-station": 0.024279071018099785,
+                "traffic light, traffic signal, stoplight": 0.017105747014284134,
+                "comic book": 0.014405698515474796,
+                "street sign": 0.01390596479177475,
+                "boathouse": 0.01271726842969656,
+                "jinrikisha, ricksha, rickshaw": 0.011661229655146599,
+                "dock, dockage, docking facility": 0.009586271829903126
+            },
+            "convnext_small": {
+                "thatch, thatched roof": 0.38329294323921204,
+                "menu": 0.040857311338186264,
+                "greenhouse, nursery, glasshouse": 0.02801368199288845,
+                "grocery store, grocery, food market, market": 0.01861565001308918,
+                "restaurant, eating house, eating place, eatery": 0.011606056243181229,
+                "abacus": 0.010980785824358463,
+                "Dungeness crab, Cancer magister": 0.009331870824098587,
+                "boathouse": 0.006902187597006559,
+                "barbershop": 0.0068700783886015415,
+                "pot, flowerpot": 0.006459896918386221
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/7696229584_85c4b4ef6e_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "sea snake": 0.20075488090515137,
+                "hammerhead, hammerhead shark": 0.17576614022254944,
+                "coral reef": 0.08998994529247284,
+                "scuba diver": 0.07476546615362167,
+                "tiger shark, Galeocerdo cuvieri": 0.03355977684259415,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.019904570654034615,
+                "wreck": 0.015909964218735695,
+                "stingray": 0.011330422945320606,
+                "electric ray, crampfish, numbfish, torpedo": 0.010317855514585972,
+                "eel": 0.007264133542776108
+            },
+            "convnext_small": {
+                "hammerhead, hammerhead shark": 0.46150797605514526,
+                "coral reef": 0.051978081464767456,
+                "tiger shark, Galeocerdo cuvieri": 0.03924886882305145,
+                "scuba diver": 0.03893318399786949,
+                "vulture": 0.020811287686228752,
+                "sea snake": 0.018060144037008286,
+                "wreck": 0.013313865289092064,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.012688152492046356,
+                "kite": 0.012482920661568642,
+                "gar, garfish, garpike, billfish, Lepisosteus osseus": 0.011831025592982769
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/10629652134_2799338161_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "pickup, pickup truck": 0.3723704516887665,
+                "tow truck, tow car, wrecker": 0.06969150900840759,
+                "car wheel": 0.044709667563438416,
+                "grille, radiator grille": 0.03451315313577652,
+                "racer, race car, racing car": 0.023413347080349922,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.01563875749707222,
+                "convertible": 0.013883224688470364,
+                "passenger car, coach, carriage": 0.007997412234544754,
+                "ambulance": 0.0077590420842170715,
+                "sports car, sport car": 0.006918088532984257
+            },
+            "convnext_small": {
+                "pickup, pickup truck": 0.18825550377368927,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.12445206940174103,
+                "tow truck, tow car, wrecker": 0.08429096639156342,
+                "convertible": 0.07767698913812637,
+                "car wheel": 0.03717407211661339,
+                "grille, radiator grille": 0.033187247812747955,
+                "cab, hack, taxi, taxicab": 0.017105264589190483,
+                "racer, race car, racing car": 0.004963429644703865,
+                "sports car, sport car": 0.004816104657948017,
+                "ambulance": 0.0027011744678020477
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/6105292735_a2f46aa0d7_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "water bottle": 0.0839473158121109,
+                "scuba diver": 0.05615849420428276,
+                "airship, dirigible": 0.046201858669519424,
+                "coral reef": 0.03894519805908203,
+                "syringe": 0.023472243919968605,
+                "missile": 0.022862425073981285,
+                "quill, quill pen": 0.022162295877933502,
+                "fountain pen": 0.021463045850396156,
+                "hammerhead, hammerhead shark": 0.016771085560321808,
+                "wreck": 0.016743220388889313
+            },
+            "convnext_small": {
+                "coral reef": 0.15135841071605682,
+                "hammerhead, hammerhead shark": 0.1029130145907402,
+                "tiger shark, Galeocerdo cuvieri": 0.09667285531759262,
+                "scuba diver": 0.05318368598818779,
+                "airship, dirigible": 0.03043791837990284,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.02341480739414692,
+                "sea snake": 0.01501111127436161,
+                "projectile, missile": 0.012013719417154789,
+                "brain coral": 0.011752761900424957,
+                "missile": 0.01007069367915392
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/21850442808_aabc468ea0_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "tobacco shop, tobacconist shop, tobacconist": 0.5004448890686035,
+                "cab, hack, taxi, taxicab": 0.3250313997268677,
+                "digital clock": 0.01719813048839569,
+                "street sign": 0.014604301191866398,
+                "school bus": 0.010216135531663895,
+                "slot, one-armed bandit": 0.009341445751488209,
+                "gas pump, gasoline pump, petrol pump, island dispenser": 0.004627718590199947,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.003582184435799718,
+                "shoe shop, shoe-shop, shoe store": 0.003380105597898364,
+                "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM": 0.0022678838577121496
+            },
+            "convnext_small": {
+                "cab, hack, taxi, taxicab": 0.1729075163602829,
+                "street sign": 0.1457422822713852,
+                "tobacco shop, tobacconist shop, tobacconist": 0.1258823573589325,
+                "school bus": 0.025946345180273056,
+                "digital clock": 0.018605820834636688,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.008881878107786179,
+                "jeep, landrover": 0.007890126667916775,
+                "traffic light, traffic signal, stoplight": 0.0073763541877269745,
+                "scoreboard": 0.006925839465111494,
+                "limousine, limo": 0.0068442015908658504
+            }
+        }
+    },
+    {
+        "name": "flickr-data/baracuda/10629631485_26f2be2f37_o.jpg",
+        "label": "baracuda",
+        "models": {
+            "convnext_tiny": {
+                "pickup, pickup truck": 0.32071027159690857,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.046362873166799545,
+                "car wheel": 0.03307215869426727,
+                "grille, radiator grille": 0.03185358643531799,
+                "convertible": 0.018344935029745102,
+                "tow truck, tow car, wrecker": 0.01420625764876604,
+                "racer, race car, racing car": 0.005612177308648825,
+                "passenger car, coach, carriage": 0.004273376427590847,
+                "wreck": 0.004014699719846249,
+                "geyser": 0.0037980752531439066
+            },
+            "convnext_small": {
+                "pickup, pickup truck": 0.5534512996673584,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.014013324864208698,
+                "grille, radiator grille": 0.007754155900329351,
+                "car wheel": 0.0062509942799806595,
+                "convertible": 0.005199495702981949,
+                "tow truck, tow car, wrecker": 0.003501367289572954,
+                "promontory, headland, head, foreland": 0.001407451112754643,
+                "hammerhead, hammerhead shark": 0.0013756667030975223,
+                "snowplow, snowplough": 0.0011875052005052567,
+                "airship, dirigible": 0.0011738836765289307
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/51278887649_73680cb4d0_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "jinrikisha, ricksha, rickshaw": 0.11633589118719101,
+                "fur coat": 0.03326275199651718,
+                "monastery": 0.03260679543018341,
+                "plastic bag": 0.023161014541983604,
+                "conch": 0.018964644521474838,
+                "tricycle, trike, velocipede": 0.015210532583296299,
+                "wreck": 0.013913481496274471,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.012445521540939808,
+                "bow": 0.012195320799946785,
+                "horse cart, horse-cart": 0.009873909875750542
+            },
+            "convnext_small": {
+                "jinrikisha, ricksha, rickshaw": 0.09192927181720734,
+                "fur coat": 0.06552646309137344,
+                "crutch": 0.058723434805870056,
+                "horse cart, horse-cart": 0.032828327268362045,
+                "barrow, garden cart, lawn cart, wheelbarrow": 0.02608766220510006,
+                "Arabian camel, dromedary, Camelus dromedarius": 0.013477776199579239,
+                "monastery": 0.013194574043154716,
+                "umbrella": 0.012431483715772629,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.012136630713939667,
+                "butcher shop, meat market": 0.010242678225040436
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/50933138861_b0a534cb17_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.6587492823600769,
+                "envelope": 0.02684200368821621,
+                "brass, memorial tablet, plaque": 0.016141297295689583,
+                "hook, claw": 0.007763572968542576,
+                "comic book": 0.006480910815298557,
+                "binder, ring-binder": 0.004844633862376213,
+                "menu": 0.004124077502638102,
+                "sandbar, sand bar": 0.004036648664623499,
+                "padlock": 0.0037450517993420362,
+                "chain": 0.0030666047241538763
+            },
+            "convnext_small": {
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.8466733694076538,
+                "envelope": 0.015553358942270279,
+                "tray": 0.0045579345896840096,
+                "comic book": 0.00390391587279737,
+                "brass, memorial tablet, plaque": 0.003298131749033928,
+                "web site, website, internet site, site": 0.0028134339954704046,
+                "binder, ring-binder": 0.0024093901738524437,
+                "menu": 0.0019194893538951874,
+                "lighter, light, igniter, ignitor": 0.001571265747770667,
+                "paper towel": 0.0012830272316932678
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/48111579018_977b0fd66e_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "steel drum": 0.05729355663061142,
+                "alp": 0.05291066691279411,
+                "killer whale, killer, orca, grampus, sea wolf, Orcinus orca": 0.043345943093299866,
+                "unicycle, monocycle": 0.04158346354961395,
+                "binoculars, field glasses, opera glasses": 0.031957272440195084,
+                "projectile, missile": 0.029293930158019066,
+                "flagpole, flagstaff": 0.02880629152059555,
+                "guillotine": 0.01586785726249218,
+                "crash helmet": 0.0143576143309474,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.013553109019994736
+            },
+            "convnext_small": {
+                "golfcart, golf cart": 0.1980595737695694,
+                "unicycle, monocycle": 0.04367045313119888,
+                "folding chair": 0.03193565458059311,
+                "plunger, plumber's helper": 0.019492801278829575,
+                "cowboy hat, ten-gallon hat": 0.015799595043063164,
+                "binoculars, field glasses, opera glasses": 0.015064923092722893,
+                "flagpole, flagstaff": 0.013516339473426342,
+                "EntleBucher": 0.013254284858703613,
+                "steel drum": 0.011863534338772297,
+                "drum, membranophone, tympan": 0.010194589383900166
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/46591599624_34ff0a33f4_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "comic book": 0.22823193669319153,
+                "minivan": 0.055822063237428665,
+                "toyshop": 0.04691653698682785,
+                "parking meter": 0.04565821588039398,
+                "street sign": 0.031933315098285675,
+                "carousel, carrousel, merry-go-round, roundabout, whirligig": 0.029365044087171555,
+                "limousine, limo": 0.014455948956310749,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.01359705813229084,
+                "tiger, Panthera tigris": 0.012397509068250656,
+                "amphibian, amphibious vehicle": 0.010907212272286415
+            },
+            "convnext_small": {
+                "comic book": 0.10391448438167572,
+                "toyshop": 0.05626235529780388,
+                "carousel, carrousel, merry-go-round, roundabout, whirligig": 0.04024535045027733,
+                "cinema, movie theater, movie theatre, movie house, picture palace": 0.005412899423390627,
+                "minivan": 0.004959686193615198,
+                "confectionery, confectionary, candy store": 0.0044350638054311275,
+                "minibus": 0.004258082713931799,
+                "mobile home, manufactured home": 0.00404724245890975,
+                "tiger cat": 0.003977112006396055,
+                "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": 0.0032004844397306442
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/50897950113_99208a5f63_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "hammerhead, hammerhead shark": 0.3902921974658966,
+                "table lamp": 0.03842049837112427,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.0125004006549716,
+                "corkscrew, bottle screw": 0.011636675335466862,
+                "wall clock": 0.010019179433584213,
+                "cup": 0.007906579412519932,
+                "hook, claw": 0.007236053701490164,
+                "joystick": 0.006446113344281912,
+                "paper towel": 0.006409165449440479,
+                "hatchet": 0.006355975288897753
+            },
+            "convnext_small": {
+                "hammerhead, hammerhead shark": 0.802046000957489,
+                "tiger shark, Galeocerdo cuvieri": 0.0055122049525380135,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.0027452409267425537,
+                "sturgeon": 0.0006722487160004675,
+                "maillot": 0.0005907016457058489,
+                "letter opener, paper knife, paperknife": 0.0005364310345612466,
+                "barracouta, snoek": 0.000532409583684057,
+                "microphone, mike": 0.0005213835975155234,
+                "pencil sharpener": 0.00047176587395370007,
+                "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch": 0.0004669349000323564
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/52084349501_7bb9fff6f6_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "hammerhead, hammerhead shark": 0.6652845740318298,
+                "table lamp": 0.0036390116438269615,
+                "crayfish, crawfish, crawdad, crawdaddy": 0.001543176593258977,
+                "nematode, nematode worm, roundworm": 0.0015296961646527052,
+                "nail": 0.0015141096664592624,
+                "flatworm, platyhelminth": 0.001497160643339157,
+                "hair slide": 0.0013560650404542685,
+                "cleaver, meat cleaver, chopper": 0.0013253303477540612,
+                "pencil sharpener": 0.0012881505535915494,
+                "rhinoceros beetle": 0.0012836768291890621
+            },
+            "convnext_small": {
+                "hammerhead, hammerhead shark": 0.6904821991920471,
+                "tiger shark, Galeocerdo cuvieri": 0.005590407177805901,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.003794914809986949,
+                "papillon": 0.001790661015547812,
+                "keeshond": 0.001630311948247254,
+                "Shetland sheepdog, Shetland sheep dog, Shetland": 0.0015952112153172493,
+                "skunk, polecat, wood pussy": 0.0014979992993175983,
+                "Old English sheepdog, bobtail": 0.0014072803314775229,
+                "collie": 0.0013645085273310542,
+                "Sealyham terrier, Sealyham": 0.0012463087914511561
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/49790033258_01a4283213_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "hammer": 0.445561945438385,
+                "nail": 0.05326000973582268,
+                "can opener, tin opener": 0.02598406933248043,
+                "corkscrew, bottle screw": 0.01864478550851345,
+                "hook, claw": 0.011505138128995895,
+                "screwdriver": 0.005440801847726107,
+                "crutch": 0.0037453328259289265,
+                "letter opener, paper knife, paperknife": 0.003008750732988119,
+                "paintbrush": 0.0025632090400904417,
+                "hatchet": 0.0025426968932151794
+            },
+            "convnext_small": {
+                "hammer": 0.5741528272628784,
+                "nail": 0.05931571125984192,
+                "screwdriver": 0.015446298755705357,
+                "tick": 0.009519070386886597,
+                "corkscrew, bottle screw": 0.008511184714734554,
+                "ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle": 0.005918384995311499,
+                "leafhopper": 0.004195482935756445,
+                "lacewing, lacewing fly": 0.003992109093815088,
+                "can opener, tin opener": 0.0036916942335665226,
+                "fly": 0.003378751687705517
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/49790892297_f679f8bdf4_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "hammer": 0.9377353191375732,
+                "nail": 0.008473590016365051,
+                "can opener, tin opener": 0.0021347517613321543,
+                "hook, claw": 0.001240126439370215,
+                "screwdriver": 0.0009316941723227501,
+                "strainer": 0.0009251708397641778,
+                "corkscrew, bottle screw": 0.0007883914513513446,
+                "hatchet": 0.0007819309830665588,
+                "microphone, mike": 0.0006777595262974501,
+                "ballpoint, ballpoint pen, ballpen, Biro": 0.0005846966523677111
+            },
+            "convnext_small": {
+                "hammer": 0.898734986782074,
+                "screwdriver": 0.007162446156144142,
+                "nail": 0.006494718603789806,
+                "hatchet": 0.0019295947859063745,
+                "computer keyboard, keypad": 0.0018777522491291165,
+                "notebook, notebook computer": 0.0017636384582147002,
+                "can opener, tin opener": 0.001247347448952496,
+                "carpenter's kit, tool kit": 0.0008196340058930218,
+                "space bar": 0.000779583235271275,
+                "plane, carpenter's plane, woodworking plane": 0.0006268671713769436
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/52266420960_24887bce61_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "mountain bike, all-terrain bike, off-roader": 0.05234672501683235,
+                "tripod": 0.047699540853500366,
+                "crutch": 0.04377440735697746,
+                "hay": 0.025722870603203773,
+                "bannister, banister, balustrade, balusters, handrail": 0.025367621332406998,
+                "binoculars, field glasses, opera glasses": 0.024791691452264786,
+                "rapeseed": 0.020368600264191628,
+                "ski": 0.012027344666421413,
+                "harvester, reaper": 0.012001018971204758,
+                "gasmask, respirator, gas helmet": 0.010878093540668488
+            },
+            "convnext_small": {
+                "tripod": 0.13619136810302734,
+                "rifle": 0.12152990698814392,
+                "binoculars, field glasses, opera glasses": 0.08155063539743423,
+                "mountain bike, all-terrain bike, off-roader": 0.053792450577020645,
+                "assault rifle, assault gun": 0.046716395765542984,
+                "cannon": 0.036623384803533554,
+                "bicycle-built-for-two, tandem bicycle, tandem": 0.023173879832029343,
+                "reel": 0.020386813208460808,
+                "bannister, banister, balustrade, balusters, handrail": 0.011606592684984207,
+                "moped": 0.010663690976798534
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hammerhead/51119283126_1c5c9ae092_o.jpg",
+        "label": "hammerhead",
+        "models": {
+            "convnext_tiny": {
+                "spotlight, spot": 0.2944500744342804,
+                "turnstile": 0.04287347570061684,
+                "projector": 0.033388085663318634,
+                "planetarium": 0.030675971880555153,
+                "digital clock": 0.026869872584939003,
+                "vault": 0.022559568285942078,
+                "library": 0.022063862532377243,
+                "television, television system": 0.016781043261289597,
+                "mosque": 0.01662512868642807,
+                "bullet train, bullet": 0.011735956184566021
+            },
+            "convnext_small": {
+                "library": 0.43153059482574463,
+                "turnstile": 0.06954240053892136,
+                "vault": 0.037539754062891006,
+                "spotlight, spot": 0.02285640500485897,
+                "balloon": 0.019825413823127747,
+                "prison, prison house": 0.017502209171652794,
+                "digital clock": 0.01596282608807087,
+                "bullet train, bullet": 0.014449378475546837,
+                "pier": 0.010525884106755257,
+                "sliding door": 0.010326983407139778
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/52998295626_e5cc1299ac_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "crash helmet": 0.4109090566635132,
+                "bubble": 0.060156844556331635,
+                "parking meter": 0.014456468634307384,
+                "ladle": 0.010584685951471329,
+                "car mirror": 0.009066924452781677,
+                "binoculars, field glasses, opera glasses": 0.009051947854459286,
+                "football helmet": 0.005912230350077152,
+                "table lamp": 0.005213647615164518,
+                "picket fence, paling": 0.0051643699407577515,
+                "palace": 0.004583787638694048
+            },
+            "convnext_small": {
+                "bubble": 0.5750948786735535,
+                "crash helmet": 0.02133234404027462,
+                "palace": 0.018385229632258415,
+                "ladle": 0.010756629519164562,
+                "football helmet": 0.009485193528234959,
+                "pedestal, plinth, footstall": 0.005272112786769867,
+                "bearskin, busby, shako": 0.005147958640009165,
+                "car mirror": 0.0050045461393892765,
+                "parking meter": 0.004920789506286383,
+                "spotlight, spot": 0.004060883074998856
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/50785569517_a211ced275_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "bell cote, bell cot": 0.33127713203430176,
+                "palace": 0.07591764628887177,
+                "monastery": 0.056447584182024,
+                "jinrikisha, ricksha, rickshaw": 0.03722280263900757,
+                "restaurant, eating house, eating place, eatery": 0.033213771879673004,
+                "caldron, cauldron": 0.027008309960365295,
+                "jean, blue jean, denim": 0.020356150344014168,
+                "cellular telephone, cellular phone, cellphone, cell, mobile phone": 0.013531389646232128,
+                "umbrella": 0.00865752249956131,
+                "castle": 0.0078412014991045
+            },
+            "convnext_small": {
+                "palace": 0.42869624495506287,
+                "bell cote, bell cot": 0.12013443559408188,
+                "monastery": 0.06172560527920723,
+                "jinrikisha, ricksha, rickshaw": 0.03172801807522774,
+                "streetcar, tram, tramcar, trolley, trolley car": 0.014809342101216316,
+                "library": 0.014654315076768398,
+                "castle": 0.014010750688612461,
+                "restaurant, eating house, eating place, eatery": 0.012265789322555065,
+                "umbrella": 0.0076581756584346294,
+                "vault": 0.006881616543978453
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/17153362454_18a09bcab2_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "strainer": 0.04962990805506706,
+                "lampshade, lamp shade": 0.04596617445349693,
+                "water bottle": 0.04157764092087746,
+                "hoopskirt, crinoline": 0.03234734386205673,
+                "matchstick": 0.032047007232904434,
+                "bottlecap": 0.020067676901817322,
+                "perfume, essence": 0.019302301108837128,
+                "saltshaker, salt shaker": 0.018290521577000618,
+                "spotlight, spot": 0.017357729375362396,
+                "microphone, mike": 0.016387764364480972
+            },
+            "convnext_small": {
+                "hoopskirt, crinoline": 0.225202277302742,
+                "water bottle": 0.044410958886146545,
+                "microphone, mike": 0.03327631205320358,
+                "dishwasher, dish washer, dishwashing machine": 0.03191540017724037,
+                "switch, electric switch, electrical switch": 0.026981499046087265,
+                "gown": 0.026637263596057892,
+                "espresso maker": 0.024143781512975693,
+                "perfume, essence": 0.016878126189112663,
+                "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system": 0.015791503712534904,
+                "safe": 0.013174002058804035
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/25672922098_559fbd1fa4_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "horizontal bar, high bar": 0.11640173941850662,
+                "swimming trunks, bathing trunks": 0.07330261170864105,
+                "swing": 0.06416931003332138,
+                "street sign": 0.03548542037606239,
+                "pole": 0.027206413447856903,
+                "unicycle, monocycle": 0.02341318130493164,
+                "parallel bars, bars": 0.018582699820399284,
+                "barbell": 0.016801942139863968,
+                "volleyball": 0.01608116552233696,
+                "patio, terrace": 0.012696553952991962
+            },
+            "convnext_small": {
+                "horizontal bar, high bar": 0.1808861494064331,
+                "unicycle, monocycle": 0.06985367089509964,
+                "bow": 0.061372093856334686,
+                "pole": 0.04959242418408394,
+                "swing": 0.045590732246637344,
+                "swimming trunks, bathing trunks": 0.03576727956533432,
+                "crutch": 0.03187316283583641,
+                "computer keyboard, keypad": 0.03175089880824089,
+                "volleyball": 0.026947099715471268,
+                "parallel bars, bars": 0.015268368646502495
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/50153870642_a5c47c1220_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "racket, racquet": 0.46788597106933594,
+                "strainer": 0.06199796870350838,
+                "croquet ball": 0.04070745036005974,
+                "bolo tie, bolo, bola tie, bola": 0.0188328605145216,
+                "Petri dish": 0.01695602759718895,
+                "tennis ball": 0.015346968546509743,
+                "knot": 0.011396132409572601,
+                "cocktail shaker": 0.005099388305097818,
+                "thimble": 0.004786194302141666,
+                "chain": 0.004736968316137791
+            },
+            "convnext_small": {
+                "bolo tie, bolo, bola tie, bola": 0.40359416604042053,
+                "racket, racquet": 0.3586386740207672,
+                "chain": 0.016949504613876343,
+                "necklace": 0.013446378521621227,
+                "tennis ball": 0.006884194444864988,
+                "whistle": 0.006457866169512272,
+                "pick, plectrum, plectron": 0.005852800793945789,
+                "strainer": 0.004900024738162756,
+                "knot": 0.004046829417347908,
+                "hair slide": 0.003949128556996584
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/24675852327_4a3c6c3646_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "sundial": 0.3973177671432495,
+                "maze, labyrinth": 0.05374375730752945,
+                "unicycle, monocycle": 0.03774701803922653,
+                "flagpole, flagstaff": 0.028068020939826965,
+                "street sign": 0.015801215544342995,
+                "soccer ball": 0.009425759315490723,
+                "crutch": 0.008810043334960938,
+                "plunger, plumber's helper": 0.008744684047996998,
+                "umbrella": 0.008004842326045036,
+                "volleyball": 0.0074127740226686
+            },
+            "convnext_small": {
+                "sundial": 0.13990312814712524,
+                "maze, labyrinth": 0.06765966862440109,
+                "volleyball": 0.06204742565751076,
+                "crutch": 0.059830062091350555,
+                "pole": 0.05977890267968178,
+                "horizontal bar, high bar": 0.043571796268224716,
+                "unicycle, monocycle": 0.03356015309691429,
+                "flagpole, flagstaff": 0.029825398698449135,
+                "croquet ball": 0.022642897441983223,
+                "computer keyboard, keypad": 0.01293911226093769
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/49906818082_491fa469a8_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "quill, quill pen": 0.8458519577980042,
+                "American egret, great white heron, Egretta albus": 0.004679566714912653,
+                "lighter, light, igniter, ignitor": 0.00385595322586596,
+                "plate rack": 0.0025308358017355204,
+                "ptarmigan": 0.0011886917054653168,
+                "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system": 0.0010165780549868941,
+                "balloon": 0.0008088407921604812,
+                "yawl": 0.0007532204035669565,
+                "ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle": 0.0007479913183487952,
+                "shovel": 0.0007455176091752946
+            },
+            "convnext_small": {
+                "quill, quill pen": 0.7485471367835999,
+                "pelican": 0.00523479375988245,
+                "American egret, great white heron, Egretta albus": 0.003813990857452154,
+                "picket fence, paling": 0.002592593664303422,
+                "sulphur-crested cockatoo, Kakatoe galerita, Cacatua galerita": 0.0020815106108784676,
+                "paper towel": 0.0017177073750644922,
+                "toilet tissue, toilet paper, bathroom tissue": 0.0016936010215431452,
+                "albatross, mollymawk": 0.0015472759259864688,
+                "envelope": 0.0013518534833565354,
+                "wooden spoon": 0.0012662282679229975
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/53001552914_5232eff805_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "obelisk": 0.5598839521408081,
+                "wig": 0.009669913910329342,
+                "jean, blue jean, denim": 0.008569132536649704,
+                "lab coat, laboratory coat": 0.006817690096795559,
+                "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM": 0.006620761938393116,
+                "cellular telephone, cellular phone, cellphone, cell, mobile phone": 0.005282610654830933,
+                "neck brace": 0.0048495749942958355,
+                "sunglasses, dark glasses, shades": 0.0036809907760471106,
+                "park bench": 0.003420915687456727,
+                "pole": 0.00331011600792408
+            },
+            "convnext_small": {
+                "obelisk": 0.7587212920188904,
+                "lab coat, laboratory coat": 0.003271500114351511,
+                "pedestal, plinth, footstall": 0.0031656785868108273,
+                "trench coat": 0.002120179822668433,
+                "jean, blue jean, denim": 0.001693350961431861,
+                "soccer ball": 0.0015803134301677346,
+                "fur coat": 0.0014988556504249573,
+                "megalith, megalithic structure": 0.0013317115372046828,
+                "sundial": 0.001067299279384315,
+                "pole": 0.0009932524990290403
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/38834589064_02a8ca380b_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "crutch": 0.16166198253631592,
+                "volleyball": 0.06917218118906021,
+                "maypole": 0.022729717195034027,
+                "swimming trunks, bathing trunks": 0.020701980218291283,
+                "basketball": 0.018264371901750565,
+                "maze, labyrinth": 0.018088696524500847,
+                "ping-pong ball": 0.01630164124071598,
+                "plunger, plumber's helper": 0.014230195432901382,
+                "soccer ball": 0.013649879023432732,
+                "unicycle, monocycle": 0.010981550440192223
+            },
+            "convnext_small": {
+                "volleyball": 0.46340078115463257,
+                "maze, labyrinth": 0.06683030724525452,
+                "tricycle, trike, velocipede": 0.01675304025411606,
+                "sandbar, sand bar": 0.016108514741063118,
+                "swimming trunks, bathing trunks": 0.014822994358837605,
+                "soccer ball": 0.012698204256594181,
+                "basketball": 0.010691937990486622,
+                "crutch": 0.006921456195414066,
+                "unicycle, monocycle": 0.0054094381630420685,
+                "sundial": 0.004271674435585737
+            }
+        }
+    },
+    {
+        "name": "flickr-data/shuttlecock/28760390932_ab127d0566_o.jpg",
+        "label": "shuttlecock",
+        "models": {
+            "convnext_tiny": {
+                "car mirror": 0.8763781785964966,
+                "tray": 0.016985712572932243,
+                "television, television system": 0.005723967216908932,
+                "barn": 0.004169080872088671,
+                "mobile home, manufactured home": 0.0034509669058024883,
+                "water tower": 0.002504979260265827,
+                "bib": 0.002159402472898364,
+                "barrow, garden cart, lawn cart, wheelbarrow": 0.0015073807444423437,
+                "analog clock": 0.001302715390920639,
+                "thatch, thatched roof": 0.0011234019184485078
+            },
+            "convnext_small": {
+                "car mirror": 0.9438503980636597,
+                "monastery": 0.001618570415303111,
+                "tray": 0.0014640705194324255,
+                "palace": 0.0013949668500572443,
+                "castle": 0.0009743468253873289,
+                "barrow, garden cart, lawn cart, wheelbarrow": 0.0008248868980444968,
+                "water tower": 0.0007946652476675808,
+                "church, church building": 0.000789482204709202,
+                "park bench": 0.0007886631065048277,
+                "obelisk": 0.000708692881744355
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988467130_61f04f6a19_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Labrador retriever": 0.17839378118515015,
+                "Rhodesian ridgeback": 0.06594694405794144,
+                "American Staffordshire terrier, Staffordshire terrier, American pit bull terrier, pit bull terrier": 0.04182131588459015,
+                "redbone": 0.03542248532176018,
+                "Chesapeake Bay retriever": 0.023445473983883858,
+                "Staffordshire bullterrier, Staffordshire bull terrier": 0.020221097394824028,
+                "vizsla, Hungarian pointer": 0.01661628670990467,
+                "space heater": 0.016280682757496834,
+                "boxer": 0.011675472371280193,
+                "dishwasher, dish washer, dishwashing machine": 0.011645241640508175
+            },
+            "convnext_small": {
+                "Labrador retriever": 0.3222525417804718,
+                "redbone": 0.09651491791009903,
+                "Rhodesian ridgeback": 0.08880223333835602,
+                "Weimaraner": 0.07616319507360458,
+                "Chesapeake Bay retriever": 0.026087772101163864,
+                "vizsla, Hungarian pointer": 0.020316382870078087,
+                "American Staffordshire terrier, Staffordshire terrier, American pit bull terrier, pit bull terrier": 0.010590278543531895,
+                "kelpie": 0.009408311918377876,
+                "dingo, warrigal, warragal, Canis dingo": 0.008757825009524822,
+                "canoe": 0.00817303266376257
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/53022254388_06d2d33fbc_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "park bench": 0.8699790835380554,
+                "lakeside, lakeshore": 0.004845225252211094,
+                "rifle": 0.00459839403629303,
+                "gasmask, respirator, gas helmet": 0.0019216701621189713,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.0017636650009080768,
+                "military uniform": 0.0014839755604043603,
+                "hay": 0.0011500699911266565,
+                "cowboy hat, ten-gallon hat": 0.0010821751784533262,
+                "sunglasses, dark glasses, shades": 0.001046791672706604,
+                "assault rifle, assault gun": 0.0008348302217200398
+            },
+            "convnext_small": {
+                "park bench": 0.7333202958106995,
+                "plow, plough": 0.011010845191776752,
+                "military uniform": 0.006106521934270859,
+                "gasmask, respirator, gas helmet": 0.0033359432127326727,
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.0020183201413601637,
+                "lakeside, lakeshore": 0.0018779111560434103,
+                "horse cart, horse-cart": 0.0017503831768408418,
+                "German shepherd, German shepherd dog, German police dog, alsatian": 0.0016701826825737953,
+                "brass, memorial tablet, plaque": 0.0015493647661060095,
+                "half track": 0.0012766860891133547
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/53022157350_13853ddb47_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "park bench": 0.25954771041870117,
+                "thatch, thatched roof": 0.03622884675860405,
+                "lumbermill, sawmill": 0.033195991069078445,
+                "golden retriever": 0.012961973436176777,
+                "dingo, warrigal, warragal, Canis dingo": 0.011995570734143257,
+                "vizsla, Hungarian pointer": 0.011708327569067478,
+                "flute, transverse flute": 0.008977691642940044,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.008766962215304375,
+                "seashore, coast, seacoast, sea-coast": 0.007620603311806917,
+                "fountain": 0.007599248550832272
+            },
+            "convnext_small": {
+                "thatch, thatched roof": 0.22918696701526642,
+                "park bench": 0.15871661901474,
+                "macaw": 0.03720543533563614,
+                "umbrella": 0.03478071466088295,
+                "fountain": 0.017960485070943832,
+                "vizsla, Hungarian pointer": 0.016109153628349304,
+                "redbone": 0.012517550960183144,
+                "Irish setter, red setter": 0.008570296689867973,
+                "sarong": 0.008081321604549885,
+                "tile roof": 0.0069443173706531525
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52987497992_b5a43d5043_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "breakwater, groin, groyne, mole, bulwark, seawall, jetty": 0.047574300318956375,
+                "suspension bridge": 0.04191568121314049,
+                "lakeside, lakeshore": 0.032380662858486176,
+                "Appenzeller": 0.02627294883131981,
+                "malamute, malemute, Alaskan malamute": 0.015979604795575142,
+                "soft-coated wheaten terrier": 0.013412192463874817,
+                "Leonberg": 0.01232540886849165,
+                "German shepherd, German shepherd dog, German police dog, alsatian": 0.01167390402406454,
+                "unicycle, monocycle": 0.011633538641035557,
+                "beagle": 0.009767482988536358
+            },
+            "convnext_small": {
+                "suspension bridge": 0.13078546524047852,
+                "Irish terrier": 0.021453749388456345,
+                "unicycle, monocycle": 0.01842167228460312,
+                "lakeside, lakeshore": 0.016598587855696678,
+                "mountain bike, all-terrain bike, off-roader": 0.01485317014157772,
+                "Chesapeake Bay retriever": 0.01348797231912613,
+                "Labrador retriever": 0.013024622574448586,
+                "breakwater, groin, groyne, mole, bulwark, seawall, jetty": 0.012911899946630001,
+                "malamute, malemute, Alaskan malamute": 0.011224040761590004,
+                "redbone": 0.010138086043298244
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988099066_5258eca39f_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "lakeside, lakeshore": 0.0989704355597496,
+                "Chesapeake Bay retriever": 0.0493587851524353,
+                "Labrador retriever": 0.04229596257209778,
+                "Greater Swiss Mountain dog": 0.03630013391375542,
+                "alp": 0.0349038690328598,
+                "valley, vale": 0.031159423291683197,
+                "golden retriever": 0.02750190906226635,
+                "lawn mower, mower": 0.020701643079519272,
+                "Pembroke, Pembroke Welsh corgi": 0.01751173660159111,
+                "EntleBucher": 0.01690027490258217
+            },
+            "convnext_small": {
+                "valley, vale": 0.14445140957832336,
+                "lakeside, lakeshore": 0.10274641960859299,
+                "alp": 0.058527376502752304,
+                "Pembroke, Pembroke Welsh corgi": 0.05704991891980171,
+                "Chesapeake Bay retriever": 0.056450583040714264,
+                "malinois": 0.04091624543070793,
+                "Labrador retriever": 0.03229597210884094,
+                "golden retriever": 0.022739456966519356,
+                "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis": 0.02260054647922516,
+                "Irish terrier": 0.017060378566384315
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988557673_a2162d1c1a_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "crutch": 0.30281996726989746,
+                "street sign": 0.06777779012918472,
+                "tripod": 0.035052768886089325,
+                "unicycle, monocycle": 0.023898359388113022,
+                "alp": 0.016957411542534828,
+                "mountain bike, all-terrain bike, off-roader": 0.014446745626628399,
+                "valley, vale": 0.010586149990558624,
+                "geyser": 0.009847325272858143,
+                "pole": 0.007792736403644085,
+                "shopping cart": 0.0071513163857162
+            },
+            "convnext_small": {
+                "unicycle, monocycle": 0.15053457021713257,
+                "alp": 0.0622594952583313,
+                "street sign": 0.040571246296167374,
+                "crutch": 0.03299679979681969,
+                "mountain bike, all-terrain bike, off-roader": 0.020079920068383217,
+                "bicycle-built-for-two, tandem bicycle, tandem": 0.010601419024169445,
+                "oxcart": 0.00996873714029789,
+                "ski": 0.009123197756707668,
+                "diamondback, diamondback rattlesnake, Crotalus adamanteus": 0.00855193194001913,
+                "volcano": 0.0075136823579669
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988557703_9ab17bd904_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Rhodesian ridgeback": 0.14498306810855865,
+                "Labrador retriever": 0.0577198751270771,
+                "Chihuahua": 0.041163042187690735,
+                "Great Dane": 0.03964848443865776,
+                "Chesapeake Bay retriever": 0.014061232097446918,
+                "American Staffordshire terrier, Staffordshire terrier, American pit bull terrier, pit bull terrier": 0.013819973915815353,
+                "vizsla, Hungarian pointer": 0.01301357988268137,
+                "dogsled, dog sled, dog sleigh": 0.012558258138597012,
+                "Staffordshire bullterrier, Staffordshire bull terrier": 0.009360223077237606,
+                "dingo, warrigal, warragal, Canis dingo": 0.00920617301017046
+            },
+            "convnext_small": {
+                "Rhodesian ridgeback": 0.324614018201828,
+                "American Staffordshire terrier, Staffordshire terrier, American pit bull terrier, pit bull terrier": 0.09865926951169968,
+                "barrel, cask": 0.07072204351425171,
+                "malamute, malemute, Alaskan malamute": 0.017126115038990974,
+                "Great Dane": 0.01045617088675499,
+                "gong, tam-tam": 0.010246699675917625,
+                "dogsled, dog sled, dog sleigh": 0.008895362727344036,
+                "Labrador retriever": 0.008123902603983879,
+                "redbone": 0.007757267914712429,
+                "Staffordshire bullterrier, Staffordshire bull terrier": 0.007034169510006905
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/53022157470_810e0dd128_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Chihuahua": 0.07230903208255768,
+                "vizsla, Hungarian pointer": 0.032924603670835495,
+                "Border terrier": 0.03116670995950699,
+                "Ibizan hound, Ibizan Podenco": 0.020132433623075485,
+                "miniature pinscher": 0.015284606255590916,
+                "Rhodesian ridgeback": 0.014902600087225437,
+                "Irish terrier": 0.013623962178826332,
+                "cocker spaniel, English cocker spaniel, cocker": 0.010875600390136242,
+                "bloodhound, sleuthhound": 0.010502981953322887,
+                "Weimaraner": 0.010316184721887112
+            },
+            "convnext_small": {
+                "redbone": 0.3220421075820923,
+                "Rhodesian ridgeback": 0.08732111752033234,
+                "miniature pinscher": 0.0698673203587532,
+                "bloodhound, sleuthhound": 0.035303641110658646,
+                "vizsla, Hungarian pointer": 0.029857724905014038,
+                "Chesapeake Bay retriever": 0.017145521938800812,
+                "Weimaraner": 0.015488116070628166,
+                "Chihuahua": 0.012831985019147396,
+                "Border terrier": 0.012113651260733604,
+                "Italian greyhound": 0.010745983570814133
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988239524_eb81e8bf11_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Labrador retriever": 0.4170801043510437,
+                "Chesapeake Bay retriever": 0.024105897173285484,
+                "Rhodesian ridgeback": 0.02229558676481247,
+                "golden retriever": 0.015605024993419647,
+                "Greater Swiss Mountain dog": 0.014855695888400078,
+                "stone wall": 0.006314500235021114,
+                "soccer ball": 0.003825283842161298,
+                "Pembroke, Pembroke Welsh corgi": 0.0038132823538035154,
+                "bull mastiff": 0.0037026735953986645,
+                "wood rabbit, cottontail, cottontail rabbit": 0.0034543799702078104
+            },
+            "convnext_small": {
+                "Labrador retriever": 0.2979966402053833,
+                "Rhodesian ridgeback": 0.21064747869968414,
+                "redbone": 0.025927409529685974,
+                "golden retriever": 0.015908295288681984,
+                "vizsla, Hungarian pointer": 0.014005482196807861,
+                "Chesapeake Bay retriever": 0.009059010073542595,
+                "stone wall": 0.00691461144015193,
+                "dingo, warrigal, warragal, Canis dingo": 0.004751266911625862,
+                "tennis ball": 0.003798342775553465,
+                "Greater Swiss Mountain dog": 0.0034225615672767162
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52988240219_dd14484cb4_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Chesapeake Bay retriever": 0.1939118206501007,
+                "Labrador retriever": 0.1542750597000122,
+                "vizsla, Hungarian pointer": 0.09349031001329422,
+                "golden retriever": 0.05069214105606079,
+                "redbone": 0.02254827879369259,
+                "German shepherd, German shepherd dog, German police dog, alsatian": 0.018144700676202774,
+                "Rhodesian ridgeback": 0.01320477481931448,
+                "bloodhound, sleuthhound": 0.008837918750941753,
+                "curly-coated retriever": 0.006802849937230349,
+                "Airedale, Airedale terrier": 0.004515512380748987
+            },
+            "convnext_small": {
+                "Chesapeake Bay retriever": 0.15689954161643982,
+                "redbone": 0.13723275065422058,
+                "Labrador retriever": 0.11900898069143295,
+                "lumbermill, sawmill": 0.06908179819583893,
+                "Rhodesian ridgeback": 0.049264900386333466,
+                "golden retriever": 0.03721494600176811,
+                "dingo, warrigal, warragal, Canis dingo": 0.010578230023384094,
+                "malinois": 0.009681062772870064,
+                "German shepherd, German shepherd dog, German police dog, alsatian": 0.008584680035710335,
+                "swing": 0.007711866404861212
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/53042296381_6ddbe21390_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "Saint Bernard, St Bernard": 0.16216345131397247,
+                "dock, dockage, docking facility": 0.05014422908425331,
+                "bull mastiff": 0.04005115479230881,
+                "clumber, clumber spaniel": 0.023417161777615547,
+                "Great Pyrenees": 0.015661131590604782,
+                "Labrador retriever": 0.009845749475061893,
+                "golden retriever": 0.008801598101854324,
+                "boxer": 0.008680028840899467,
+                "bloodhound, sleuthhound": 0.006278324872255325,
+                "hammerhead, hammerhead shark": 0.006161694414913654
+            },
+            "convnext_small": {
+                "clumber, clumber spaniel": 0.6259548664093018,
+                "Saint Bernard, St Bernard": 0.04201766848564148,
+                "bull mastiff": 0.011034653522074223,
+                "Sussex spaniel": 0.005772844422608614,
+                "Sealyham terrier, Sealyham": 0.005127857904881239,
+                "dock, dockage, docking facility": 0.004908144008368254,
+                "Great Pyrenees": 0.003680275985971093,
+                "golden retriever": 0.0034472050610929728,
+                "breakwater, groin, groyne, mole, bulwark, seawall, jetty": 0.0022273538634181023,
+                "boxer": 0.002069022273644805
+            }
+        }
+    },
+    {
+        "name": "flickr-data/labrador/52994418451_4c4b65665f_o.jpg",
+        "label": "labrador",
+        "models": {
+            "convnext_tiny": {
+                "golden retriever": 0.24277734756469727,
+                "Labrador retriever": 0.1774982213973999,
+                "Australian terrier": 0.026969291269779205,
+                "Border collie": 0.022770604118704796,
+                "tennis ball": 0.021173346787691116,
+                "kuvasz": 0.01869070529937744,
+                "German shepherd, German shepherd dog, German police dog, alsatian": 0.01737956888973713,
+                "dingo, warrigal, warragal, Canis dingo": 0.012505237013101578,
+                "redbone": 0.009748417884111404,
+                "Brittany spaniel": 0.009728603065013885
+            },
+            "convnext_small": {
+                "Labrador retriever": 0.3727111220359802,
+                "golden retriever": 0.08066018670797348,
+                "dingo, warrigal, warragal, Canis dingo": 0.01000803429633379,
+                "kelpie": 0.007500648032873869,
+                "kuvasz": 0.00608739722520113,
+                "tennis ball": 0.006005705334246159,
+                "flat-coated retriever": 0.005658385809510946,
+                "Chesapeake Bay retriever": 0.005012980196624994,
+                "Rhodesian ridgeback": 0.004648476839065552,
+                "Eskimo dog, husky": 0.00426485063508153
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52903813765_ece7825634_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "espresso": 0.16620025038719177,
+                "tray": 0.09839390963315964,
+                "bagel, beigel": 0.08110719174146652,
+                "cup": 0.05990387499332428,
+                "Granny Smith": 0.03519401326775551,
+                "coffee mug": 0.03506916016340256,
+                "plate": 0.02823573164641857,
+                "toilet tissue, toilet paper, bathroom tissue": 0.012287402525544167,
+                "soup bowl": 0.011046240106225014,
+                "paper towel": 0.006398987490683794
+            },
+            "convnext_small": {
+                "espresso": 0.23069603741168976,
+                "tray": 0.12514761090278625,
+                "coffee mug": 0.05914464592933655,
+                "bagel, beigel": 0.05560765787959099,
+                "cup": 0.046043384820222855,
+                "Granny Smith": 0.03828837350010872,
+                "soup bowl": 0.006295210216194391,
+                "coffeepot": 0.0058938292786479,
+                "cheeseburger": 0.005805048160254955,
+                "bakery, bakeshop, bakehouse": 0.0056885723024606705
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52984401441_0fa80fca59_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "laptop, laptop computer": 0.07212157547473907,
+                "hotdog, hot dog, red hot": 0.06479453295469284,
+                "butternut squash": 0.028942890465259552,
+                "piggy bank, penny bank": 0.02380773238837719,
+                "orange": 0.02241598628461361,
+                "restaurant, eating house, eating place, eatery": 0.015219958499073982,
+                "spaghetti squash": 0.013209688477218151,
+                "bakery, bakeshop, bakehouse": 0.012940329499542713,
+                "library": 0.011841580271720886,
+                "comic book": 0.010901225730776787
+            },
+            "convnext_small": {
+                "hotdog, hot dog, red hot": 0.18505236506462097,
+                "library": 0.15099471807479858,
+                "bagel, beigel": 0.1316836029291153,
+                "pretzel": 0.051454637199640274,
+                "jersey, T-shirt, tee shirt": 0.01938074827194214,
+                "comic book": 0.016379879787564278,
+                "bakery, bakeshop, bakehouse": 0.016203293576836586,
+                "bookshop, bookstore, bookstall": 0.011115483939647675,
+                "cheeseburger": 0.01008154172450304,
+                "laptop, laptop computer": 0.008074072189629078
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52994676216_44dccee995_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "bagel, beigel": 0.12467244267463684,
+                "mixing bowl": 0.09414930641651154,
+                "wooden spoon": 0.03851163014769554,
+                "spatula": 0.03755490481853485,
+                "lotion": 0.025225015357136726,
+                "lab coat, laboratory coat": 0.024558568373322487,
+                "hotdog, hot dog, red hot": 0.024393197149038315,
+                "coffee mug": 0.013670300133526325,
+                "plate": 0.013158157467842102,
+                "plunger, plumber's helper": 0.012573590502142906
+            },
+            "convnext_small": {
+                "drumstick": 0.243297278881073,
+                "soup bowl": 0.06800872087478638,
+                "bagel, beigel": 0.05307772383093834,
+                "wooden spoon": 0.050993792712688446,
+                "pretzel": 0.04938273876905441,
+                "hotdog, hot dog, red hot": 0.037575140595436096,
+                "mixing bowl": 0.030823882669210434,
+                "plunger, plumber's helper": 0.019487442448735237,
+                "plate": 0.01528368704020977,
+                "menu": 0.012917453423142433
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/53023638614_b4ef7bb848_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "broccoli": 0.16042006015777588,
+                "bubble": 0.12371411174535751,
+                "spider web, spider's web": 0.09490207582712173,
+                "ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle": 0.02431764453649521,
+                "leafhopper": 0.01170490961521864,
+                "lycaenid, lycaenid butterfly": 0.011007338762283325,
+                "fountain": 0.0101233571767807,
+                "lacewing, lacewing fly": 0.0077821980230510235,
+                "sea anemone, anemone": 0.0068858591839671135,
+                "chain": 0.0064602564089000225
+            },
+            "convnext_small": {
+                "bubble": 0.5419667959213257,
+                "broccoli": 0.029452161863446236,
+                "spider web, spider's web": 0.003505208995193243,
+                "water ouzel, dipper": 0.0031727608293294907,
+                "peacock": 0.002085711108520627,
+                "golf ball": 0.001980662113055587,
+                "black stork, Ciconia nigra": 0.0017835610779002309,
+                "centipede": 0.0017722045304253697,
+                "snail": 0.001656402018852532,
+                "daisy": 0.0015891052316874266
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52994813849_f874ae4a4d_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "ice cream, icecream": 0.25974175333976746,
+                "paper towel": 0.20572155714035034,
+                "chocolate sauce, chocolate syrup": 0.12954074144363403,
+                "pinwheel": 0.055232614278793335,
+                "bakery, bakeshop, bakehouse": 0.017258446663618088,
+                "wooden spoon": 0.01016276516020298,
+                "pretzel": 0.009359707124531269,
+                "burrito": 0.006452860310673714,
+                "plate": 0.006353806704282761,
+                "trifle": 0.006111103110015392
+            },
+            "convnext_small": {
+                "paper towel": 0.17416852712631226,
+                "pinwheel": 0.11509394645690918,
+                "ice cream, icecream": 0.040998928248882294,
+                "wooden spoon": 0.024974210187792778,
+                "chocolate sauce, chocolate syrup": 0.023923953995108604,
+                "spatula": 0.015434983186423779,
+                "crayfish, crawfish, crawdad, crawdaddy": 0.014970039948821068,
+                "toilet tissue, toilet paper, bathroom tissue": 0.011633316986262798,
+                "pretzel": 0.01101324986666441,
+                "plate": 0.009275317192077637
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52995037955_38dd81774d_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "confectionery, confectionary, candy store": 0.07436376065015793,
+                "bookshop, bookstore, bookstall": 0.05435803160071373,
+                "restaurant, eating house, eating place, eatery": 0.049101877957582474,
+                "rotisserie": 0.045091480016708374,
+                "grocery store, grocery, food market, market": 0.04279379919171333,
+                "bakery, bakeshop, bakehouse": 0.03099711239337921,
+                "wok": 0.019850458949804306,
+                "shoe shop, shoe-shop, shoe store": 0.01736985519528389,
+                "tobacco shop, tobacconist shop, tobacconist": 0.01475826371461153,
+                "toyshop": 0.013624114915728569
+            },
+            "convnext_small": {
+                "grocery store, grocery, food market, market": 0.24079255759716034,
+                "restaurant, eating house, eating place, eatery": 0.1773860603570938,
+                "bakery, bakeshop, bakehouse": 0.09444376826286316,
+                "confectionery, confectionary, candy store": 0.06101011112332344,
+                "tobacco shop, tobacconist shop, tobacconist": 0.03818751126527786,
+                "barbershop": 0.03486241027712822,
+                "library": 0.02384505607187748,
+                "butcher shop, meat market": 0.01468691322952509,
+                "bookshop, bookstore, bookstall": 0.010382361710071564,
+                "rotisserie": 0.00950576737523079
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52976335386_c7168d3a1f_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "lab coat, laboratory coat": 0.11144401133060455,
+                "washer, automatic washer, washing machine": 0.04726788029074669,
+                "desk": 0.03766036033630371,
+                "paper towel": 0.028374189510941505,
+                "toilet seat": 0.023719405755400658,
+                "vacuum, vacuum cleaner": 0.021165819838643074,
+                "toilet tissue, toilet paper, bathroom tissue": 0.0210472010076046,
+                "barber chair": 0.01906164176762104,
+                "hook, claw": 0.019007708877325058,
+                "restaurant, eating house, eating place, eatery": 0.0173477865755558
+            },
+            "convnext_small": {
+                "desk": 0.33012908697128296,
+                "barbershop": 0.04413284361362457,
+                "file, file cabinet, filing cabinet": 0.037380583584308624,
+                "lab coat, laboratory coat": 0.035383615642786026,
+                "bookcase": 0.028483249247074127,
+                "studio couch, day bed": 0.02165648527443409,
+                "entertainment center": 0.021187836304306984,
+                "plate rack": 0.019948767498135567,
+                "barber chair": 0.017659442499279976,
+                "dining table, board": 0.015177308581769466
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/53011296397_fff17b9925_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "ocarina, sweet potato": 0.05500837415456772,
+                "harmonica, mouth organ, harp, mouth harp": 0.03829969838261604,
+                "Band Aid": 0.03460046648979187,
+                "ice lolly, lolly, lollipop, popsicle": 0.032762311398983,
+                "toaster": 0.03044660948216915,
+                "football helmet": 0.025815514847636223,
+                "warplane, military plane": 0.021098801866173744,
+                "lipstick, lip rouge": 0.020047111436724663,
+                "pizza, pizza pie": 0.0187656469643116,
+                "crash helmet": 0.014518187381327152
+            },
+            "convnext_small": {
+                "drum, membranophone, tympan": 0.12024682760238647,
+                "harmonica, mouth organ, harp, mouth harp": 0.09932798147201538,
+                "soccer ball": 0.09320838749408722,
+                "drumstick": 0.06887972354888916,
+                "reflex camera": 0.04332005977630615,
+                "flute, transverse flute": 0.03632206469774246,
+                "lens cap, lens cover": 0.035720206797122955,
+                "binoculars, field glasses, opera glasses": 0.02497997134923935,
+                "barbershop": 0.02330886572599411,
+                "football helmet": 0.012830059044063091
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52994676036_461f1f94be_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "spotlight, spot": 0.06718873232603073,
+                "desk": 0.058099184185266495,
+                "barbershop": 0.05032633617520332,
+                "restaurant, eating house, eating place, eatery": 0.03757014870643616,
+                "projector": 0.020886046811938286,
+                "bakery, bakeshop, bakehouse": 0.020715871825814247,
+                "hair spray": 0.018773572519421577,
+                "paintbrush": 0.017589857801795006,
+                "microphone, mike": 0.017188185825943947,
+                "traffic light, traffic signal, stoplight": 0.015132435597479343
+            },
+            "convnext_small": {
+                "desk": 0.08632397651672363,
+                "restaurant, eating house, eating place, eatery": 0.04384313523769379,
+                "bakery, bakeshop, bakehouse": 0.04346528276801109,
+                "washer, automatic washer, washing machine": 0.04073469713330269,
+                "medicine chest, medicine cabinet": 0.024737976491451263,
+                "tobacco shop, tobacconist shop, tobacconist": 0.022296158596873283,
+                "spotlight, spot": 0.020791929215192795,
+                "barbershop": 0.015482605434954166,
+                "Crock Pot": 0.015353376045823097,
+                "butcher shop, meat market": 0.014730647206306458
+            }
+        }
+    },
+    {
+        "name": "flickr-data/donut/52962577200_d847d13951_o.jpg",
+        "label": "donut",
+        "models": {
+            "convnext_tiny": {
+                "carton": 0.2063707411289215,
+                "envelope": 0.11755400151014328,
+                "packet": 0.06535843759775162,
+                "rubber eraser, rubber, pencil eraser": 0.05640904977917671,
+                "Band Aid": 0.0342862531542778,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.02513784170150757,
+                "cassette": 0.01411578431725502,
+                "matchstick": 0.013020418584346771,
+                "binder, ring-binder": 0.010970331728458405,
+                "hard disc, hard disk, fixed disk": 0.009735548868775368
+            },
+            "convnext_small": {
+                "carton": 0.1601233184337616,
+                "binder, ring-binder": 0.09114862978458405,
+                "envelope": 0.08499759435653687,
+                "packet": 0.06160629913210869,
+                "face powder": 0.047474995255470276,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.01831844449043274,
+                "matchstick": 0.01805274188518524,
+                "rubber eraser, rubber, pencil eraser": 0.017717832699418068,
+                "hard disc, hard disk, fixed disk": 0.01631842367351055,
+                "Band Aid": 0.015361118130385876
+            }
+        }
+    },
+    {
+        "name": "flickr-data/ostrich/52084349501_7bb9fff6f6_o.jpg",
+        "label": "ostrich",
+        "models": {
+            "convnext_tiny": {
+                "hammerhead, hammerhead shark": 0.6652845740318298,
+                "table lamp": 0.0036390116438269615,
+                "crayfish, crawfish, crawdad, crawdaddy": 0.001543176593258977,
+                "nematode, nematode worm, roundworm": 0.0015296961646527052,
+                "nail": 0.0015141096664592624,
+                "flatworm, platyhelminth": 0.001497160643339157,
+                "hair slide": 0.0013560650404542685,
+                "cleaver, meat cleaver, chopper": 0.0013253303477540612,
+                "pencil sharpener": 0.0012881505535915494,
+                "rhinoceros beetle": 0.0012836768291890621
+            },
+            "convnext_small": {
+                "hammerhead, hammerhead shark": 0.6904821991920471,
+                "tiger shark, Galeocerdo cuvieri": 0.005590407177805901,
+                "great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias": 0.003794914809986949,
+                "papillon": 0.001790661015547812,
+                "keeshond": 0.001630311948247254,
+                "Shetland sheepdog, Shetland sheep dog, Shetland": 0.0015952112153172493,
+                "skunk, polecat, wood pussy": 0.0014979992993175983,
+                "Old English sheepdog, bobtail": 0.0014072803314775229,
+                "collie": 0.0013645085273310542,
+                "Sealyham terrier, Sealyham": 0.0012463087914511561
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52921249513_859dca7930_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.12077843397855759,
+                "mailbox, letter box": 0.05474957078695297,
+                "bucket, pail": 0.04234795644879341,
+                "teddy, teddy bear": 0.03441529721021652,
+                "water jug": 0.01785225421190262,
+                "ice lolly, lolly, lollipop, popsicle": 0.012141319923102856,
+                "candle, taper, wax light": 0.011685800738632679,
+                "sundial": 0.011446908116340637,
+                "bakery, bakeshop, bakehouse": 0.009990694001317024,
+                "saltshaker, salt shaker": 0.008628257550299168
+            },
+            "convnext_small": {
+                "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin": 0.8388717174530029,
+                "teddy, teddy bear": 0.04395115375518799,
+                "hamper": 0.004886939190328121,
+                "pot, flowerpot": 0.002917356789112091,
+                "bucket, pail": 0.002529492601752281,
+                "toyshop": 0.0023511853069067,
+                "rain barrel": 0.002154275309294462,
+                "ice cream, icecream": 0.0016330183716490865,
+                "bakery, bakeshop, bakehouse": 0.0015268452698364854,
+                "mailbox, letter box": 0.0013413807610049844
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/53001768564_897fb8271a_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "hen": 0.7235373258590698,
+                "cock": 0.00813072919845581,
+                "cleaver, meat cleaver, chopper": 0.00240486953407526,
+                "whippet": 0.0018997133010998368,
+                "doormat, welcome mat": 0.001491026021540165,
+                "malinois": 0.0014853023458272219,
+                "standard poodle": 0.0014202093007043004,
+                "partridge": 0.00141339807305485,
+                "plate rack": 0.001394613296724856,
+                "barrow, garden cart, lawn cart, wheelbarrow": 0.001342801726423204
+            },
+            "convnext_small": {
+                "hen": 0.6946827173233032,
+                "cock": 0.011203983798623085,
+                "partridge": 0.002365753287449479,
+                "quail": 0.001093561644665897,
+                "barrow, garden cart, lawn cart, wheelbarrow": 0.001000915071927011,
+                "earthstar": 0.0009445642936043441,
+                "kelpie": 0.0008925569127313793,
+                "drake": 0.000863502558786422,
+                "ptarmigan": 0.0008620190201327205,
+                "miniature pinscher": 0.0008416943601332605
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52949485128_eca10df888_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "lynx, catamount": 0.5998371243476868,
+                "colobus, colobus monkey": 0.013498574495315552,
+                "gibbon, Hylobates lar": 0.008762756362557411,
+                "hog, pig, grunter, squealer, Sus scrofa": 0.00832918006926775,
+                "patas, hussar monkey, Erythrocebus patas": 0.006948424037545919,
+                "howler monkey, howler": 0.005680373404175043,
+                "siamang, Hylobates syndactylus, Symphalangus syndactylus": 0.005573658738285303,
+                "three-toed sloth, ai, Bradypus tridactylus": 0.004926287103444338,
+                "guenon, guenon monkey": 0.004789790138602257,
+                "titi, titi monkey": 0.004777281079441309
+            },
+            "convnext_small": {
+                "lynx, catamount": 0.5485907196998596,
+                "ruddy turnstone, Arenaria interpres": 0.010444510728120804,
+                "koala, koala bear, kangaroo bear, native bear, Phascolarctos cinereus": 0.0076821837574243546,
+                "wombat": 0.006938669830560684,
+                "wild boar, boar, Sus scrofa": 0.004618694074451923,
+                "meerkat, mierkat": 0.004429413005709648,
+                "guenon, guenon monkey": 0.004040805157274008,
+                "Norwegian elkhound, elkhound": 0.0040171402506530285,
+                "Madagascar cat, ring-tailed lemur, Lemur catta": 0.003942279145121574,
+                "Arctic fox, white fox, Alopex lagopus": 0.0034023276530206203
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52952392329_0a95d57788_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "lynx, catamount": 0.5491464734077454,
+                "Bernese mountain dog": 0.004431871231645346,
+                "Border collie": 0.003991398960351944,
+                "Tibetan mastiff": 0.003714410588145256,
+                "Old English sheepdog, bobtail": 0.0032387685496360064,
+                "Siberian husky": 0.0031935819424688816,
+                "tiger cat": 0.003016334492713213,
+                "Eskimo dog, husky": 0.0029538171365857124,
+                "Brittany spaniel": 0.0026993213687092066,
+                "Greater Swiss Mountain dog": 0.0026381160132586956
+            },
+            "convnext_small": {
+                "lynx, catamount": 0.6329345703125,
+                "standard schnauzer": 0.006148950662463903,
+                "Tibetan terrier, chrysanthemum dog": 0.005448592826724052,
+                "Scottish deerhound, deerhound": 0.004291617311537266,
+                "affenpinscher, monkey pinscher, monkey dog": 0.004291222430765629,
+                "cairn, cairn terrier": 0.004169059917330742,
+                "Norfolk terrier": 0.003751905634999275,
+                "Dandie Dinmont, Dandie Dinmont terrier": 0.0035396325401961803,
+                "Lhasa, Lhasa apso": 0.0034611967857927084,
+                "Yorkshire terrier": 0.003443097695708275
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52906005021_7011e73889_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "ocarina, sweet potato": 0.1256026029586792,
+                "teapot": 0.07067187130451202,
+                "pitcher, ewer": 0.06614354252815247,
+                "pedestal, plinth, footstall": 0.039886463433504105,
+                "vase": 0.029814034700393677,
+                "saltshaker, salt shaker": 0.02255585417151451,
+                "birdhouse": 0.020953468978405,
+                "water jug": 0.018743550404906273,
+                "table lamp": 0.014210527762770653,
+                "goblet": 0.011544410139322281
+            },
+            "convnext_small": {
+                "pitcher, ewer": 0.19573059678077698,
+                "ocarina, sweet potato": 0.07658683508634567,
+                "saltshaker, salt shaker": 0.07426241040229797,
+                "teapot": 0.055679596960544586,
+                "water jug": 0.02774447575211525,
+                "pedestal, plinth, footstall": 0.025782903656363487,
+                "vase": 0.024337969720363617,
+                "soap dispenser": 0.02356133423745632,
+                "mortar": 0.017825884744524956,
+                "coffeepot": 0.012500809505581856
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/53026823148_84f2e4865f_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "hen": 0.7700739502906799,
+                "cock": 0.03599684312939644,
+                "croquet ball": 0.004090771544724703,
+                "partridge": 0.0034612766467034817,
+                "acorn": 0.0016919036861509085,
+                "tick": 0.0016740785213187337,
+                "ping-pong ball": 0.0013694550143554807,
+                "measuring cup": 0.0011426189448684454,
+                "cleaver, meat cleaver, chopper": 0.0010362595785409212,
+                "mushroom": 0.0009565384825691581
+            },
+            "convnext_small": {
+                "hen": 0.7991772294044495,
+                "cock": 0.017263058573007584,
+                "acorn": 0.010507294908165932,
+                "ping-pong ball": 0.004311669152230024,
+                "partridge": 0.00369410146959126,
+                "croquet ball": 0.003313805442303419,
+                "ptarmigan": 0.0021501665469259024,
+                "buckeye, horse chestnut, conker": 0.0017238050932064652,
+                "ruffed grouse, partridge, Bonasa umbellus": 0.001507217762991786,
+                "orange": 0.001424708403646946
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52957701833_f1a855588d_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "lynx, catamount": 0.6764731407165527,
+                "colobus, colobus monkey": 0.004210738930851221,
+                "birdhouse": 0.0035174237564206123,
+                "badger": 0.0031938666943460703,
+                "skunk, polecat, wood pussy": 0.0031915465369820595,
+                "patas, hussar monkey, Erythrocebus patas": 0.0031674844212830067,
+                "llama": 0.0030937071423977613,
+                "standard schnauzer": 0.0029239654541015625,
+                "gibbon, Hylobates lar": 0.0027274983003735542,
+                "jay": 0.0020572065841406584
+            },
+            "convnext_small": {
+                "lynx, catamount": 0.5294404625892639,
+                "lion, king of beasts, Panthera leo": 0.010932080447673798,
+                "Irish wolfhound": 0.008759534917771816,
+                "Afghan hound, Afghan": 0.008531719446182251,
+                "patas, hussar monkey, Erythrocebus patas": 0.008091257885098457,
+                "cougar, puma, catamount, mountain lion, painter, panther, Felis concolor": 0.007726363372057676,
+                "langur": 0.007249627262353897,
+                "briard": 0.0060601793229579926,
+                "komondor": 0.0060029407031834126,
+                "fox squirrel, eastern fox squirrel, Sciurus niger": 0.005022445693612099
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52892355470_12a9505ab4_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "American coot, marsh hen, mud hen, water hen, Fulica americana": 0.1934015154838562,
+                "goose": 0.07164236903190613,
+                "dowitcher": 0.045704010874032974,
+                "crane": 0.029898751527071,
+                "American egret, great white heron, Egretta albus": 0.020853452384471893,
+                "oystercatcher, oyster catcher": 0.01990930363535881,
+                "black swan, Cygnus atratus": 0.019229374825954437,
+                "red-backed sandpiper, dunlin, Erolia alpina": 0.01858539693057537,
+                "bittern": 0.017009949311614037,
+                "spoonbill": 0.013024138286709785
+            },
+            "convnext_small": {
+                "American coot, marsh hen, mud hen, water hen, Fulica americana": 0.17000555992126465,
+                "dowitcher": 0.11857689172029495,
+                "bittern": 0.08614521473646164,
+                "goose": 0.03345412015914917,
+                "crane": 0.020784718915820122,
+                "bustard": 0.020611930638551712,
+                "redshank, Tringa totanus": 0.01864912360906601,
+                "red-backed sandpiper, dunlin, Erolia alpina": 0.016831280663609505,
+                "American egret, great white heron, Egretta albus": 0.01495574600994587,
+                "red-breasted merganser, Mergus serrator": 0.009742442518472672
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52936462563_7feacd7a68_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "drake": 0.49543294310569763,
+                "goose": 0.04036792740225792,
+                "hen": 0.03539930656552315,
+                "peacock": 0.00787507463246584,
+                "scabbard": 0.007848997600376606,
+                "cock": 0.0066084531135857105,
+                "black swan, Cygnus atratus": 0.006302418187260628,
+                "ringneck snake, ring-necked snake, ring snake": 0.005026314407587051,
+                "African hunting dog, hyena dog, Cape hunting dog, Lycaon pictus": 0.004261443391442299,
+                "spatula": 0.003327210433781147
+            },
+            "convnext_small": {
+                "scabbard": 0.14580205082893372,
+                "drake": 0.08716198801994324,
+                "letter opener, paper knife, paperknife": 0.07161419838666916,
+                "bee": 0.029541490599513054,
+                "African hunting dog, hyena dog, Cape hunting dog, Lycaon pictus": 0.0282239131629467,
+                "quill, quill pen": 0.01826450414955616,
+                "redshank, Tringa totanus": 0.014305870048701763,
+                "red-breasted merganser, Mergus serrator": 0.01246932614594698,
+                "robin, American robin, Turdus migratorius": 0.010172695852816105,
+                "bow": 0.008881035260856152
+            }
+        }
+    },
+    {
+        "name": "flickr-data/hen/52919492386_6e03013094_o.jpg",
+        "label": "hen",
+        "models": {
+            "convnext_tiny": {
+                "drake": 0.2223590761423111,
+                "lakeside, lakeshore": 0.121739462018013,
+                "ruffed grouse, partridge, Bonasa umbellus": 0.05904804542660713,
+                "red-breasted merganser, Mergus serrator": 0.04442433640360832,
+                "European gallinule, Porphyrio porphyrio": 0.02563263662159443,
+                "partridge": 0.023123856633901596,
+                "American coot, marsh hen, mud hen, water hen, Fulica americana": 0.019250502809882164,
+                "bittern": 0.014198452234268188,
+                "redshank, Tringa totanus": 0.010673082433640957,
+                "limpkin, Aramus pictus": 0.009301346726715565
+            },
+            "convnext_small": {
+                "drake": 0.08271583169698715,
+                "goose": 0.07642798870801926,
+                "ruffed grouse, partridge, Bonasa umbellus": 0.050784219056367874,
+                "partridge": 0.038443438708782196,
+                "bustard": 0.021868906915187836,
+                "limpkin, Aramus pictus": 0.018075013533234596,
+                "little blue heron, Egretta caerulea": 0.01789441518485546,
+                "crane": 0.015064626932144165,
+                "magpie": 0.014493000693619251,
+                "bittern": 0.013542934320867062
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52938952360_b97a69eae9_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "palace": 0.7229421138763428,
+                "castle": 0.028138766065239906,
+                "lakeside, lakeshore": 0.013523000292479992,
+                "library": 0.005666347220540047,
+                "maze, labyrinth": 0.0029161751735955477,
+                "fountain": 0.002565609058365226,
+                "bell cote, bell cot": 0.0025002574548125267,
+                "boathouse": 0.0024638983886688948,
+                "triumphal arch": 0.0024275770410895348,
+                "prison, prison house": 0.0021606713999062777
+            },
+            "convnext_small": {
+                "palace": 0.7898219227790833,
+                "castle": 0.007270665839314461,
+                "lakeside, lakeshore": 0.001695640734396875,
+                "triumphal arch": 0.0016914147417992353,
+                "monastery": 0.0016691182972863317,
+                "maze, labyrinth": 0.0015681394143030047,
+                "golfcart, golf cart": 0.001419875887222588,
+                "mosque": 0.00098673184402287,
+                "dome": 0.0008948321919888258,
+                "bell cote, bell cot": 0.000878901977557689
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52938952475_68f25617ae_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "palace": 0.7008020877838135,
+                "castle": 0.16195999085903168,
+                "monastery": 0.012652738951146603,
+                "library": 0.0027267083059996367,
+                "maze, labyrinth": 0.0015892664669081569,
+                "dome": 0.0013539129868149757,
+                "rapeseed": 0.0013476144522428513,
+                "water jug": 0.0009699123329482973,
+                "church, church building": 0.0008457048097625375,
+                "lakeside, lakeshore": 0.000771406979765743
+            },
+            "convnext_small": {
+                "palace": 0.779190182685852,
+                "castle": 0.08054599165916443,
+                "monastery": 0.0025645217392593622,
+                "dome": 0.001539899967610836,
+                "maze, labyrinth": 0.0013115870533511043,
+                "lakeside, lakeshore": 0.0008396534831263125,
+                "bell cote, bell cot": 0.0008218385628424585,
+                "triumphal arch": 0.0007586497813463211,
+                "mosque": 0.0007236709352582693,
+                "bearskin, busby, shako": 0.000676303927320987
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52934300714_0b35beb915_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "lakeside, lakeshore": 0.3985697031021118,
+                "fountain": 0.2032770812511444,
+                "valley, vale": 0.03673815354704857,
+                "breakwater, groin, groyne, mole, bulwark, seawall, jetty": 0.016315855085849762,
+                "pier": 0.01130077987909317,
+                "geyser": 0.009821035899221897,
+                "cliff, drop, drop-off": 0.007864591665565968,
+                "bow tie, bow-tie, bowtie": 0.007223916240036488,
+                "boathouse": 0.005988451652228832,
+                "coral reef": 0.002868086099624634
+            },
+            "convnext_small": {
+                "lakeside, lakeshore": 0.4967152178287506,
+                "fountain": 0.0615670420229435,
+                "breakwater, groin, groyne, mole, bulwark, seawall, jetty": 0.031571000814437866,
+                "geyser": 0.027300024405121803,
+                "boathouse": 0.016314955428242683,
+                "valley, vale": 0.01160082221031189,
+                "suit, suit of clothes": 0.008692187257111073,
+                "crutch": 0.005833007395267487,
+                "bow tie, bow-tie, bowtie": 0.005505702458322048,
+                "jean, blue jean, denim": 0.005173938814550638
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52965025265_59777e7924_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "palace": 0.557019829750061,
+                "streetcar, tram, tramcar, trolley, trolley car": 0.06620564311742783,
+                "minivan": 0.02209116332232952,
+                "triumphal arch": 0.01992143876850605,
+                "trolleybus, trolley coach, trackless trolley": 0.015529383905231953,
+                "flagpole, flagstaff": 0.013236788101494312,
+                "library": 0.006776884198188782,
+                "shopping cart": 0.004804229363799095,
+                "traffic light, traffic signal, stoplight": 0.004581465385854244,
+                "pole": 0.004579276777803898
+            },
+            "convnext_small": {
+                "palace": 0.35451310873031616,
+                "streetcar, tram, tramcar, trolley, trolley car": 0.05189872533082962,
+                "trolleybus, trolley coach, trackless trolley": 0.03454570472240448,
+                "traffic light, traffic signal, stoplight": 0.012438572943210602,
+                "triumphal arch": 0.007747707888484001,
+                "flagpole, flagstaff": 0.005984925664961338,
+                "pole": 0.0057313512079417706,
+                "obelisk": 0.004847147036343813,
+                "minivan": 0.003915224224328995,
+                "castle": 0.0038913709577172995
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52953329373_5fa2128c4c_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "scabbard": 0.2985086739063263,
+                "palace": 0.1419306844472885,
+                "castle": 0.0608561635017395,
+                "bearskin, busby, shako": 0.02358837053179741,
+                "shield, buckler": 0.020042993128299713,
+                "rifle": 0.011144166812300682,
+                "military uniform": 0.01031461451202631,
+                "drumstick": 0.009047871455550194,
+                "monastery": 0.008737198077142239,
+                "paddle, boat paddle": 0.006936595309525728
+            },
+            "convnext_small": {
+                "bearskin, busby, shako": 0.23919878900051117,
+                "palace": 0.16156832873821259,
+                "drumstick": 0.07644610852003098,
+                "military uniform": 0.056000180542469025,
+                "scabbard": 0.014144925400614738,
+                "castle": 0.009705329313874245,
+                "drum, membranophone, tympan": 0.007350991480052471,
+                "bow": 0.007286999840289354,
+                "shield, buckler": 0.005736090242862701,
+                "pickelhaube": 0.005039697512984276
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52938952470_4a723980e6_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "buckeye, horse chestnut, conker": 0.7986994981765747,
+                "maze, labyrinth": 0.03163174167275429,
+                "lakeside, lakeshore": 0.012582357041537762,
+                "stone wall": 0.009519007988274097,
+                "park bench": 0.005758338142186403,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.005413103848695755,
+                "rapeseed": 0.005133170634508133,
+                "obelisk": 0.002855737693607807,
+                "picket fence, paling": 0.002118147909641266,
+                "maypole": 0.0016782613238319755
+            },
+            "convnext_small": {
+                "buckeye, horse chestnut, conker": 0.8520715832710266,
+                "maze, labyrinth": 0.051276858896017075,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.0038163550198078156,
+                "totem pole": 0.003426496172323823,
+                "park bench": 0.002821614034473896,
+                "rapeseed": 0.0026533191557973623,
+                "picket fence, paling": 0.002121151890605688,
+                "lakeside, lakeshore": 0.002014965284615755,
+                "stone wall": 0.0019442213233560324,
+                "earthstar": 0.0018503273604437709
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52938562931_081b6df327_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "maze, labyrinth": 0.5742294788360596,
+                "palace": 0.00457604369148612,
+                "rapeseed": 0.003948081750422716,
+                "valley, vale": 0.0025770505890250206,
+                "go-kart": 0.002218849491328001,
+                "lakeside, lakeshore": 0.002063908614218235,
+                "alp": 0.0020285446662455797,
+                "water bottle": 0.0017504392890259624,
+                "greenhouse, nursery, glasshouse": 0.001618297421373427,
+                "castle": 0.0014076970983296633
+            },
+            "convnext_small": {
+                "maze, labyrinth": 0.6911439895629883,
+                "valley, vale": 0.0021284641698002815,
+                "alp": 0.0015440689167007804,
+                "palace": 0.0014762948267161846,
+                "lakeside, lakeshore": 0.0013022144557908177,
+                "coil, spiral, volute, whorl, helix": 0.0011134102242067456,
+                "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis": 0.00107763207051903,
+                "stone wall": 0.0010212365305051208,
+                "castle": 0.0009445020114071667,
+                "promontory, headland, head, foreland": 0.0008909337338991463
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52994747633_9e78ef72ac_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "palace": 0.17969730496406555,
+                "monastery": 0.1195443794131279,
+                "church, church building": 0.0647767186164856,
+                "library": 0.054317865520715714,
+                "prison, prison house": 0.027328643947839737,
+                "mosque": 0.017424626275897026,
+                "castle": 0.015744736418128014,
+                "picket fence, paling": 0.013459469191730022,
+                "cinema, movie theater, movie theatre, movie house, picture palace": 0.010682680644094944,
+                "chainlink fence": 0.007688058074563742
+            },
+            "convnext_small": {
+                "palace": 0.10393573343753815,
+                "monastery": 0.0760309249162674,
+                "church, church building": 0.06129220873117447,
+                "flagpole, flagstaff": 0.029883675277233124,
+                "bell cote, bell cot": 0.022524168714880943,
+                "castle": 0.019613102078437805,
+                "mosque": 0.018395572900772095,
+                "library": 0.01460250373929739,
+                "water tower": 0.012001839466392994,
+                "traffic light, traffic signal, stoplight": 0.008750561624765396
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52957181126_56b5494fdc_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "picket fence, paling": 0.1085646003484726,
+                "castle": 0.053819552063941956,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.03868308663368225,
+                "church, church building": 0.033186398446559906,
+                "barn": 0.03014558181166649,
+                "worm fence, snake fence, snake-rail fence, Virginia fence": 0.025280889123678207,
+                "streetcar, tram, tramcar, trolley, trolley car": 0.021893173456192017,
+                "jigsaw puzzle": 0.020312312990427017,
+                "birdhouse": 0.01462586596608162,
+                "beacon, lighthouse, beacon light, pharos": 0.013066336512565613
+            },
+            "convnext_small": {
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.3061316907405853,
+                "church, church building": 0.16651125252246857,
+                "picket fence, paling": 0.07729333639144897,
+                "birdhouse": 0.02276362106204033,
+                "barn": 0.013094590976834297,
+                "palace": 0.010056915692985058,
+                "jigsaw puzzle": 0.009418475441634655,
+                "streetcar, tram, tramcar, trolley, trolley car": 0.008986175991594791,
+                "window screen": 0.008573653176426888,
+                "envelope": 0.008557699620723724
+            }
+        }
+    },
+    {
+        "name": "flickr-data/mansion/52939015058_57d8fa4050_o.jpg",
+        "label": "mansion",
+        "models": {
+            "convnext_tiny": {
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.14893826842308044,
+                "gong, tam-tam": 0.077721007168293,
+                "theater curtain, theatre curtain": 0.0157949086278677,
+                "maraca": 0.010590869933366776,
+                "Indian cobra, Naja naja": 0.010464689694344997,
+                "hamper": 0.009720114059746265,
+                "comic book": 0.009226002730429173,
+                "fig": 0.008300759829580784,
+                "red wine": 0.008110247552394867,
+                "chest": 0.007883756421506405
+            },
+            "convnext_small": {
+                "maraca": 0.08343258500099182,
+                "ladle": 0.06109501048922539,
+                "comic book": 0.029182106256484985,
+                "book jacket, dust cover, dust jacket, dust wrapper": 0.029005559161305428,
+                "custard apple": 0.01839580200612545,
+                "buckle": 0.018205104395747185,
+                "tray": 0.015867969021201134,
+                "grocery store, grocery, food market, market": 0.015689410269260406,
+                "cucumber, cuke": 0.015050982125103474,
+                "wooden spoon": 0.014484216459095478
+            }
+        }
+    }
+]
