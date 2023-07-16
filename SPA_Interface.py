@@ -43,12 +43,8 @@ class SPA_Interface():
         
         self.models = ["convnext_tiny", "convnext_small"]
         
-    
-    def __recreateBatchWithBatchsize(batchsize):
-        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList= self.__loadDataFromModel(batchSize)
-
-
-        
+ 
+    # creates random batch and loads labels, indexList, sourceList, topTenList, labelList for the gui
     def __loadDataFromModel(self,batchSize):
         batch, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
 
@@ -56,10 +52,10 @@ class SPA_Interface():
 
         if not os.path.exists('predictions'):
             os.makedirs('predictions')
-        #predictions = feedModel(batch, model)
+      
         topTenList = createTopk(batch, model, amount=10)
         labels = []
-        # just for test purpose
+        
         for i in range(0, batchSize):
             labels.append(topTenList[i])
 
@@ -176,7 +172,7 @@ class SPA_Interface():
             else:
                 self.updateObject(img)
 
-        
+    # finds the max k predictions in the tensor  
     def findMaxPred(self,prediction, k=10):
         predictionsMax = []
         predictionsIndices = []
@@ -223,7 +219,7 @@ class SPA_Interface():
         hypernyms = synset.hypernyms()
             
         if definition == "" or definition == None:
-            while (hypernyms != null):
+            while (hypernyms != None):
                 synsnetHypernym = hypernyms[0]
                    
                 hypernymDefinition = synsnetHypernym.definition()
@@ -232,30 +228,19 @@ class SPA_Interface():
                     summary = hypernymDefinition
                     break
                 hypernyms = synsnetHypernym.hypernyms()
-                print(hypernyms)
         else:
             summary = definition
 
         return summary
-    
-    # def fetchSummaryFromWiki(self, pageTitle):
-    #     try:
-    #         pageTitle.capitalize()
-    #         summary = wikipedia.summary(pageTitle).split(".")[0]
-    #     except wikipedia.exceptions.PageError:
-    #         summary = ""
-    #     except wikipedia.exceptions.DisambiguationError:
-    #         summary = ""
-    #     except:
-    #         summary = ""
-    #     return summary
-      
+
+    # extracts the firstLabel for the image and creates a nltk definition for the given image      
     def handleImageInput(self):
         firstLabel = list(self.topTenList[self.index].keys())[0]
         summaryFirstLabel = self.fetchSummaryFromNLTK(firstLabel)
         return summaryFirstLabel
         
-        
+     
+    # authentication for the login process
     def __authFunction(self,userInp):
         # load existing emails and ID´s from database
         
@@ -302,6 +287,7 @@ class SPA_Interface():
                     return True
             return False # user inputted a not existing Id
     
+    # increments the index by 1
     def __incrementIndex(self):
         self.index +=1            
     
@@ -315,6 +301,7 @@ class SPA_Interface():
             self.__incrementIndex()
             return *[gr.update(visible=True) for _ in range(3)],gr.update(value=self.sourceList[self.index]),gr.update(value=self.topTenList[self.index]), *[gr.update(visible=False) for _ in range(3)], gr.update(value="")
 
+    # event handler for the login submit process
     def submitHandler(self,batchSize, userInput, model):
         
         self.loggedIn = self.__authFunction(userInput)
@@ -322,14 +309,11 @@ class SPA_Interface():
             try:            
                 self.batchSize = int(batchSize)
                 
-                # TEST
-                #self.__recreateBatchWithBatchsize(self.batchSize)
-                
             finally:
                 self.initData()
                 self.modelName = model
                 self.addImgs()
-                #self.addModel(model)
+        
                 return *[gr.update(visible=False)  for _ in range(9)],*[gr.update(visible=True) for _ in range(3)], gr.update(visible=True, value=f"Your model: {model}"), gr.update(visible=True, value=f"Your User ID: {self.uID}"), gr.update(visible=True, value=self.sourceList[self.index]) ,gr.update(visible=True, value=self.topTenList[self.index])
     
         else:
@@ -340,6 +324,7 @@ class SPA_Interface():
             else: # user inputted a not existing Id
                 return *[gr.update(visible=True) for _ in range(6)],*[gr.update(visible=False) for _ in range(2)] ,gr.update(visible=True),*[gr.update(visible=False) for _ in range(7)]
     
+    # saves the data to data.json after confirming
     def saveData(self):
         #add the new genarated data into database(here as dict)
         self.updateData()
@@ -357,6 +342,7 @@ class SPA_Interface():
 
         return *[gr.update(visible=False) for _ in range(2)], *[gr.update(visible=False) for _ in range(3)]
     
+    # saves our data if user wants to classify more images
     def saveAndBack(self):
         self.updateData()
 
@@ -370,6 +356,7 @@ class SPA_Interface():
         return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID), gr.update(value=self.batchSize), gr.update(value=self.modelName), *[gr.update(visible=False) for _ in range(3)]
 
 
+    # event handler for last page
     def lastPage(self):
         self.finished = True
         #empty the container
@@ -378,11 +365,14 @@ class SPA_Interface():
 
         return *[gr.update(visible=False) for _ in range(2)], *[gr.update(visible=False) for _ in range(3)]
     
+    
+    # kills our threads after the classification
     def sysExit(self):
         while self.finished == False:
             time.sleep(1)
         thread_1._stop()
         
+    # gui for the classifier
     def interface(self):
         with gr.Blocks() as demo:
             
