@@ -1,9 +1,12 @@
 import json
 import os
-import utilities
 import time
 
+import utilities
 
+'''
+Combines the other functions, controls the classification and data saving process of the flickr data
+'''
 def createFlickrData():
     startTime = time.time()
     print("\nStarting data creation process")
@@ -30,7 +33,9 @@ def createFlickrData():
           f" took {round(endTime - startTime)} seconds.")
 
 
-
+'''
+Collects alls the images with their individual paths of a root folder, and returns them as a list
+'''
 def getImagePaths(rootFolder):
     print("     Collecting image paths")
     imagePaths = []
@@ -44,6 +49,9 @@ def getImagePaths(rootFolder):
     return imagePaths
 
 
+'''
+Classifies our images with both models and returns the top 10 predictions
+'''
 def classifyFlickr(pics):
     print("     Starting classification")
     convnextTiny = utilities.createModel("convnext_tiny")
@@ -54,14 +62,15 @@ def classifyFlickr(pics):
     return predictionsTiny, predictionsSmall
 
 
+'''
+Saves out data in the database, ensures that there are no duplicates
+'''
 def createJsonDatabase(label, name, models):
     data = {
         "name": name,
         "label": label,
         "models": models
     }
-
-
 
     # Write JSON data to a file
     try:
@@ -78,7 +87,3 @@ def createJsonDatabase(label, name, models):
 
     with open('flickrData.json', 'w') as file:
         json.dump(existingData, file, indent=4)
-
-
-
-

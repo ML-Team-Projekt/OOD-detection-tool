@@ -1,32 +1,28 @@
-import os
 import csv
-import requests
-import torch
-from model_loader import get_new_model
-import torch.nn.functional as F
-import torchvision.transforms.functional as fn
-import torchvision.transforms as T
-from PIL import Image
-import class_katalog
-
-from Dataset import imageDataset, dataloader
-
 import json
+import os
+import random
 
 import numpy as np
-import random
+import torch
+import torch.nn.functional as F
+import torchvision.transforms as T
+import torchvision.transforms.functional as fn
+from PIL import Image
+
+import class_katalog
+from Dataset import imageDataset, dataloader
+from model_loader import get_new_model
 
 random.seed(0)
 np.random.seed(0)
 
-
-
-#from Dataset import imageDataset, dataloader
+# from Dataset import imageDataset, dataloader
 
 
 # Constants for the size of the images
 
-SIZE = round(224/0.875)
+SIZE = round(224 / 0.875)
 
 
 def createAnnotation(folderPath):
@@ -36,7 +32,7 @@ def createAnnotation(folderPath):
     for root, dirs, files in os.walk(folderPath):
         for filename in files:
             dataList.append(os.path.join(root, filename))
-            labelList.append(root[lengthOfFolderPath+1:])
+            labelList.append(root[lengthOfFolderPath + 1:])
     totalNumberOfData = len(dataList)
 
     header = ['Data', 'Label']
@@ -79,10 +75,8 @@ def createTopk(batch, model, amount, path='imgBatch/'):
     return topTenList
 
 
-
 # callable object to transform PIL to Tensor
 pilToTensor = T.ToTensor()
-
 
 '''
 function feeds the loaded model with data
@@ -90,10 +84,9 @@ Arguments: list[dict[image:tensor,label:str]], model
 Return: list[dict[image:tensor,label:str, prediction:tensor]]
 '''
 def feedModel(img, model, path):
-
     image = Image.open(path + img)
     image = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    image = fn.center_crop(img=image, output_size=[SIZE,SIZE])
+    image = fn.center_crop(img=image, output_size=[SIZE, SIZE])
     image = pilToTensor(image)
     image = image.unsqueeze(0)
 
@@ -104,7 +97,7 @@ def feedModel(img, model, path):
 
 
 # function that finds the labels to the top k predictions
-def findLabels(prediction, k:int):
+def findLabels(prediction, k: int):
     (predictionMax, predictionIndices) = findMaxPredictions(prediction, k)
 
     topKLabels = {}
@@ -114,11 +107,12 @@ def findLabels(prediction, k:int):
 
     return topKLabels
 
+
 # function that finds the top k predictions
 def findMaxPredictions(prediction, k: int):
     tempPredictionsMax = []
     tempPredictionsIndices = []
-    
+
     for _ in range(0, k):
         maximums = prediction.max().item()
         indices = prediction.argmax().item()
@@ -127,7 +121,6 @@ def findMaxPredictions(prediction, k: int):
         prediction[indices] = - float('inf')  # set probability of maximum to -inf to search for the next maximum
 
     return (tempPredictionsMax, tempPredictionsIndices)
-
 
 
 '''
@@ -143,7 +136,8 @@ def createRandomBatch(batchsize, uId):
     try:
         assert (0 < batchsize <= len(imageDataset))
     except AssertionError:
-        RuntimeError(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
+        RuntimeError(
+            f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
     batch = []
     indexList = []
     sourceList = []
@@ -156,9 +150,10 @@ def createRandomBatch(batchsize, uId):
     while iterator < batchsize:
         iterator += 1
         if attempts >= TRIALSTHRESHOLD:
-            RuntimeError(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
-                     f"Please try to enter a smaller amount of tries than {len(indexList)}.")
-            
+            RuntimeError(
+                f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
+                f"Please try to enter a smaller amount of tries than {len(indexList)}.")
+
         flag = False
         index = random.randint(0, len(imageDataset))
         if index in indexList:
@@ -181,15 +176,13 @@ def createRandomBatch(batchsize, uId):
         indexList.append(index)
         sample, sample3dim, source = dataloader[index]
 
-
         sourceList.append(source)
         imgFile = source.split('/')[-1]
         batch.append(imgFile)
         label = sample['label']
         labelList.append(label)
-    
-    return batch, indexList, sourceList, labelList
 
+    return batch, indexList, sourceList, labelList
 
 
 '''
@@ -197,11 +190,12 @@ function extracts the values from the samples dict
 Arguments: dict which contains random batch dict
 Return: returns the values from samples list
 '''
-def extractValuesFromDict(samples, key:str):
+def extractValuesFromDict(samples, key: str):
     values = []
     for dictionary in samples:
         values.append(dictionary[key])
     return values
+
 
 # function to visualize the batch
 def visualize(samples):
@@ -209,4 +203,4 @@ def visualize(samples):
     grid_border_size = 2
     elementsPerRow = 4
     grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
-    plt.imshow(grid.detach().numpy().transpose((1,2,0)))
+    plt.imshow(grid.detach().numpy().transpose((1, 2, 0)))
