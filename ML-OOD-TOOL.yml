@@ -10,6 +10,7 @@ dependencies:
   - setuptools
   - pip
   - wheel
+  - jupyterlab=3.6.3
   - conda-content-trust
   - ipywidgets = 8.0
   - pyparsing=3.0
