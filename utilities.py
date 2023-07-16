@@ -9,6 +9,20 @@ import torchvision.transforms as T
 from PIL import Image
 import class_katalog
 
+from Dataset import imageDataset, dataloader
+
+import json
+
+import numpy as np
+import random
+
+random.seed(0)
+np.random.seed(0)
+
+
+
+#from Dataset import imageDataset, dataloader
+
 
 # Constants for the size of the images
 
@@ -33,33 +47,6 @@ def createAnnotation(folderPath):
         writer.writerow(header)
         for i in range(totalNumberOfData):
             writer.writerow([dataList[i], labelList[i]])
-
-
-def getRow(row_number, file_path = 'output.csv'):
-    with open(file_path, 'r', newline='') as file:
-        reader = csv.DictReader(file)
-        rows = list(reader)
-
-        assert not (row_number < 0 or row_number >= len(rows))
-        row = rows[row_number]
-        img = row['Data'].split('/')[-1]
-        return {'label':row['Label'], 'img':img}
-
-
-# creates url for fetching images from server
-def createUrl(row_number):
-    dict = getRow(row_number)
-    imgName = dict['img']
-    url = f"https://nc.mlcloud.uni-tuebingen.de/index.php/s/TgSK4n8ctPbWP4K/download?path=%2F{dict['label']}&files={dict['img']}"
-    return url, imgName
-
-def fetchOneImg(imgIndex, imgFolder):
-    url, img = createUrl(imgIndex)
-    response = requests.get(url)
-    filename = imgFolder + '/' + img
-    with open(filename, 'wb') as file:
-         file.write(response.content)
-    return response.content
 
 
 def createModel(modelName):
@@ -141,3 +128,86 @@ def findMaxPredictions(prediction, k: int):
         prediction[indices] = - float('inf')  # set probability of maximum to -inf to search for the next maximum
 
     return (tempPredictionsMax, tempPredictionsIndices)
+
+
+
+'''
+function creates a random batch of data with a given size
+Arguments: batchsize:int
+Return: an array with a dict[image:label] 
+'''
+def createRandomBatch(batchsize, uId):
+    # Number of tries to get another number
+    random.seed(0)
+    np.random.seed(0)
+    TRIALSTHRESHOLD = 10000
+    try:
+        assert (0 < batchsize <= len(imageDataset))
+    except AssertionError:
+        RuntimeError(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
+    batch = []
+    indexList = []
+    sourceList = []
+    labelList = []
+    attempts = 0
+
+    iterator = 0
+    with open('data.json', 'r') as file:
+        saves = json.load(file)
+    while iterator < batchsize:
+        iterator += 1
+        if attempts >= TRIALSTHRESHOLD:
+            RuntimeError(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
+                     f"Please try to enter a smaller amount of tries than {len(indexList)}.")
+            
+        flag = False
+        index = random.randint(0, len(imageDataset))
+        if index in indexList:
+            iterator -= 1
+            attempts += 0.5
+            flag = True
+
+        for img in saves:
+            if uId != None and img['ImgID'] == index:
+                user_calls = img['UserCall']
+                for call in user_calls:
+                    if call['userId'] == int(uId):
+                        iterator -= 1
+                        attempts += 1
+                        flag = True
+
+        if flag:
+            continue
+
+        indexList.append(index)
+        sample, sample3dim, source = dataloader[index]
+
+
+        sourceList.append(source)
+        imgFile = source.split('/')[-1]
+        batch.append(imgFile)
+        label = sample['label']
+        labelList.append(label)
+    
+    return batch, indexList, sourceList, labelList
+
+
+
+'''
+function extracts the values from the samples dict
+Arguments: dict which contains random batch dict
+Return: returns the values from samples list
+'''
+def extractValuesFromDict(samples, key:str):
+    values = []
+    for dictionary in samples:
+        values.append(dictionary[key])
+    return values
+
+# function to visualize the batch
+def visualize(samples):
+    tensors = extractValuesFromDict(samples, 'image')
+    grid_border_size = 2
+    elementsPerRow = 4
+    grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
+    plt.imshow(grid.detach().numpy().transpose((1,2,0)))

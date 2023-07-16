@@ -11,17 +11,15 @@ import pandas as pd
 from PIL import Image
 import random
 import json
+import csv
+import requests
 import gradio as gr
 import numpy as np
 import os
 from io import BytesIO
-from utilities import fetchOneImg
+#from utilities import fetchOneImg
 random.seed(0)
 np.random.seed(0)
-
-
-
-
 
 
 class ImageDataset(Dataset):
@@ -33,7 +31,7 @@ class ImageDataset(Dataset):
 
     def __getitem__(self, index):
         data_path = self.annotation.iloc[index,0]
-        image = fetchOneImg(index, self.batchFolder)
+        image = self.fetchOneImg(index, self.batchFolder)
         image = BytesIO(image)
         image = Image.open(image)
         label = self.annotation.iloc[index,1]
@@ -42,27 +40,36 @@ class ImageDataset(Dataset):
 
     def __len__(self):
         return len(self.annotation)
+    
+    def getRow(self,row_number, file_path = 'output.csv'):
+        with open(file_path, 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            rows = list(reader)
+
+            assert not (row_number < 0 or row_number >= len(rows))
+            row = rows[row_number]
+            img = row['Data'].split('/')[-1]
+            return {'label':row['Label'], 'img':img}
+        
+    # creates url for fetching images from server
+    def createUrl(self,row_number):
+        dict = self.getRow(row_number)
+        imgName = dict['img']
+        url = f"https://nc.mlcloud.uni-tuebingen.de/index.php/s/TgSK4n8ctPbWP4K/download?path=%2F{dict['label']}&files={dict['img']}"
+        return url, imgName
+
+    def fetchOneImg(self, imgIndex, imgFolder):
+        url, img = self.createUrl(imgIndex)
+        response = requests.get(url)
+        filename = imgFolder + '/' + img
+        with open(filename, 'wb') as file:
+            file.write(response.content)
+        return response.content
 
 # instance of class ImageDataset
 # contains all 765 images with their respective labels
 imageDataset = ImageDataset(annotation='output.csv')
 
-# Constants for the size of the images
-SIZE = round(224/0.875)
-
-# given an Index returns the transformed Image
-# input: Index: int
-# return: tuple(PIL Image, label)
-def transform(index):
-    assert index <= len(imageDataset)
-    image, label, source = imageDataset[index]
-    rescaledImage = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    transformedImage = fn.center_crop(img=rescaledImage, output_size=[SIZE,SIZE])
-    return transformedImage, label, source
-
-# objects for tensor transformation
-pilToTensor = T.ToTensor()
-tensorToPil = T.ToPILImage()
 
 # Class which is used to get the resized images with label
 # input: datasetLength: int
@@ -70,101 +77,31 @@ tensorToPil = T.ToPILImage()
 class DataLoader(Dataset):
     def __init__(self, datasetLength):
         self.datasetLength = datasetLength
+        self.SIZE = round(224/0.875)
+        
+        # objects for tensor transformation
+        self.pilToTensor = T.ToTensor()
+        self.tensorToPil = T.ToPILImage()
    
     def __getitem__(self, index):
         self.index = index
-        (picture, label, source) = transform(index)
-        image = pilToTensor(picture)
+        (picture, label, source) = self.transform(index)
+        image = self.pilToTensor(picture)
         sample3dim = {'image' : image, 'label' : label}
         image = image.unsqueeze(0)
         sample = {'image': image, 'label': label}
         return sample, sample3dim, source
+    
+    # Constants for the size of the images
 
+    # given an Index returns the transformed Image
+    # input: Index: int
+    # return: tuple(PIL Image, label)
+    def transform(self,index):
+        assert index <= len(imageDataset)
+        image, label, source = imageDataset[index]
+        rescaledImage = fn.resize(img=image, size=[self.SIZE, self.SIZE], interpolation=T.InterpolationMode.BICUBIC)
+        transformedImage = fn.center_crop(img=rescaledImage, output_size=[self.SIZE,self.SIZE])
+        return transformedImage, label, source
 
 dataloader = DataLoader(len(imageDataset))
-
-'''
-function creates a random batch of data with a given size
-Arguments: batchsize:int
-Return: an array with a dict[image:label] 
-'''
-def createRandomBatch(batchsize, uId):
-    # Number of tries to get another number
-    random.seed(0)
-    np.random.seed(0)
-    TRIALSTHRESHOLD = 10000
-    try:
-        assert (0 < batchsize <= len(imageDataset))
-    except AssertionError:
-        RuntimeError(f"Your batch size {batchsize} is not in the range 0 < batch size < Länge von {IMAGESROOTDIR} = {len(imageDataset)}")
-    batch = []
-    indexList = []
-    sourceList = []
-    labelList = []
-    attempts = 0
-
-    iterator = 0
-    with open('data.json', 'r') as file:
-        saves = json.load(file)
-    while iterator < batchsize:
-        iterator += 1
-        if attempts >= TRIALSTHRESHOLD:
-            RuntimeError(f"The program tried more than {TRIALSTHRESHOLD} times to find an image which was not already shown to you. "
-                     f"Please try to enter a smaller amount of tries than {len(indexList)}.")
-            
-        flag = False
-        index = random.randint(0, len(imageDataset))
-        if index in indexList:
-            iterator -= 1
-            attempts += 0.5
-            flag = True
-
-        for img in saves:
-            if uId != None and img['ImgID'] == index:
-                user_calls = img['UserCall']
-                for call in user_calls:
-                    if call['userId'] == int(uId):
-                        iterator -= 1
-                        attempts += 1
-                        flag = True
-
-        if flag:
-            continue
-
-        indexList.append(index)
-        sample, sample3dim, source = dataloader[index]
-
-
-        sourceList.append(source)
-        imgFile = source.split('/')[-1]
-        batch.append(imgFile)
-        label = sample['label']
-        labelList.append(label)
-    attempts = 0
-    return batch, indexList, sourceList, labelList
-
-
-
-'''
-function extracts the values from the samples dict
-Arguments: dict which contains random batch dict
-Return: returns the values from samples list
-'''
-def extractValuesFromDict(samples, key:str):
-    values = []
-    for dictionary in samples:
-        values.append(dictionary[key])
-    return values
-
-# function to visualize the batch
-def visualize(samples):
-    tensors = extractValuesFromDict(samples, 'image')
-    grid_border_size = 2
-    elementsPerRow = 4
-    grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
-    plt.imshow(grid.detach().numpy().transpose((1,2,0)))
-
-
-
-
-
