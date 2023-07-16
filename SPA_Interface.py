@@ -64,36 +64,36 @@ class SPA_Interface():
 
         return labels, indexList, sourceList, topTenList, labelList
 
-    def initImgSet(self):
+    def __initImgSet(self):
         if len(self.data) > 0:
             for obj in self.data:
                 self.imgSet.add(obj['source'])
 
-    def initData(self):
+    def __initData(self):
         # load existing data from database
         with open('data.json') as file:
             json_str = file.read()
         self.data = json.loads(json_str)
-        self.initImgSet()
+        self.__initImgSet()
 
-    def addImgs(self):
+    def __addImgs(self):
         folder_path = 'imgBatch/'
         shutil.rmtree(folder_path)
         os.makedirs('imgBatch')
-        self.addBatchsize()
+        self.__addBatchsize()
         self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
             self.batchSize)
         self.addImg(self.indexList)
-        self.addTopTen(self.topTenList)
-        self.addModel(self.modelName)
-        self.addSource(self.sourceList)
-        self.addLabel(self.labelList)
+        self.__addTopTen(self.topTenList)
+        self.__addModel(self.modelName)
+        self.__addSource(self.sourceList)
+        self.__addLabel(self.labelList)
 
     # Here we configure the Datacollector, which contains all informations of once Usercall
-    def addUserId(self, UserId):
+    def __addUserId(self, UserId):
         self.dataCollector['UserId'] = UserId
 
-    def addBatchsize(self):
+    def __addBatchsize(self):
         self.dataCollector['batchsize'] = int(self.batchSize)
 
     def addImg(self, imgIds):
@@ -103,12 +103,12 @@ class SPA_Interface():
             Samples.append({'ImgId': imgIds[i], 'topTen': []})
         self.dataCollector['Imgs'] = Samples
 
-    def addTopTen(self, topTenList):
+    def __addTopTen(self, topTenList):
         assert len(topTenList) == len(self.dataCollector['Imgs'])
         for i in range(len(topTenList)):
             self.dataCollector['Imgs'][i]['topTen'] = topTenList[i]
 
-    def addDecision(self, decision):
+    def __addDecision(self, decision):
         self.decisions.append(decision)
         if len(self.decisions) == self.dataCollector['batchsize']:
             assert self.dataCollector['batchsize'] == len(self.dataCollector['Imgs'])
@@ -116,21 +116,21 @@ class SPA_Interface():
                 self.dataCollector['Imgs'][i]['decision'] = self.decisions[i]
             self.decisions = []
 
-    def addSource(self, sourceList):
+    def __addSource(self, sourceList):
         assert len(sourceList) == len(self.dataCollector['Imgs'])
         for i in range(len(self.dataCollector['Imgs'])):
             self.dataCollector['Imgs'][i]['source'] = sourceList[i]
 
-    def addLabel(self, labelList):
+    def __addLabel(self, labelList):
         assert len(labelList) == len(self.dataCollector['Imgs'])
         for i in range(len(self.dataCollector['Imgs'])):
             self.dataCollector['Imgs'][i]['label'] = labelList[i]
 
-    def addModel(self, model):
+    def __addModel(self, model):
         self.dataCollector['model'] = model
 
     # create an object for a Usercall, in case that we want to insert a new image into our database
-    def creatJsonObject(self, img):
+    def __creatJsonObject(self, img):
         topTen = img['topTen']
         object = {
             'ImgID': img['ImgId'],
@@ -149,7 +149,7 @@ class SPA_Interface():
         return object
 
     # update the object of the image, which already exists in database.
-    def updateObject(self, img):
+    def __updateObject(self, img):
         for obj in self.data:
             if obj['source'] == img['source']:
                 call = {
@@ -164,17 +164,17 @@ class SPA_Interface():
                     obj['topTen'][key] = img['topTen']
 
     # update our database everytime a Usercall happens
-    def updateData(self):
+    def __updateData(self):
         for img in self.dataCollector['Imgs']:
             if img['source'] not in self.imgSet:
-                obj = self.creatJsonObject(img)
+                obj = self.__creatJsonObject(img)
                 self.data.append(obj)
                 self.imgSet.add(img['source'])
             else:
-                self.updateObject(img)
+                self.__updateObject(img)
 
     # gets the corresponding wordnet id from a given prediction
-    def findWordNetID(self, prediction: str):
+    def __findWordNetID(self, prediction: str):
         synsnetID = ""
         dictionaryMap = getDictRep()
         for _, value in dictionaryMap.items():
@@ -190,8 +190,8 @@ class SPA_Interface():
         return synsnetID
 
     # fetches a description from the WordNet hierarchy for a given prediction
-    def fetchSummaryFromNLTK(self, firstPrediction: str):
-        idForNLTK = self.findWordNetID(firstPrediction)
+    def __fetchSummaryFromNLTK(self, firstPrediction: str):
+        idForNLTK = self.__findWordNetID(firstPrediction)
         summary = ""
 
         synset = wn.synset_from_pos_and_offset('n', offset=int(idForNLTK))
@@ -215,9 +215,9 @@ class SPA_Interface():
         return summary
 
     # extracts the firstLabel for the image and creates a nltk definition for the given image      
-    def handleImageInput(self):
+    def __handleImageInput(self):
         firstLabel = list(self.topTenList[self.index].keys())[0]
-        summaryFirstLabel = self.fetchSummaryFromNLTK(firstLabel)
+        summaryFirstLabel = self.__fetchSummaryFromNLTK(firstLabel)
         return summaryFirstLabel
 
     # authentication for the login process
@@ -237,7 +237,7 @@ class SPA_Interface():
             for obj in emails_ids:
                 if obj['email'] == userInp:
                     self.uID = obj['userId']
-                    self.addUserId(self.uID)
+                    self.__addUserId(self.uID)
                     return True
             if (len(emails_ids) == 0):
                 newId = 1000
@@ -257,13 +257,13 @@ class SPA_Interface():
             with open(databasePath, 'w') as database:
                 json.dump(emails_ids, database, indent=4)
             self.uID = newId
-            self.addUserId(self.uID)
+            self.__addUserId(self.uID)
             return True  # user has to get to know new Id
         else:
             for obj in emails_ids:
                 if obj['userId'] == int(userInp):
                     self.uID = int(userInp)
-                    self.addUserId(self.uID)
+                    self.__addUserId(self.uID)
                     return True
             return False  # user inputted a not existing Id
 
@@ -275,7 +275,7 @@ class SPA_Interface():
 
     def __selectDecision(self, decision: str):
 
-        self.addDecision(decision)
+        self.__addDecision(decision)
         if self.index >= self.batchSize - 1:
             return *[gr.update(visible=False) for _ in range(5)], *[gr.update(visible=True) for _ in
                                                                     range(3)], gr.update(
@@ -287,7 +287,7 @@ class SPA_Interface():
                 gr.update(visible=False) for _ in range(3)], gr.update(value="")
 
     # event handler for the login submit process
-    def submitHandler(self, batchSize, userInput, model):
+    def __submitHandler(self, batchSize, userInput, model):
 
         self.loggedIn = self.__authFunction(userInput)
         if self.loggedIn:
@@ -295,9 +295,9 @@ class SPA_Interface():
                 self.batchSize = int(batchSize)
 
             finally:
-                self.initData()
+                self.__initData()
                 self.modelName = model
-                self.addImgs()
+                self.__addImgs()
 
                 return *[gr.update(visible=False) for _ in range(9)], *[gr.update(visible=True) for _ in
                                                                         range(3)], gr.update(visible=True,
@@ -321,9 +321,9 @@ class SPA_Interface():
                     gr.update(visible=False) for _ in range(7)]
 
     # saves the data to data.json after confirming
-    def saveData(self):
+    def __saveData(self):
         # add the new genarated data into database(here as dict)
-        self.updateData()
+        self.__updateData()
 
         databasePath = 'data.json'
         # write data into json file
@@ -339,8 +339,8 @@ class SPA_Interface():
         return *[gr.update(visible=False) for _ in range(2)], *[gr.update(visible=False) for _ in range(3)]
 
     # saves our data if user wants to classify more images
-    def saveAndBack(self):
-        self.updateData()
+    def __saveAndBack(self):
+        self.__updateData()
 
         databasePath = 'data.json'
         with open(databasePath, 'w') as database:
@@ -353,7 +353,7 @@ class SPA_Interface():
             value=self.batchSize), gr.update(value=self.modelName), *[gr.update(visible=False) for _ in range(3)]
 
     # event handler for last page
-    def lastPage(self):
+    def __lastPage(self):
         self.finished = True
         # empty the container
         self.dataCollector = dict()
@@ -401,7 +401,7 @@ class SPA_Interface():
                 with gr.Column():
                     image = gr.Image(self.sourceList[self.index]).style(height=400)
                     description = gr.Markdown(
-                        value=f"{self.fetchSummaryFromNLTK(list(self.topTenList[self.index].keys())[0])}")
+                        value=f"{self.__fetchSummaryFromNLTK(list(self.topTenList[self.index].keys())[0])}")
                 with gr.Column():
                     labels = gr.Label(label="Top 10 Predictions", value=self.topTenList[self.index])
 
@@ -424,9 +424,9 @@ class SPA_Interface():
                 buttonConfirm = gr.Button("Confirm and close")
                 buttonClose = gr.Button("Close without confirming")
 
-            image.change(self.handleImageInput, inputs=None, outputs=[description])
+            image.change(self.__handleImageInput, inputs=None, outputs=[description])
 
-            submitButton.click(self.submitHandler, inputs=[batchSize, username, dropdown],
+            submitButton.click(self.__submitHandler, inputs=[batchSize, username, dropdown],
                                outputs=[login1, login2, login3, login4, login5, login6, newAcc, auth, IDinv,
                                         classifier1, classifier2, classifier3, choosenModel, userID, image, labels])
             buttonOOD.click(self.__selectDecision, inputs=decisionOOD,
@@ -435,11 +435,11 @@ class SPA_Interface():
                             outputs=[classifier1, classifier2, classifier3, image, labels, end1, end2, end3, text1])
             buttonABS.click(self.__selectDecision, inputs=decisionAbstain,
                             outputs=[classifier1, classifier2, classifier3, image, labels, end1, end2, end3, text1])
-            buttonBack.click(self.saveAndBack, inputs=None,
+            buttonBack.click(self.__saveAndBack, inputs=None,
                              outputs=[login1, login2, login3, login4, login5, login6, username, batchSize, dropdown,
                                       end1, end2, end3])
-            buttonConfirm.click(self.saveData, inputs=None, outputs=[classifier2, classifier3, end1, end2, end3])
-            buttonClose.click(self.lastPage, inputs=None, outputs=[classifier2, classifier3, end1, end2, end3])
+            buttonConfirm.click(self.__saveData, inputs=None, outputs=[classifier2, classifier3, end1, end2, end3])
+            buttonClose.click(self.__lastPage, inputs=None, outputs=[classifier2, classifier3, end1, end2, end3])
 
         demo.launch(inbrowser=True)
 
