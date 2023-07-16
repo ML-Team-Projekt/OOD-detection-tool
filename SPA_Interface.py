@@ -64,11 +64,13 @@ class SPA_Interface():
 
         return labels, indexList, sourceList, topTenList, labelList
 
+    # Put the sources(file name) of all the images in data.json into a global variable imgSet
     def __initImgSet(self):
         if len(self.data) > 0:
             for obj in self.data:
                 self.imgSet.add(obj['source'])
 
+    # load the data from our database data.json and global variable imgSet  
     def __initData(self):
         # load existing data from database
         with open('data.json') as file:
@@ -76,38 +78,35 @@ class SPA_Interface():
         self.data = json.loads(json_str)
         self.__initImgSet()
 
-    def __addImgs(self):
-        folder_path = 'imgBatch/'
-        shutil.rmtree(folder_path)
-        os.makedirs('imgBatch')
-        self.__addBatchsize()
-        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
-            self.batchSize)
-        self.addImg(self.indexList)
-        self.__addTopTen(self.topTenList)
-        self.__addModel(self.modelName)
-        self.__addSource(self.sourceList)
-        self.__addLabel(self.labelList)
-
     # Here we configure the Datacollector, which contains all informations of once Usercall
+
+    # Fill the UserId into Datacollector
+    # input: UserId: String
     def __addUserId(self, UserId):
         self.dataCollector['UserId'] = UserId
-
+        
+    # Fill the Batchsize into Datacollector
     def __addBatchsize(self):
         self.dataCollector['batchsize'] = int(self.batchSize)
 
-    def addImg(self, imgIds):
+    # Fill the index list of a batch images into datacollector
+    # input: imgIds: List[Int]: index list of a batch images 
+    def __addImg(self, imgIds):
         assert self.dataCollector['batchsize'] == len(imgIds)
         Samples = []
         for i in range(self.dataCollector['batchsize']):
             Samples.append({'ImgId': imgIds[i], 'topTen': []})
         self.dataCollector['Imgs'] = Samples
 
+    # Fill the top ten predictions for each image in the batch into datacollector
+    # input: topTenList: List[List[float]]: List of top ten predictions for each image in the batch
     def __addTopTen(self, topTenList):
         assert len(topTenList) == len(self.dataCollector['Imgs'])
         for i in range(len(topTenList)):
             self.dataCollector['Imgs'][i]['topTen'] = topTenList[i]
 
+    # Fill the user's decesion for each image in the batch into datacollector
+    # input: decision: List[String]: List of predictions for each image in the batch
     def __addDecision(self, decision):
         self.decisions.append(decision)
         if len(self.decisions) == self.dataCollector['batchsize']:
@@ -116,20 +115,41 @@ class SPA_Interface():
                 self.dataCollector['Imgs'][i]['decision'] = self.decisions[i]
             self.decisions = []
 
+    # Fill the source(file name) for each image in the batch into datacollector
+    # input: decision: List[String]: List of file name for each image in the batch
     def __addSource(self, sourceList):
         assert len(sourceList) == len(self.dataCollector['Imgs'])
         for i in range(len(self.dataCollector['Imgs'])):
             self.dataCollector['Imgs'][i]['source'] = sourceList[i]
 
+    # Fill the label(ground truth of class) for each image in the batch into datacollector
+    # input: labelList: List[String]: List of label for each image in the batch
     def __addLabel(self, labelList):
         assert len(labelList) == len(self.dataCollector['Imgs'])
         for i in range(len(self.dataCollector['Imgs'])):
             self.dataCollector['Imgs'][i]['label'] = labelList[i]
 
+    # Fill the model's name into datacollector
+    # input: model: String: Model's name
     def __addModel(self, model):
         self.dataCollector['model'] = model
 
-    # create an object for a Usercall, in case that we want to insert a new image into our database
+    # configurate the datacollector with all __add functions, to pass the data from frontend to backend
+    def __addImgs(self):
+        folder_path = 'imgBatch/'
+        shutil.rmtree(folder_path)
+        os.makedirs('imgBatch')
+        self.__addBatchsize()
+        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
+            self.batchSize)
+        self.__addImg(self.indexList)
+        self.__addTopTen(self.topTenList)
+        self.__addModel(self.modelName)
+        self.__addSource(self.sourceList)
+        self.__addLabel(self.labelList)
+
+    # create an object for a Usercall, in case that we want to insert object of a new image into our database
+    # input: dict: a dict that represents an image along with its topTen, imgId, source, label and decesion 
     def __creatJsonObject(self, img):
         topTen = img['topTen']
         object = {
@@ -149,6 +169,7 @@ class SPA_Interface():
         return object
 
     # update the object of the image, which already exists in database.
+    # input: dict: a dict that represents an image along with its topTen, imgId, source, label and decesion
     def __updateObject(self, img):
         for obj in self.data:
             if obj['source'] == img['source']:
