@@ -377,6 +377,7 @@ class SPA_Interface():
     def __lastPage(self):
         self.finished = True
         # empty the container
+        shutil.rmtree('imgBatch/')
         self.dataCollector = dict()
         self.decisions = []
 
