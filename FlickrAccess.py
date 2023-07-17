@@ -1,15 +1,25 @@
 import sys
+
 from flickrapi import FlickrAPI
+
+'''
+Checks the existence of the API Keys
+'''
 try:
     import FLICKR_API_Keys as Keys
 except ModuleNotFoundError:
     print("Please make sure you have API keys for Flickr saved in FLICKR_API_Keys.py")
     sys.exit(0)
 
-# limiting the sizes we are interested in
+'''
+limiting the sizes we are interested in
+'''
 flickr = FlickrAPI(Keys.FLICKR_KEY, Keys.FLICKR_SECRET, format='parsed-json')
 SIZES = ["url_o", "url_k", "url_h", "url_l", "url_c"]
 
+'''
+Collects the photo information for the given tag
+'''
 def getPhotos(imageTag):
     # All the extra data that we want to have
     extras = 'owner_name,description, url_o, url_k, url_h, url_l, url_c'
@@ -25,6 +35,9 @@ def getPhotos(imageTag):
     return photos
 
 
+'''
+Returns the url which can be used to download a input photo from flickr
+'''
 def getUrl(photo):
     for i in range(len(SIZES)):  # makes sure we search the sizes in the order above
         url = photo.get(SIZES[i])
@@ -32,12 +45,14 @@ def getUrl(photo):
             return url
 
 
-# unites getPhotos and getUrls, returns list of URLs
+'''
+unites getPhotos and getUrls, returns list of URLs
+'''
 def getUrls(imageTag, max):
     data = getPhotos(imageTag)
     pics = data['photos']['photo']
-    counter=0
-    urls=[]
+    counter = 0
+    urls = []
 
     for pic in pics:
         if counter < max:

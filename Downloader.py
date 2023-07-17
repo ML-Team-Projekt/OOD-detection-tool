@@ -1,13 +1,18 @@
-import requests
 import os
+
+import requests
 from tqdm import tqdm
 
-
+'''
+Ensures that the given path exists
+'''
 def createFolder(path):
     if not os.path.isdir(path):
         os.makedirs(path)
 
-
+'''
+Downloads every given urls given as a list, saves them at given path
+'''
 def downloadImages(urls, path):
     createFolder(path)  # create the folder
 
