@@ -17,7 +17,10 @@ def downloadImages(urls, path):
     createFolder(path)  # create the folder
 
     for url in urls:
-        imageName = url.split("/")[-1]
+        urlParts = url.split("/")
+        fileName = urlParts[-1]
+        photoId = urlParts[-2]
+        imageName = f"{photoId}-{fileName}"
         imagePath = os.path.join(path, imageName)
 
         if not os.path.isfile(imagePath):  # ignore if already downloaded
