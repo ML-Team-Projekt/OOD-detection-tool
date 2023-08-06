@@ -153,7 +153,7 @@ def createRandomBatch(batchsize, uId):
     with open('data.json', 'r') as file:
         saves = json.load(file)
         
-    startTime = time.time()
+
     while iterator < batchsize:
         iterator += 1
         if attempts >= TRIALSTHRESHOLD:
@@ -188,7 +188,6 @@ def createRandomBatch(batchsize, uId):
         batch.append(imgFile)
         label = sample['label']
         labelList.append(label)
-    print(f"createRandomBatch {time.time() - startTime}")
 
     return batch, indexList, sourceList, labelList
 
