@@ -14,6 +14,11 @@ import class_katalog
 from Dataset import imageDataset, dataloader
 from model_loader import get_new_model
 
+import requests
+import json
+
+import time
+
 random.seed(0)
 np.random.seed(0)
 
@@ -147,6 +152,8 @@ def createRandomBatch(batchsize, uId):
     iterator = 0
     with open('data.json', 'r') as file:
         saves = json.load(file)
+        
+    startTime = time.time()
     while iterator < batchsize:
         iterator += 1
         if attempts >= TRIALSTHRESHOLD:
@@ -181,6 +188,7 @@ def createRandomBatch(batchsize, uId):
         batch.append(imgFile)
         label = sample['label']
         labelList.append(label)
+    print(f"createRandomBatch {time.time() - startTime}")
 
     return batch, indexList, sourceList, labelList
 
@@ -204,3 +212,20 @@ def visualize(samples):
     elementsPerRow = 4
     grid = torchvision.utils.make_grid(tensor=tensors, nrow=elementsPerRow, padding=grid_border_size)
     plt.imshow(grid.detach().numpy().transpose((1, 2, 0)))
+
+
+
+def fetchPredcitionForImage(image,model):
+    PATH = f" https://nc.mlcloud.uni-tuebingen.de/index.php/s/J6TAAkfsdJzcGBR/download?path=&files=data.json"
+    response = requests.get(PATH)
+    
+    if response.status_code == 200:
+        jsonData = response.json()
+    else:
+        raise "ServerError, can't fetch file"
+    
+    for prediction in jsonData:
+        if prediction['source'] == image:
+            return prediction['topTen'][model]
+        
+    return None
