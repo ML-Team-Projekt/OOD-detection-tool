@@ -18,7 +18,7 @@ import os
 from threading import Thread
 import time
 import shutil
-from utilities import createModel, createTopk, createRandomBatch
+from utilities import createModel, createRandomBatch, fetchPredcitionForImage
 
 import numpy as np
 import random
@@ -37,32 +37,33 @@ class SPA_Interface():
         self.uID = None
         self.modelName = "convnext_tiny"
         self.batchSize = self.defaultBatchSize
-        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
+        self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
             self.batchSize)
         self.finished = False
         self.data = []
         self.decisions = []
         self.dataCollector = {}
         self.imgSet = set()
+        
+        
 
         self.models = ["convnext_tiny", "convnext_small"]
 
     # creates random batch and loads labels, indexList, sourceList, topTenList, labelList for the gui
     def __loadDataFromModel(self, batchSize):
+        topTenList = []
         batch, indexList, sourceList, labelList = createRandomBatch(batchSize, self.uID)
-
-        model = createModel(self.modelName)
-
-        if not os.path.exists('predictions'):
-            os.makedirs('predictions')
-
-        topTenList = createTopk(batch, model, amount=10)
-        labels = []
-
-        for i in range(0, batchSize):
-            labels.append(topTenList[i])
-
-        return labels, indexList, sourceList, topTenList, labelList
+        
+        for imgName, imgLabel in zip(batch,labelList):
+            imgSource = f"NINCO_OOD_classes/{imgLabel}/{imgName}"
+            topTenPredForImg = fetchPredcitionForImage(imgSource, self.modelName)
+          
+            topTenList.append(topTenPredForImg)
+            
+        return indexList, sourceList, topTenList, labelList
+    
+    
+   
 
     # Put the sources(file name) of all the images in data.json into a global variable imgSet
     def __initImgSet(self):
@@ -139,8 +140,9 @@ class SPA_Interface():
         folder_path = 'imgBatch/'
         shutil.rmtree(folder_path)
         os.makedirs('imgBatch')
+     
         self.__addBatchsize()
-        self.labels, self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
+        self.indexList, self.sourceList, self.topTenList, self.labelList = self.__loadDataFromModel(
             self.batchSize)
         self.__addImg(self.indexList)
         self.__addTopTen(self.topTenList)
@@ -245,6 +247,7 @@ class SPA_Interface():
     def __authFunction(self, userInp):
         # load existing emails and ID´s from database
 
+
         self.index = 0
 
         with open('emails_ids.json') as file:
@@ -309,7 +312,6 @@ class SPA_Interface():
 
     # event handler for the login submit process
     def __submitHandler(self, batchSize, userInput, model):
-
         self.loggedIn = self.__authFunction(userInput)
         if self.loggedIn:
             try:
@@ -319,7 +321,9 @@ class SPA_Interface():
                 self.__initData()
                 self.modelName = model
                 self.__addImgs()
-
+                
+                
+                
                 return *[gr.update(visible=False) for _ in range(9)], *[gr.update(visible=True) for _ in
                                                                         range(3)], gr.update(visible=True,
                                                                                              value=f"Your model: {model}"), gr.update(
@@ -370,7 +374,7 @@ class SPA_Interface():
         self.decisions = []
         random.seed(0)
         np.random.seed(0)
-        return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID), gr.update(
+        return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID, interactive=False), gr.update(
             value=self.batchSize), gr.update(value=self.modelName), *[gr.update(visible=False) for _ in range(3)]
 
     # event handler for last page
@@ -391,6 +395,9 @@ class SPA_Interface():
 
     # gui for the classifier
     def interface(self):
+        
+        fetchPredcitionForImage(None, None)
+        
         with gr.Blocks() as demo:
             # login
             with gr.Row() as login1:
