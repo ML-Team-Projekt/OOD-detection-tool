@@ -222,7 +222,7 @@ def fetchPredcitionForImage(image,model):
     if response.status_code == 200:
         jsonData = response.json()
     else:
-        raise RuntimeError("ServerError, can't fetch file")S
+        raise RuntimeError("ServerError, can't fetch file")
     
     for prediction in jsonData:
         if prediction['source'] == image:

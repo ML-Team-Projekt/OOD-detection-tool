@@ -374,7 +374,7 @@ class SPA_Interface():
         self.decisions = []
         random.seed(0)
         np.random.seed(0)
-        return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID), gr.update(
+        return *[gr.update(visible=True) for _ in range(6)], gr.update(value=self.uID, interactive=False), gr.update(
             value=self.batchSize), gr.update(value=self.modelName), *[gr.update(visible=False) for _ in range(3)]
 
     # event handler for last page
