@@ -50,6 +50,7 @@ def createAnnotation(folderPath):
             writer.writerow([dataList[i], labelList[i]])
 
 
+# function loads a machine learning model via load_state_dict
 def createModel(modelName):
     model = None
     if modelName == "convnext_tiny":
@@ -213,7 +214,7 @@ def visualize(samples):
     plt.imshow(grid.detach().numpy().transpose((1, 2, 0)))
 
 
-
+'function fetches json Data from server if HTTP RESPONSE Code 200'
 def fetchPredcitionForImage(image,model):
     PATH = f" https://nc.mlcloud.uni-tuebingen.de/index.php/s/J6TAAkfsdJzcGBR/download?path=&files=data.json"
     response = requests.get(PATH)
@@ -221,7 +222,7 @@ def fetchPredcitionForImage(image,model):
     if response.status_code == 200:
         jsonData = response.json()
     else:
-        raise "ServerError, can't fetch file"
+        raise RuntimeError("ServerError, can't fetch file")S
     
     for prediction in jsonData:
         if prediction['source'] == image:
