@@ -2,9 +2,10 @@ import csv
 import json
 import os
 import random
-
+import matplotlib.pyplot as plt
 import numpy as np
 import torch
+import torchvision
 import torch.nn.functional as F
 import torchvision.transforms as T
 import torchvision.transforms.functional as fn
@@ -22,12 +23,11 @@ import time
 random.seed(0)
 np.random.seed(0)
 
-# from Dataset import imageDataset, dataloader
-
 
 # Constants for the size of the images
 
 SIZE = round(224 / 0.875)
+FINAL_SIZE = 224
 
 
 def createAnnotation(folderPath):
@@ -92,7 +92,7 @@ Return: list[dict[image:tensor,label:str, prediction:tensor]]
 def feedModel(img, model, path):
     image = Image.open(path + img)
     image = fn.resize(img=image, size=[SIZE, SIZE], interpolation=T.InterpolationMode.BICUBIC)
-    image = fn.center_crop(img=image, output_size=[SIZE, SIZE])
+    image = fn.center_crop(img=image, output_size=[FINAL_SIZE, FINAL_SIZE])
     image = pilToTensor(image)
     image = image.unsqueeze(0)
 
@@ -182,7 +182,7 @@ def createRandomBatch(batchsize, uId):
             continue
 
         indexList.append(index)
-        sample, sample3dim, source = dataloader[index]
+        sample, source = dataloader[index]
 
         sourceList.append(source)
         imgFile = source.split('/')[-1]

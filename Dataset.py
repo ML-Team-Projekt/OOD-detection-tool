@@ -14,7 +14,6 @@ import torchvision.transforms.functional as fn
 from PIL import Image
 from torch.utils.data import Dataset
 
-# from utilities import __fetchOneImg
 random.seed(0)
 np.random.seed(0)
 
@@ -55,6 +54,7 @@ class ImageDataset(Dataset):
         url = f"https://nc.mlcloud.uni-tuebingen.de/index.php/s/TgSK4n8ctPbWP4K/download?path=%2F{dict['label']}&files={dict['img']}"
         return url, imgName
 
+    # fetches one image from the server in saves it to imgFolder
     def __fetchOneImg(self, imgIndex, imgFolder):
         url, img = self.__createUrl(imgIndex)
         response = requests.get(url)
@@ -85,10 +85,9 @@ class DataLoader(Dataset):
         self.index = index
         (picture, label, source) = self.__transform(index)
         image = self.pilToTensor(picture)
-        sample3dim = {'image': image, 'label': label}
         image = image.unsqueeze(0)
         sample = {'image': image, 'label': label}
-        return sample, sample3dim, source
+        return sample, source
 
     # Constants for the size of the images
 
@@ -97,10 +96,11 @@ class DataLoader(Dataset):
     # return: tuple(PIL Image, label)
     def __transform(self, index):
         assert index <= len(imageDataset)
+        FINAL_SIZE = 224
         image, label, source = imageDataset[index]
         rescaledImage = fn.resize(img=image, size=[self.SIZE, self.SIZE], interpolation=T.InterpolationMode.BICUBIC)
-        __transformedImage = fn.center_crop(img=rescaledImage, output_size=[self.SIZE, self.SIZE])
-        return __transformedImage, label, source
+        transformedImage = fn.center_crop(img=rescaledImage, output_size=[FINAL_SIZE, FINAL_SIZE])
+        return transformedImage, label, source
 
 
 dataloader = DataLoader(len(imageDataset))
