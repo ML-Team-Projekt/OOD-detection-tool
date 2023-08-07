@@ -66,8 +66,10 @@ def classifyFlickr(pics):
 Saves out data in the database, ensures that there are no duplicates
 '''
 def createJsonDatabase(label, name, models):
+    nameParts = name.split("-")
     data = {
         "name": name,
+        "source": f"https://live.staticflickr.com/{nameParts[-2].split('/')[-1]}/{nameParts[-1]}",
         "label": label,
         "models": models
     }
