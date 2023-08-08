@@ -43,7 +43,7 @@ $\textcolor{red}{\textsf{Run}}$ `python3 SPA_Interface.py` $\textcolor{red}{\tex
 - At the moment, the images are randomly choosen from a set of images within the repo. We also have access to flickerApi but this isn't public yet. Each image gets rescaled by pytorches interpolation and center-cropped to a size of 256x256.
 -  Next to the image, the top ten out of 1000 labels, with their probabilities predicted by the model in decreasing order, are displayed.
 -  For the most likely label, a short explanation from wikipedia gets displayed as well.
--  Finally, on the page can be found three buttons: 'identically and indipendent distributed', 'out of distribution', 'abstain'. With these, the user can evaluate if the labels match the image, don´t match the image or unsure.
+-  Finally, on the page can be found three buttons: 'in distribution', 'out of distribution', 'abstain'. With these, the user can evaluate if the labels match the image, don´t match the image or unsure.
 
 #### Last page:
 - After the evaluation is over, the user can decide if their answers should be saved or not. In case the data should be saved, it gets added to the data.json file. This file consists of a list of JSON object literals which all correspond to exactly one image. \

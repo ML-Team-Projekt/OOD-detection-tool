@@ -295,7 +295,7 @@ class SPA_Interface():
     def __incrementIndex(self):
         self.index += 1
 
-        # user selected decision (OOD/ IID/ abstain)
+        # user selected decision (OOD/ ID/ abstain)
 
     def __selectDecision(self, decision: str):
 
@@ -436,12 +436,12 @@ class SPA_Interface():
 
             with gr.Row(visible=False) as classifier3:
                 buttonOOD = gr.Button("OOD")
-                buttonIID = gr.Button("IID")
+                buttonID = gr.Button("ID")
                 buttonABS = gr.Button("abstain")
 
             # for decision of user
             decisionOOD = gr.Textbox(visible=False, value="OOD")
-            decisionIID = gr.Textbox(visible=False, value="IID")
+            decisionID = gr.Textbox(visible=False, value="ID")
             decisionAbstain = gr.Textbox(visible=False, value="Abstain")
 
             # end page
@@ -460,7 +460,7 @@ class SPA_Interface():
                                         classifier1, classifier2, classifier3, choosenModel, userID, image, labels])
             buttonOOD.click(self.__selectDecision, inputs=decisionOOD,
                             outputs=[classifier1, classifier2, classifier3, image, labels, end1, end2, end3, text1])
-            buttonIID.click(self.__selectDecision, inputs=decisionIID,
+            buttonID.click(self.__selectDecision, inputs=decisionID,
                             outputs=[classifier1, classifier2, classifier3, image, labels, end1, end2, end3, text1])
             buttonABS.click(self.__selectDecision, inputs=decisionAbstain,
                             outputs=[classifier1, classifier2, classifier3, image, labels, end1, end2, end3, text1])
